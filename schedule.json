@@ -1,0 +1,41 @@
+{
+  "days": [
+    {
+      "day": "Tuesday",
+      "classes": [
+        { "time": "11:00 AM – 1:00 PM", "name": "Intermediate" },
+        { "time": "6:00 – 7:00 PM",     "name": "Beginner" },
+        { "time": "7:45 – 8:30 PM",     "name": "Intermediate" }
+      ]
+    },
+    {
+      "day": "Wednesday",
+      "classes": [
+        { "time": "7:00 – 8:00 PM", "name": "Sabre" }
+      ]
+    },
+    {
+      "day": "Thursday",
+      "classes": [
+        { "time": "11:00 AM – 1:00 PM", "name": "Intermediate" },
+        { "time": "6:30 – 7:30 PM",     "name": "Beginner" },
+        { "time": "7:45 – 9:00 PM",     "name": "Intermediate" }
+      ]
+    },
+    {
+      "day": "Friday",
+      "classes": [
+        { "time": "8:00 – 10:00 AM", "name": "Disciples" }
+      ]
+    },
+    {
+      "day": "Saturday",
+      "classes": [
+        { "time": "9:45 – 10:45 AM",  "name": "5 Steps for Health" },
+        { "time": "11:00 AM – 1:00 PM", "name": "Beginners & Intermediate" },
+        { "time": "1:15 – 2:15 PM",   "name": "Weapons — Spear, Sabre, or Sword" },
+        { "time": "Afternoon (TBD)",   "name": "Monthly Saturday Afternoon Workshops", "note": "Scheduled monthly" }
+      ]
+    }
+  ]
+}

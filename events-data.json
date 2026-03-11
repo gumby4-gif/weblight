@@ -1,0 +1,24 @@
+{
+  "heroTitle": "Events",
+  "heroSubtitle": "Community gatherings, celebrations & special occasions",
+
+  "events": [
+    {
+      "tag": "☯ Lunar New Year",
+      "title": "Happy Chinese New Year — Year of the Horse",
+      "description": "As a tradition for our Wu Style Schools here in Michigan, we met at the Royal Palace Restaurant in Troy to celebrate the Lunar New Year. Forty Tai Chi Chuan practitioners drank tea, ate good Chinese food, and shared stories. Thanks to everyone who joined us.",
+      "featuredImage": {
+        "src": "Images/EImages/633412314_1521492962759934_4045114165727458517_n.jpg",
+        "alt": "Chinese New Year celebration"
+      },
+      "photos": [
+        { "src": "Images/EImages/641465469_1436127811639884_3069269258512265128_n.jpg", "alt": "New Year gathering" },
+        { "src": "Images/EImages/637896755_1436128164973182_3237428557862403790_n.jpg", "alt": "New Year gathering" },
+        { "src": "Images/EImages/640177880_1436127704973228_8187305367130820881_n.jpg", "alt": "New Year gathering" },
+        { "src": "Images/EImages/641416696_1436128031639862_4271930678924250420_n.jpg", "alt": "New Year gathering" },
+        { "src": "Images/EImages/637697327_1436127584973240_3210309442485685133_n.jpg", "alt": "New Year gathering" },
+        { "src": "Images/EImages/634822067_1522473625995201_6006709712604883369_n.jpg", "alt": "New Year gathering" }
+      ]
+    }
+  ]
+}

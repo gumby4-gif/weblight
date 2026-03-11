@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Wu Tai Chi Chuan Academy Detroit — Fees</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+  <style>
+    :root{--gold:#B8954A;--gold-mid:#D4A85A;--gold-pale:#F7F0DC;--gold-softer:#EDE0BC;--ink:#1E1E1E;--ink-soft:#3A3A3A;--mid:#7A7260;--bg:#FAF6EC;--white:#FFFFFF;--border:#DDD0A8;}
+    *{box-sizing:border-box;margin:0;padding:0;}
+    body{font-family:'Lato',sans-serif;color:var(--ink);background:var(--bg);line-height:1.7;}
+    header{background:var(--bg);border-bottom:2px solid var(--gold-softer);display:flex;align-items:center;padding:16px 40px;gap:14px;}
+    .header-brand{display:flex;align-items:center;gap:12px;text-decoration:none;}
+    .header-brand img{width:46px;height:46px;object-fit:contain;}
+    .header-brand-text h1{font-family:'Noto Serif SC',serif;font-size:1.05rem;color:var(--ink);line-height:1.3;font-weight:700;}
+    .header-brand-text p{font-size:0.74rem;color:var(--mid);letter-spacing:0.06em;text-transform:uppercase;}
+    .sub-nav{background:var(--gold-pale);border-bottom:1px solid var(--border);padding:14px 40px;display:flex;align-items:center;gap:16px;flex-wrap:wrap;justify-content:center;}
+    .back-home{font-size:0.82rem;color:var(--mid);text-decoration:none;font-weight:700;letter-spacing:0.04em;text-transform:uppercase;margin-right:8px;}
+    .back-home:visited{color:var(--mid);}
+    .back-home:hover{color:var(--ink);}
+    .divider-dot{color:var(--border);font-size:1rem;}
+    .page-tabs{display:inline-flex;background:var(--white);border:1px solid var(--border);border-radius:50px;padding:4px;gap:3px;}
+    .page-tabs a{display:inline-block;padding:8px 22px;border-radius:50px;text-decoration:none;font-size:0.84rem;font-weight:700;color:var(--ink-soft);transition:background 0.2s,color 0.2s;}
+    .page-tabs a:visited{color:var(--ink-soft);}
+    .page-tabs a:hover{background:var(--gold-softer);color:var(--ink);}
+    .page-tabs a.active{background:var(--ink);color:#E8D58A;}
+    .page-hero{background:linear-gradient(160deg,#C8A870,#DECAA5);padding:44px 40px 36px;text-align:center;}
+    .page-hero h2{font-family:'Noto Serif SC',serif;font-size:clamp(1.5rem,3vw,2rem);color:#2A1F0A;margin-bottom:6px;}
+    .page-hero p{color:#3A2A10;font-size:0.92rem;}
+    main{max-width:700px;margin:0 auto;padding:50px 30px 60px;}
+    .notice{background:#FFF8E8;border-left:3px solid var(--gold);border-radius:0 6px 6px 0;padding:14px 18px;font-size:0.9rem;color:var(--ink-soft);margin-bottom:36px;}
+    .notice strong{color:var(--ink);}
+    .fee-group{margin-bottom:34px;}
+    .fee-group-label{font-size:0.72rem;font-weight:700;color:var(--mid);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:11px;padding-bottom:6px;border-bottom:1px solid var(--border);}
+    .fee-row{display:flex;align-items:center;justify-content:space-between;padding:13px 18px;background:var(--white);border:1px solid var(--border);border-radius:6px;margin-bottom:7px;gap:14px;transition:box-shadow 0.2s;}
+    .fee-row:hover{box-shadow:0 3px 14px rgba(0,0,0,0.06);}
+    .fee-label{font-size:0.93rem;color:var(--ink-soft);}
+    .fee-amount{font-weight:700;font-size:1rem;color:var(--gold);white-space:nowrap;}
+    .loading{text-align:center;padding:60px 20px;color:var(--mid);font-size:0.95rem;}
+    .error{background:#FFF0F0;border-left:3px solid #C0392B;border-radius:0 6px 6px 0;padding:14px 18px;font-size:0.9rem;color:#7B1E1E;margin-bottom:36px;}
+    footer{background:#C8B088;color:#2A1F0A;text-align:center;padding:20px;font-size:0.82rem;border-top:1px solid #C0A070;}
+    @media(max-width:640px){
+      header,.sub-nav{padding:12px 18px;}
+      .page-hero{padding:36px 20px 28px;}
+      main{padding:36px 18px 50px;}
+      .page-tabs a{padding:7px 14px;font-size:0.8rem;}
+    }
+  </style>
+</head>
+<body>
+<header>
+  <a href="WuDetAcademy.html" class="header-brand">
+    <img src="Images/wuTaiChilogoWhitenodot.png" alt="Logo">
+    <div class="header-brand-text">
+      <h1>Wu's Tai Chi Chuan Academy Detroit</h1>
+      <p>Traditional Wu Style · Ferndale, Michigan</p>
+    </div>
+  </a>
+</header>
+<div class="sub-nav">
+  <a href="WuDetAcademy.html" class="back-home"><img src="Images/Tai_Chi_Home.jpg" width="50" height="50" alt="Home"></a>
+  <span class="divider-dot">·</span>
+  <nav class="page-tabs">
+    <a href="Schedule.html">📅 Schedule</a>
+    <a href="Fees.html" class="active">💰 Fees</a>
+    <a href="Events.html">🎉 Events</a>
+  </nav>
+</div>
+<div class="page-hero">
+  <h2 id="hero-title">Class Fees</h2>
+  <p id="hero-subtitle">Monthly rates and class pricing</p>
+</div>
+<main id="fees-main">
+  <div class="loading">Loading fees…</div>
+</main>
+<footer>© <span id="year"></span> Wu's Tai Chi Chuan Academy Detroit</footer>
+<script>
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  fetch('fees-data.json')
+    .then(res => {
+      if (!res.ok) throw new Error('HTTP ' + res.status);
+      return res.json();
+    })
+    .then(data => render(data))
+    .catch(err => {
+      document.getElementById('fees-main').innerHTML =
+        '<div class="error"><strong>Could not load fees data.</strong> Make sure <code>fees-data.json</code> is in the same folder as this page. (' + err.message + ')</div>';
+    });
+
+  function render(data) {
+    document.getElementById('hero-title').textContent    = data.heroTitle    || 'Class Fees';
+    document.getElementById('hero-subtitle').textContent = data.heroSubtitle || '';
+    var html = '';
+    if (data.notice) html += '<div class="notice">' + data.notice + '</div>';
+    (data.groups || []).forEach(function(group) {
+      html += '<div class="fee-group"><div class="fee-group-label">' + group.label + '</div>';
+      (group.items || []).forEach(function(item) {
+        html += '<div class="fee-row"><span class="fee-label">' + item.name + '</span><span class="fee-amount">' + item.price + '</span></div>';
+      });
+      html += '</div>';
+    });
+    document.getElementById('fees-main').innerHTML = html;
+  }
+</script>
+</body>
+</html>

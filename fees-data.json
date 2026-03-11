@@ -1,0 +1,40 @@
+{
+  "heroTitle": "Class Fees",
+  "heroSubtitle": "Monthly rates and class pricing",
+
+  "notice": "<strong>New rates in effect March 1st, 2026.</strong> Updated due to a new 5-year lease with a 25% increase.",
+
+  "groups": [
+    {
+      "label": "Monthly Classes",
+      "items": [
+        { "name": "Beginner & Intermediate",                     "price": "$145 / mo" },
+        { "name": "Additional Family Member & Student Discount",  "price": "$110 / mo" },
+        { "name": "Members & Disciples",                         "price": "$135 / mo" },
+        { "name": "Disciples Only",                              "price": "$90 / mo"  }
+      ]
+    },
+    {
+      "label": "Try It Out",
+      "items": [
+        { "name": "1 Week Sampler",               "price": "$40"         },
+        { "name": "5 Steps for Health (per class)", "price": "$20 / class" }
+      ]
+    },
+    {
+      "label": "Weapons — Wednesdays",
+      "items": [
+        { "name": "Both Sabre & Sword",                 "price": "$80 / mo" },
+        { "name": "Sabre or Sword (1 weapon)",           "price": "$50 / mo" },
+        { "name": "Both Sabre & Sword — Instructors",   "price": "$60 / mo" },
+        { "name": "Sabre or Sword — Instructors",       "price": "$30 / mo" }
+      ]
+    },
+    {
+      "label": "Workshops",
+      "items": [
+        { "name": "Monthly Saturday Afternoon Workshops", "price": "$45 / mo" }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Wu's Tai Chi Chuan Academy Detroit</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --gold:#B8954A; --gold-mid:#D4A85A; --gold-pale:#F7F0DC;
+      --gold-softer:#EDE0BC; --ink:#1E1E1E; --ink-soft:#3A3A3A;
+      --mid:#7A7260; --bg:#FAF6EC; --white:#FFFFFF; --border:#DDD0A8;
+    }
+    *{box-sizing:border-box;margin:0;padding:0;}
+    body{font-family:'Lato',sans-serif;color:var(--ink);background:var(--bg);line-height:1.7;}
+
+    /* Header styles are injected automatically by header.html */
+
+    .hero{background:linear-gradient(160deg,#C8A870 0%,#DECAA5 50%,#C8B088 100%);color:#fff;text-align:center;padding:90px 40px 80px;position:relative;overflow:hidden;}
+    .hero::before{content:'太極';position:absolute;font-family:'Noto Serif SC',serif;font-size:20rem;color:rgba(60,120,60,0.07);top:50%;left:50%;transform:translate(-50%,-50%);pointer-events:none;line-height:1;}
+    .hero h2{font-family:'Noto Serif SC',serif;font-size:clamp(1.7rem,4vw,2.8rem);color:#2A1F0A;margin-bottom:14px;position:relative;}
+    .hero .subtitle{font-size:1.05rem;color:#3A2A10;max-width:620px;margin:0 auto 52px;position:relative;}
+    .benefits-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(175px,1fr));gap:18px;max-width:1080px;margin:0 auto;position:relative;}
+    .benefit-card{background:rgba(255,255,255,0.35);border:1px solid rgba(255,255,255,0.5);border-radius:8px;padding:22px 16px;text-align:center;transition:background 0.25s,border-color 0.25s;}
+    .benefit-card:hover{background:rgba(255,255,255,0.55);border-color:rgba(255,255,255,0.7);}
+    .benefit-card .icon{font-size:1.9rem;margin-bottom:10px;}
+    .benefit-card h3{font-family:'Noto Serif SC',serif;font-size:0.88rem;color:#2A1F0A;margin-bottom:7px;}
+    .benefit-card p{font-size:0.8rem;color:#3A2A10;line-height:1.55;}
+
+    .rule{height:1px;background:var(--border);}
+
+    .page-nav-section{background:var(--gold-pale);padding:44px 40px;text-align:center;border-bottom:1px solid var(--border);}
+    .page-nav-section h2{font-family:'Noto Serif SC',serif;font-size:1.35rem;color:var(--ink);margin-bottom:6px;}
+    .page-nav-section p{color:var(--mid);font-size:0.92rem;margin-bottom:28px;}
+    .page-nav-tabs{display:inline-flex;background:var(--white);border:1px solid var(--border);border-radius:50px;padding:5px;gap:4px;flex-wrap:wrap;justify-content:center;}
+    .page-nav-tabs a{display:inline-block;padding:10px 28px;border-radius:50px;text-decoration:none;font-size:0.88rem;font-weight:700;letter-spacing:0.05em;color:var(--ink-soft);transition:background 0.2s,color 0.2s;}
+    .page-nav-tabs a:visited{color:var(--ink-soft);}
+    .page-nav-tabs a:hover{background:var(--gold-softer);color:var(--ink);}
+
+    .section{padding:68px 40px;max-width:1200px;margin:0 auto;}
+    .section-title{font-family:'Noto Serif SC',serif;font-size:clamp(1.4rem,3vw,1.9rem);color:var(--ink);margin-bottom:8px;}
+    .section-title .zh{font-size:0.78em;color:var(--gold);margin-left:10px;}
+    .section-lead{color:var(--mid);font-size:0.97rem;margin-bottom:34px;max-width:660px;}
+
+    .showcase-strip{background:var(--gold-pale);padding:50px 40px;border-top:1px solid var(--border);border-bottom:1px solid var(--border);}
+    .showcase-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:20px;max-width:1100px;margin:0 auto;}
+    .showcase-item{border-radius:8px;overflow:hidden;border:1px solid var(--border);background:var(--white);}
+    .showcase-item img{width:100%;height:210px;object-fit:cover;display:block;}
+    .showcase-label{font-family:'Noto Serif SC',serif;font-size:0.97rem;color:var(--ink);text-align:center;padding:13px 14px;}
+
+    .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:22px;}
+    .card{background:var(--white);border:1px solid var(--border);border-radius:8px;overflow:hidden;transition:box-shadow 0.25s,transform 0.25s;}
+    .card:hover{box-shadow:0 6px 24px rgba(0,0,0,0.08);transform:translateY(-3px);}
+    .card img{width:100%;height:210px;object-fit:cover;display:block;}
+    .card-body{padding:20px 22px;}
+    .card-body h3{font-family:'Noto Serif SC',serif;font-size:1.05rem;color:var(--ink);margin-bottom:8px;}
+    .card-body h3 .zh{font-size:0.85em;color:var(--gold);margin-left:6px;}
+    .card-body p{font-size:0.9rem;color:var(--ink-soft);}
+    .card-wide{background:var(--white);border:1px solid var(--border);border-radius:8px;padding:24px 26px;margin-top:18px;}
+
+    .history-section{background:#DECAA5;color:#2A1F0A;padding:72px 40px;}
+    .history-inner{max-width:1200px;margin:0 auto;}
+    .history-section .section-title{color:#2A1F0A;}
+    .history-section .section-title .zh{color:var(--gold);}
+    .history-grid{display:grid;grid-template-columns:1fr 1.4fr;gap:44px;align-items:start;margin-top:32px;}
+    .history-grid img{width:100%;border-radius:6px;border:1px solid rgba(180,145,70,0.35);}
+    .history-text p{margin-bottom:16px;font-size:0.92rem;line-height:1.85;color:#2A1F0A;}
+    blockquote{border-left:3px solid #1A6010;padding-left:16px;margin:20px 0;color:#3A2A10;font-style:italic;font-size:0.9rem;line-height:1.7;}
+    .lineage-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:14px;margin-top:36px;}
+    .lineage-card{background:rgba(255,255,255,0.35);border:1px solid rgba(255,255,255,0.5);border-radius:6px;padding:16px 18px;}
+    .lineage-card h4{font-family:'Noto Serif SC',serif;color:#2A1F0A;margin-bottom:6px;font-size:0.92rem;}
+    .lineage-card p{font-size:0.83rem;color:#3A2A10;}
+
+    .locations-section{padding:68px 40px;background:var(--gold-pale);border-top:1px solid var(--border);}
+    .locations-inner{max-width:1200px;margin:0 auto;}
+    .locations-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:22px;margin-top:28px;}
+    .location-card{background:var(--white);border:1px solid var(--border);border-radius:8px;overflow:hidden;}
+    .location-card img{width:100%;height:170px;object-fit:cover;}
+    .location-card-body{padding:18px 20px;}
+    .location-card-body h4{font-family:'Noto Serif SC',serif;font-size:1rem;color:var(--ink);margin-bottom:10px;}
+    .location-card-body p{font-size:0.87rem;color:var(--mid);margin-bottom:4px;}
+
+    .testimonials-section{padding:68px 40px;max-width:1200px;margin:0 auto;}
+    .testimonial-card{background:var(--white);border:1px solid var(--border);border-left:3px solid var(--gold);border-radius:0 8px 8px 0;padding:22px 26px;}
+    .testimonial-card p{font-size:1rem;font-style:italic;color:var(--ink-soft);margin-bottom:10px;}
+    .testimonial-card strong{color:var(--gold);font-size:0.87rem;}
+
+    .contact-section{background:#DECAA5;color:#2A1F0A;padding:60px 40px;text-align:center;}
+    .contact-section h2{font-family:'Noto Serif SC',serif;color:#2A1F0A;margin-bottom:24px;font-size:1.5rem;}
+    .contact-details{display:flex;justify-content:center;gap:48px;flex-wrap:wrap;}
+    .contact-item{font-size:0.95rem;}
+    .contact-item span{color:#3A2A10;font-weight:700;display:block;margin-bottom:3px;font-size:0.72rem;letter-spacing:0.1em;text-transform:uppercase;}
+
+    footer{background:#C8B088;color:#2A1F0A;text-align:center;padding:20px;font-size:0.82rem;border-top:1px solid #C0A070;}
+    /* Announcement banner styles injected by header.html */
+
+    @media(max-width:768px){
+      /* header mobile rules injected by header.html */
+      .hero{padding:60px 20px 50px;}
+      .hero::before{font-size:9rem;}
+      .section{padding:50px 20px;}
+      .page-nav-section{padding:36px 20px;}
+      .showcase-strip{padding:40px 20px;}
+      .history-grid{grid-template-columns:1fr;}
+      .history-section{padding:50px 20px;}
+      .locations-section{padding:50px 20px;}
+      .testimonials-section{padding:50px 20px;}
+      .contact-details{gap:24px;flex-direction:column;align-items:center;}
+      .page-nav-tabs{border-radius:14px;}
+      .page-nav-tabs a{padding:9px 18px;}
+    }
+  </style>
+</head>
+<body>
+
+
+<!-- ═══════════════════════════════════════════════════════════════ -->
+<!--  SHARED HEADER INJECT                                          -->
+<!--  header.html is fetched and inserted here at page load.        -->
+<!--  To mark a nav link active on this page, set data-page on      -->
+<!--  <body>, e.g.  <body data-page="classes">                      -->
+<!-- ═══════════════════════════════════════════════════════════════ -->
+<script>
+  fetch('header.html')
+    .then(function(r){ return r.text(); })
+    .then(function(html){
+      document.body.insertAdjacentHTML('afterbegin', html);
+    });
+</script>
+
+<section class="splash">
+  <img src="Images/GroupCrossHands.jpg" height:auto;object-fit:cover;>
+</section>
+
+<section class="hero">
+  <h2>Tai Chi Chuan — Tradition, Health &amp; Inner Strength</h2>
+  <p class="subtitle">Serving the Metro Detroit area for over 30 years. Traditional Wu Style instruction in a calm, welcoming environment.</p>
+  <div class="benefits-grid">
+    <div class="benefit-card"><div class="icon">🧘</div><h3>Stress Reduction</h3><p>Gentle movements and focused breathing calm the mind and body.</p></div>
+    <div class="benefit-card"><div class="icon">⚖️</div><h3>Improved Balance</h3><p>Regular practice improves coordination and helps prevent falls.</p></div>
+    <div class="benefit-card"><div class="icon">💪</div><h3>Physical Fitness</h3><p>Low-impact exercise for all ages — strength, flexibility, and endurance.</p></div>
+    <div class="benefit-card"><div class="icon">🌿</div><h3>Emotional Wellbeing</h3><p>Reduces anxiety and depression; promotes a positive mood.</p></div>
+    <div class="benefit-card"><div class="icon">🏥</div><h3>Chronic Disease Management</h3><p>Assists with COPD, fibromyalgia, and many other conditions.</p></div>
+    <div class="benefit-card"><div class="icon">🧠</div><h3>Cognitive Function</h3><p>Enhances focus, memory, and mental clarity through mindful movement.</p></div>
+  </div>
+</section>
+
+<div class="rule"></div>
+
+
+
+<div class="rule"></div>
+
+<div class="showcase-strip">
+  <div class="showcase-grid">
+    <div class="showcase-item"><img src="Images/highpat.jpg" alt="Form"><div class="showcase-label">Form 表格</div></div>
+    <div class="showcase-item"><img src="Images/spear.jpg" alt="Spear"><div class="showcase-label">Spear 槍</div></div>
+    <div class="showcase-item"><img src="Images/weapons.jpg" alt="Sabre and Sword"><div class="showcase-label">Sabre &amp; Sword 刀劍</div></div>
+  </div>
+</div>
+
+<section id="classes" class="section">
+  <h2 class="section-title">Classes <span class="zh">課程</span></h2>
+  <p class="section-lead">From beginners to disciples — traditional Wu Style Tai Chi Chuan taught at every level.</p>
+  <div class="grid">
+    <div class="card"><img src="Images/smswhip.jpg" alt="Form class"><div class="card-body"><h3>Form <span class="zh">表格</span></h3><p>Begin with the 12-step form, then progress through the 108-step small and large circle forms. Taught one-on-one or in small groups so you move at your own pace.</p></div></div>
+    <div class="card"><img src="Images/pushhands.jpg" alt="Pushing Hands"><div class="card-body"><h3>Pushing Hands <span class="zh">推手</span></h3><p>Two-person exercises from basic to complex 9-palace form. Also includes Chi Kung and form refinements for intermediate students.</p></div></div>
+    <div class="card"><img src="Images/oxtailsabre.jpg" alt="Weapons"><div class="card-body"><h3>Weapon Forms <span class="zh">武器型態</span></h3><p>Spear, Sabre, and Sword — offered to advanced intermediate students in that order, building on the foundation of the hand form.</p></div></div>
+  </div>
+  <div class="card-wide"><h3 style="font-family:'Noto Serif SC',serif;font-size:1.05rem;margin-bottom:8px;">Disciples <span style="color:var(--gold);font-size:0.85em;margin-left:6px;">門徒</span></h3><p style="font-size:0.9rem;color:var(--ink-soft);">Full members of the Academy with access to open training, advanced form refinement, Chi Kung, applications, and teaching Tai Chi. Formally accepted by the Shifu (师父) into the school's lineage.</p></div>
+  <div class="card-wide"><h3 style="font-family:'Noto Serif SC',serif;font-size:1.05rem;margin-bottom:8px;">5 Steps / Ba Fa Wu Bu <span style="color:var(--gold);font-size:0.85em;margin-left:6px;">太极八法五步</span></h3><p style="font-size:0.9rem;color:var(--ink-soft);">Clears the body's meridians, balances qi and blood, and eases chronic pain. Suitable for all ages — a gateway to personal peace and tranquility.</p></div>
+</section>
+
+<section id="current" class="page-nav-section">
+  <h2>Schedule, Fees &amp; Events</h2>
+  <p>Select a page below — updated as things change.</p>
+  <nav class="page-nav-tabs">
+    <a href="Schedule.html">📅 Schedule</a>
+    <a href="Fees.html">💰 Fees</a>
+    <a href="Events.html">🎉 Events</a>
+  </nav>
+</section>
+
+<section id="history" class="history-section">
+  <div class="history-inner">
+    <h2 class="section-title">Our School History <span class="zh">我們的校史</span></h2>
+    <div class="history-grid">
+      <div>
+        <img src="Images/OLC.jpg" alt="Our school">
+        <img src="Images/oldoldschool.jpg" alt="Original school" style="margin-top:16px;">
+        <h4 style="object-fit: cover; display: block; text-align: center;">Master Wu Tai Chi conducting a workshop at Old Detroit School location</h4>
+      </div>
+      <div class="history-text">
+        <p>Our school has been serving the Metro Detroit area for over 30 years — working with seniors and hospital patients across Southeast Michigan, teenagers through Cranbrook's Horizons Upward Bound program, and a wide range of everyday people at 24 satellite locations and our main Academy.</p>
+        <p>In 1935, the first Wu's Tai Chi Chuan Academy was founded in Shanghai by Grandmaster Wu Chien-ch'uan. Our instructors are certified at Advanced Level by the International Wu Style Tai Chi Chuan Federation.</p>
+        <blockquote>"The 108 posture empty hand form routine is the essence. Regular practice strengthens bones and muscles… Preventing disease and prolonging life, Tai Chi Chuan nourishes one's vitality. <p></p>Two person pushing hands is the application. The methodology follows the Tai Chi principle of movement and stillness. Applications are expressed through the subtle transformations that occur between fullness and emptiness. Applications use the principles of psychology and physics. Softness overcomes hardness, and hardness reinforces softness." — Grandmaster Wu Kung-tsao</blockquote>
+        
+      </div>
+    </div>
+    <h3 style="object-fit: cover; display: block; text-align: center;">Notable Disciples</h3>
+    <div class="lineage-grid">
+      <div class="lineage-card"><h4>Wu Quanyou</h4><p>Founder of Wu Style. Military officer and disciple of Yang Luchan — laid the foundations of the style's internal martial art.</p></div>
+      <div class="lineage-card"><h4>Wu Jianquan</h4><p>Co-founder of Wu Style. Taught large numbers and refined the art to distinguish it from Yang style.</p></div>
+      <div class="lineage-card"><h4>Wu Gongyi</h4><p>Moved family headquarters to Hong Kong in 1948. Senior instructor from 1942 to 1970.</p></div>
+      <div class="lineage-card"><h4>Wu Ta-k'uei</h4><p>Late grand master credited with promoting Tai Chi in Canada and internationally.</p></div>
+      <div class="lineage-card"><h4>Eddie Wu Guangyu</h4><p>Current grandmaster. Great-grandson of Wu Jianquan and grandson of Wu Gongyi.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="locations" class="locations-section">
+  <div class="locations-inner">
+    <h2 class="section-title">Locations <span class="zh">地點</span></h2>
+    <div class="locations-grid">
+      <div class="location-card"><img src="Images/Wu Detroit.jpg" alt="Detroit Academy"><div class="location-card-body"><h4>Main Academy — Ferndale</h4><p>📍 3140 Hilton Road, Ferndale, MI 48220</p><p>📞 248-854-3953</p></div></div>
+      <div class="location-card"><img src="Images/Wu AnnArbor.jpg" alt="Ann Arbor"><div class="location-card-body"><h4>Satellite Schools — Michigan</h4><p>📍 Ann Arbor: 111 S Wallace Blvd, Ypsilanti</p><p>📍 Rochester, Michigan</p><p style="color:var(--gold);font-size:0.82rem;margin-top:6px;">+ 24 satellite locations statewide</p></div></div>
+      <div class="location-card"><img src="Images/Wu Toronto.jpg" alt="Other locations"><div class="location-card-body"><h4>Other Locations</h4><p>📍 Washington D.C.: 921 Pennsylvania Ave SE</p><p>📞 (301) 388-8095</p><p>📍 Toronto, Canada</p></div></div>
+    </div>
+  </div>
+</section>
+
+<section id="testimonials" class="testimonials-section">
+  <h2 class="section-title">Testimonials</h2>
+  <div class="grid" style="margin-top:26px;">
+    <div class="testimonial-card"><p>"Amazing! Highly recommended."</p><strong>— Student A</strong></div>
+    <div class="testimonial-card"><p>"Just what I was looking for."</p><strong>— Student B</strong></div>
+  </div>
+</section>
+
+<<section style="text-align: center;">
+  <a href="registration.html">
+    <img src="Images/TaiChiReg.jpg" alt="Yearly Registration Form" width="100" height="100">
+  </a>
+  <p>Yearly Registration Form</p>
+</section>
+<section id="contact" class="contact-section">
+  <h2>Contact Us</h2>
+  <div class="contact-details">
+    <div class="contact-item"><span>Email</span><a href="/cdn-cgi/l/email-protection#9ef7f0f8f1dee9ebedeae7f2fbfafbeaecf1f7eab0fdf1f3"><span class="__cf_email__" data-cfemail="177e79717857606264636e7b7273726365787e633974787a">[email&#160;protected]</span></a></div>
+    <div class="contact-item"><span>Phone</span>248-854-3953</div>
+    <div class="contact-item"><span>Address</span>3140 Hilton Road, Ferndale, MI 48220</div>
+  </div>
+</section>
+
+<footer>© <span id="year"></span> Wu's Tai Chi Chuan Academy Detroit</footer>
+
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/emai

@@ -1,0 +1,38 @@
+<HTML>
+<script>
+  fetch('header.html')
+    .then(function(r){ return r.text(); })
+    .then(function(html){
+      var tmp = document.createElement('div');
+      tmp.innerHTML = html;
+      document.body.insertBefore(tmp, document.body.firstChild);
+    });
+</script>
+<script>
+  fetch('Sifu\'s_Corner.txt')
+    .then(function(r){ return r.text(); })
+    .then(function(text){
+      var paragraphs = text
+        .split(/\n\s*\n/)
+        .map(function(p){ return p.trim(); })
+        .filter(function(p){ return p.length > 0; });
+
+      var html = paragraphs
+        .map(function(p){ return '<p>' + p + '</p>'; })
+        .join('\n');
+
+      document.getElementById('sifu-message').innerHTML = html;
+    });
+</script>
+<Body>
+  <h2 style="display:flex; align-items:center; gap:10px;">
+    Sifu's Corner - 底特律師傅 - Michael Ashmore
+    <img src="Images/MichaelAshmore.jpg" alt="Michael Ashmore" style="height:60px; object-fit:cover;">
+  </h2>
+  <h3>Greetings!</h3>
+
+  <div id="sifu-message"></div>
+
+  <h3>Cheers!</h3>
+</Body>
+</HTML>

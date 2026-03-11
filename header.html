@@ -1,0 +1,187 @@
+<style id="site-header-styles">
+  :root {
+    --gold:#B8954A; --gold-mid:#D4A85A; --gold-pale:#F7F0DC;
+    --gold-softer:#EDE0BC; --ink:#1E1E1E; --ink-soft:#3A3A3A;
+    --mid:#7A7260; --bg:#FAF6EC; --white:#FFFFFF; --border:#DDD0A8;
+  }
+
+  header {
+    background: #DECAA5;
+    border-bottom: 2px solid #C0A070;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 16px 40px;
+    gap: 20px;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+  .header-brand a { display: flex; line-height: 0; }
+  .header-brand a img { border: none; outline: none; }
+  .header-brand img { width: 52px; height: 52px; object-fit: contain; }
+  .header-brand-text h1 {
+    font-family: 'Noto Serif SC', serif;
+    font-size: 1.1rem;
+    color: #2A1F0A;
+    line-height: 1.3;
+    font-weight: 700;
+  }
+  .header-brand-text p {
+    font-size: 0.74rem;
+    color: #3A2A10;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+  header nav { display: flex; flex-wrap: wrap; gap: 6px 16px; justify-content: flex-end; }
+  header nav a {
+    color: #2A1F0A;
+    text-decoration: none;
+    font-size: 0.82rem;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    padding: 5px 0;
+    border-bottom: 2px solid transparent;
+    transition: border-color 0.2s;
+  }
+  header nav a:visited { color: #2A1F0A; }
+  header nav a:hover, header nav a.active { border-bottom-color: #2A1F0A; }
+
+  .nav-toggle { display: none; background: none; border: none; cursor: pointer; padding: 4px; }
+  .nav-toggle span { display: block; width: 24px; height: 2px; background: #2A1F0A; margin: 5px 0; }
+
+  #announcement-banner {
+    display: none;
+    width: 100%;
+    background: #2A1F0A;
+    color: #F7F0DC;
+    text-align: center;
+    padding: 11px 48px;
+    font-size: 0.88rem;
+    line-height: 1.5;
+    position: relative;
+    z-index: 101;
+  }
+  #announcement-banner a { color: #D4A85A; text-decoration: underline; }
+  #announcement-banner .ann-close {
+    position: absolute;
+    right: 14px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    color: #F7F0DC;
+    font-size: 1.1rem;
+    cursor: pointer;
+    opacity: 0.7;
+    padding: 4px 8px;
+    line-height: 1;
+  }
+  #announcement-banner .ann-close:hover { opacity: 1; }
+
+  @media (max-width: 768px) {
+    header { padding: 12px 20px; flex-wrap: wrap; }
+    header nav { display: none; flex-direction: column; width: 100%; gap: 0; }
+    header nav.open { display: flex; }
+    header nav a { padding: 10px 0; border-bottom: 1px solid rgba(0,0,0,0.1); }
+    .nav-toggle { display: block; }
+  }
+</style>
+
+<!-- ═══════════════════════════════════════════════════════════════ -->
+<!--  ANNOUNCEMENT BANNER  (shown when announcement.json is found)  -->
+<!-- ═══════════════════════════════════════════════════════════════ -->
+<div id="announcement-banner" role="alert">
+  <span id="announcement-text"></span>
+  <button
+    class="ann-close"
+    onclick="document.getElementById('announcement-banner').style.display='none'"
+    aria-label="Dismiss"
+  >✕</button>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════════ -->
+<!--  MAIN SITE HEADER                                              -->
+<!-- ═══════════════════════════════════════════════════════════════ -->
+<header>
+
+  <div class="header-brand">
+    <a href="index.html#top" aria-label="Return to home">
+      <img id="header-logo" src="Images/wuTaiChilogoWhitenodot.png" alt="Wu Tai Chi Logo">
+    </a>
+    <div class="header-brand-text">
+      <h1 id="header-site-name">Wu's Tai Chi Chuan Academy Detroit</h1>
+      <p id="header-tagline">Traditional Wu Style · Ferndale, Michigan</p>
+    </div>
+  </div>
+
+  <button class="nav-toggle" aria-label="Menu" aria-expanded="false">
+    <span></span><span></span><span></span>
+  </button>
+
+  <nav aria-label="Main navigation">
+    <a href="index.html#classes"      data-nav="classes">Classes</a>
+    <a href="index.html#current"      data-nav="current">Schedule-Fees-Events</a>
+    <a href="index.html#history"      data-nav="history">History</a>
+    <a href="Sifu's_Corner.html"             data-nav="sifu">Sifu's Corner</a>
+    <a href="index.html#locations"    data-nav="locations">Locations</a>
+    <a href="index.html#testimonials" data-nav="testimonials">Testimonials</a>
+    <a href="index.html#contact"      data-nav="contact">Contact</a>
+  </nav>
+
+</header>
+
+<script>
+(function () {
+  /* Move <style> from body into <head> so it applies globally.
+     The style tag starts in the body (because it was fetched as a
+     fragment), so we relocate it immediately before anything renders. */
+  var s = document.getElementById('site-header-styles');
+  if (s) { document.head.appendChild(s); }
+
+  /* Per-page overrides: set window.SITE_HEADER = { logoSrc, siteName, tagline }
+     before the fetch call to customise logo/name/tagline per page.            */
+  var cfg = window.SITE_HEADER || {};
+  if (cfg.logoSrc)  document.getElementById('header-logo').src              = cfg.logoSrc;
+  if (cfg.siteName) document.getElementById('header-site-name').textContent = cfg.siteName;
+  if (cfg.tagline)  document.getElementById('header-tagline').textContent   = cfg.tagline;
+
+  /* Active nav link — reads <body data-page="…">
+     e.g. <body data-page="history"> highlights the History link */
+  var page = document.body.getAttribute('data-page');
+  if (page) {
+    var link = document.querySelector('header nav a[data-nav="' + page + '"]');
+    if (link) link.classList.add('active');
+  }
+
+  /* Mobile menu toggle + ARIA */
+  var toggle = document.querySelector('.nav-toggle');
+  if (toggle) {
+    toggle.addEventListener('click', function () {
+      var expanded = this.getAttribute('aria-expanded') === 'true';
+      this.setAttribute('aria-expanded', String(!expanded));
+      this.nextElementSibling.classList.toggle('open');
+    });
+  }
+
+  /* Announcement banner — fetch announcement.json if present.
+     Expected shape: { "message": "…", "link": "…", "linkText": "…" }
+     "link" and "linkText" are optional.                               */
+  fetch('announcement.json')
+    .then(function (r) { return r.ok ? r.json() : null; })
+    .then(function (d) {
+      if (!d || !d.message) return;
+      var span = document.getElementById('announcement-text');
+      span.textContent = d.message;
+      if (d.link) {
+        var a = document.createElement('a');
+        a.href = d.link;
+        a.textContent = ' ' + (d.linkText || 'Learn more');
+        span.appendChild(a);
+      }
+      document.getElementById('announcement-banner').style.display = 'block';
+    })
+    .catch(function () { /* no announcement.json — silently skip */ });
+})();
+</script>
