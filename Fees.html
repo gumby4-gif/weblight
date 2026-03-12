@@ -1,5 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
+  <script>
+  fetch('header.html')
+    .then(function(r){ return r.text(); })
+    .then(function(html){
+      var tmp = document.createElement('div');
+      tmp.innerHTML = html;
+      document.body.insertBefore(tmp, document.body.firstChild);
+    });
+</script>
 <head>
   <meta charset="UTF-8">
   <title>Wu Tai Chi Chuan Academy Detroit — Fees</title>
@@ -48,17 +57,9 @@
   </style>
 </head>
 <body>
-<header>
-  <a href="WuDetAcademy.html" class="header-brand">
-    <img src="Images/wuTaiChilogoWhitenodot.png" alt="Logo">
-    <div class="header-brand-text">
-      <h1>Wu's Tai Chi Chuan Academy Detroit</h1>
-      <p>Traditional Wu Style · Ferndale, Michigan</p>
-    </div>
-  </a>
-</header>
+
 <div class="sub-nav">
-  <a href="WuDetAcademy.html" class="back-home"><img src="Images/Tai_Chi_Home.jpg" width="50" height="50" alt="Home"></a>
+  <a href="index.html#top" class="back-home"><img src="Images/Tai_Chi_Home.jpg" width="50" height="50" alt="Home"></a>
   <span class="divider-dot">·</span>
   <nav class="page-tabs">
     <a href="Schedule.html">📅 Schedule</a>
