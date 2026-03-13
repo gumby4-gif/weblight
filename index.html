@@ -7,6 +7,7 @@
   <meta name="title" content="Wu's Tai Chi Chuan Academy Ferndale">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="preload" href="header.html" as="fetch" crossorigin>
+  <link rel="preload" as="image" href="Images/crosshands/GroupCrossHands-1170.webp" imagesrcset="Images/crosshands/GroupCrossHands-400.webp 400w, Images/crosshands/GroupCrossHands-800.webp 800w, Images/crosshands/GroupCrossHands-1170.webp 1170w, Images/crosshands/GroupCrossHands-1920.webp 1920w" imagesizes="(max-width: 600px) 100vw, 585px" fetchpriority="high">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="preload" href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;700&family=Lato:wght@300;400;700&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
@@ -167,12 +168,26 @@
 
 <section class="splash">
   <picture>
-    <source srcset="Images\crosshands\GroupCrossHands.webp" type="image/webp">
-    <source srcset="Images\crosshands\GroupCrossHands.avif" type="image/avif">
-    <img src="Images\crosshands\GroupCrossHands.jpg" 
-         alt="Tai Chi group practicing" 
-         fetchpriority="high"
-         style="width: 100%; max-height: 900px; object-fit: cover;">
+    <source 
+      type="image/avif"
+      srcset="Images/crosshands/GroupCrossHands-400.avif 400w,
+              Images/crosshands/GroupCrossHands-800.avif 800w,
+              Images/crosshands/GroupCrossHands-1170.avif 1170w,
+              Images/crosshands/GroupCrossHands-1920.avif 1920w"
+      sizes="(max-width: 600px) 100vw, 585px">
+
+    <source 
+      type="image/webp"
+      srcset="Images/crosshands/GroupCrossHands-400.webp 400w,
+              Images/crosshands/GroupCrossHands-800.webp 800w,
+              Images/crosshands/GroupCrossHands-1170.webp 1170w,
+              Images/crosshands/GroupCrossHands-1920.webp 1920w"
+      sizes="(max-width: 600px) 100vw, 585px">
+
+    <img src="Images/crosshands/GroupCrossHands-1170.jpg" 
+        alt="Tai Chi group practicing"
+        fetchpriority="high"
+        style="width: 100%; max-height: 900px; object-fit: cover;">
   </picture>
 </section>
 
@@ -300,9 +315,9 @@
   <h2 class="section-title">Classes <span class="zh">課程</span></h2>
   <p class="section-lead">From beginners to disciples — traditional Wu Style Tai Chi Chuan taught at every level.</p>
   <div class="grid">
-    <div class="card"><img src="Images/smswhip.jpg" alt="Form class"><div class="card-body"><h3>Form <span class="zh">表格</span></h3><p>Begin with the 12-step form, then progress through the 108-step small and large circle forms. Taught one-on-one or in small groups so you move at your own pace.</p></div></div>
-    <div class="card"><img src="Images/pushhands.jpg" alt="Pushing Hands"><div class="card-body"><h3>Pushing Hands <span class="zh">推手</span></h3><p>Two-person exercises from basic to complex 9-palace form. Also includes Chi Kung and form refinements for intermediate students.</p></div></div>
-    <div class="card"><img src="Images/oxtailsabre.jpg" alt="Weapons"><div class="card-body"><h3>Weapon Forms <span class="zh">武器型態</span></h3><p>Spear, Sabre, and Sword — offered to advanced intermediate students in that order, building on the foundation of the hand form.</p></div></div>
+    <div class="card"><img loading="lazy" src="Images/smswhip.jpg" alt="Form class"><div class="card-body"><h3>Form <span class="zh">表格</span></h3><p>Begin with the 12-step form, then progress through the 108-step small and large circle forms. Taught one-on-one or in small groups so you move at your own pace.</p></div></div>
+    <div class="card"><img loading="lazy" src="Images/pushhands.jpg" alt="Pushing Hands"><div class="card-body"><h3>Pushing Hands <span class="zh">推手</span></h3><p>Two-person exercises from basic to complex 9-palace form. Also includes Chi Kung and form refinements for intermediate students.</p></div></div>
+    <div class="card"><img loading="lazy" src="Images/oxtailsabre.jpg" alt="Weapons"><div class="card-body"><h3>Weapon Forms <span class="zh">武器型態</span></h3><p>Spear, Sabre, and Sword — offered to advanced intermediate students in that order, building on the foundation of the hand form.</p></div></div>
   </div>
   <div class="card-wide"><h3 style="font-family:'Noto Serif SC',serif;font-size:1.05rem;margin-bottom:8px;">Disciples <span class="zh">表格門徒</span></h3><p style="font-size:0.9rem;color:var(--ink-soft);">Full members of the Academy with access to open training, advanced form refinement, Chi Kung, applications, and teaching Tai Chi. Formally accepted by the Shifu (师父) into the school's lineage.</p></div>
   <div class="card-wide"><h3 style="font-family:'Noto Serif SC',serif;font-size:1.05rem;margin-bottom:8px;">5 Steps / Ba Fa Wu Bu <span class="zh">太极八法五步</span></h3><p style="font-size:0.9rem;color:var(--ink-soft);">Clears the body's meridians, balances qi and blood, and eases chronic pain. Suitable for all ages — a gateway to personal peace and tranquility.</p></div>
@@ -323,8 +338,8 @@
     <h2 class="section-title">Our School History <span class="zh">我們的校史</span></h2>
     <div class="history-grid">
       <div>
-        <img src="Images/OLC.jpg" alt="Our school">
-        <img src="Images/oldoldschool.jpg" alt="Original school" style="margin-top:16px;">
+        <img loading="lazy" src="Images/OLC.jpg" alt="Our school">
+        <img loading="lazy" src="Images/oldoldschool.jpg" alt="Original school" style="margin-top:16px;">
         <h3 style="object-fit: cover; display: block; text-align: center;">Master Wu Tai Chi conducting a workshop at Old Detroit School location</h4>
       </div>
       <div class="history-text">
@@ -349,9 +364,9 @@
   <div class="locations-inner">
     <h2 class="section-title">Locations <span class="zh">地點</span></h2>
     <div class="locations-grid">
-      <div class="location-card"><img src="Images/Wu Detroit.jpg" alt="Detroit Academy"><div class="location-card-body"><h3>Main Academy — Ferndale</h3><p>📍 3140 Hilton Road, Ferndale, MI 48220</p><p>📞 248-854-3953</p></div></div>
-      <div class="location-card"><img src="Images/Wu AnnArbor.jpg" alt="Ann Arbor"><div class="location-card-body"><h3>Satellite Schools — Michigan</h4><p>📍 Ann Arbor: 111 S Wallace Blvd, Ypsilanti</p><p>📍 Rochester, Michigan</p><p style="color:var(--red);font-size:0.82rem;margin-top:6px;">+ 24 satellite locations statewide</p></div></div>
-      <div class="location-card"><img src="Images/Wu Toronto.jpg" alt="Other locations"><div class="location-card-body"><h3>Other Locations</h3><p>📍 Washington D.C.: 921 Pennsylvania Ave SE</p><p>📞 (301) 388-8095</p><p>📍 Toronto, Canada</p></div></div>
+      <div class="location-card"><img loading="lazy" src="Images/Wu Detroit.jpg" alt="Detroit Academy"><div class="location-card-body"><h3>Main Academy — Ferndale</h3><p>📍 3140 Hilton Road, Ferndale, MI 48220</p><p>📞 248-854-3953</p></div></div>
+      <div class="location-card"><img loading="lazy" src="Images/Wu AnnArbor.jpg" alt="Ann Arbor"><div class="location-card-body"><h3>Satellite Schools — Michigan</h4><p>📍 Ann Arbor: 111 S Wallace Blvd, Ypsilanti</p><p>📍 Rochester, Michigan</p><p style="color:var(--red);font-size:0.82rem;margin-top:6px;">+ 24 satellite locations statewide</p></div></div>
+      <div class="location-card"><img loading="lazy" src="Images/Wu Toronto.jpg" alt="Other locations"><div class="location-card-body"><h3>Other Locations</h3><p>📍 Washington D.C.: 921 Pennsylvania Ave SE</p><p>📞 (301) 388-8095</p><p>📍 Toronto, Canada</p></div></div>
     </div>
   </div>
 </section>
@@ -369,7 +384,7 @@
     <picture>
       <source srcset="Images/regform/regform1.avif" type="image/avif">
       <source srcset="Images/regform/regform1.webp" type="image/webp">
-      <img src="Images/regform/regform1.png" alt="Yearly Registration Form">
+      <img loading="lazy" src="Images/regform/regform1.png" alt="Yearly Registration Form">
     </picture>
   </a>
 </section>
