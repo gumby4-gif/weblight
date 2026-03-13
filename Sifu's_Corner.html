@@ -1,38 +1,70 @@
-<HTML>
-<script>
-  fetch('header.html')
-    .then(function(r){ return r.text(); })
-    .then(function(html){
-      var tmp = document.createElement('div');
-      tmp.innerHTML = html;
-      document.body.insertBefore(tmp, document.body.firstChild);
-    });
-</script>
-<script>
-  fetch('Sifu\'s_Corner.txt')
-    .then(function(r){ return r.text(); })
-    .then(function(text){
-      var paragraphs = text
-        .split(/\n\s*\n/)
-        .map(function(p){ return p.trim(); })
-        .filter(function(p){ return p.length > 0; });
+<!DOCTYPE html>
+<HTML lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    footer {
+      background: #C8B088;
+      color: #2A1F0A;
+      text-align: center;
+      padding: 20px;
+      font-size: 0.82rem;
+      border-top: 1px solid #C0A070;
+    }
 
-      var html = paragraphs
-        .map(function(p){ return '<p>' + p + '</p>'; })
-        .join('\n');
+    @media (max-width: 640px) {
+      header, .sub-nav { padding: 12px 18px; }
+      .page-hero { padding: 36px 20px 28px; }
+      main { padding: 36px 18px 50px; }
+      .class-row { flex-wrap: wrap; gap: 5px; }
+      .class-time { min-width: unset; }
+      .class-note { margin-left: 0; }
+      .page-tabs a { padding: 7px 14px; font-size: 0.8rem; }
+    }
+  </style>
+</head>
+<body style="background-color: #F7F0DC;">
 
-      document.getElementById('sifu-message').innerHTML = html;
-    });
-</script>
-<Body>
-  <h2 style="display:flex; align-items:center; gap:10px;">
-    Sifu's Corner - 底特律師傅 - Michael Ashmore
-    <img src="Images/MichaelAshmore.jpg" alt="Michael Ashmore" style="height:60px; object-fit:cover;">
-  </h2>
+  <h2 style="display:flex; flex-direction:column; align-items:flex-start; gap:6px; line-height:1.4;">
+  <span>Sifu's Corner</span>
+  <span style="color: #a30904;">底特律師傅</span>
+  <span style="display:flex; align-items:center; gap:10px;">
+    Michael Ashmore
+    <img src="Images/MichaelAshmore.jpg" alt="Michael Ashmore" style="height:60px; object-fit:cover; border-radius:4px;">
+  </span>
+</h2>
   <h3>Greetings!</h3>
 
   <div id="sifu-message"></div>
 
   <h3>Cheers!</h3>
-</Body>
+
+  <script>
+    fetch('header.html')
+      .then(function(r) { return r.text(); })
+      .then(function(html) {
+        var tmp = document.createElement('div');
+        tmp.innerHTML = html;
+        document.body.insertBefore(tmp, document.body.firstChild);
+      });
+  </script>
+  <script>
+    fetch("Sifu's_Corner.txt")
+      .then(function(r) { return r.text(); })
+      .then(function(text) {
+        var paragraphs = text
+          .split(/\n\s*\n/)
+          .map(function(p) { return p.trim(); })
+          .filter(function(p) { return p.length > 0; });
+
+        var html = paragraphs
+          .map(function(p) { return '<p>' + p + '</p>'; })
+          .join('\n');
+
+        document.getElementById('sifu-message').innerHTML = html;
+      });
+  </script>
+
+</body>
 </HTML>
