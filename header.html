@@ -157,6 +157,7 @@
 
   /* Mobile menu toggle + ARIA */
   var toggle = document.querySelector('.nav-toggle');
+  var navMenu = document.querySelector('header nav');
   if (toggle) {
     toggle.addEventListener('click', function () {
       var expanded = this.getAttribute('aria-expanded') === 'true';
@@ -173,7 +174,7 @@
     .then(function (d) {
       if (!d || !d.message) return;
       var span = document.getElementById('announcement-text');
-      span.textContent = d.message;
+      span.innerHTML = d.message;
       if (d.link) {
         var a = document.createElement('a');
         a.href = d.link;
