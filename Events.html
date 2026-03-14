@@ -1,19 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
-  <script>
-  fetch('header.html')
-    .then(function(r){ return r.text(); })
-    .then(function(html){
-      var tmp = document.createElement('div');
-      tmp.innerHTML = html;
-      document.body.insertBefore(tmp, document.body.firstChild);
-    });
-</script>
 <head>
   <meta charset="UTF-8">
   <title>Wu Tai Chi Chuan Academy Detroit — Events</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+  <link rel="preload" href="header.html" as="fetch" crossorigin>
   <style>
     :root{--gold:#B8954A;--gold-mid:#D4A85A;--gold-pale:#F7F0DC;--gold-softer:#EDE0BC;--ink:#1E1E1E;--ink-soft:#3A3A3A;--mid:#7A7260;--bg:#FAF6EC;--white:#FFFFFF;--border:#DDD0A8;}
     *{box-sizing:border-box;margin:0;padding:0;}
@@ -63,8 +55,29 @@
     }
   </style>
 </head>
-<body>
 
+<body>
+  <script>
+    fetch('header.html')
+      .then(function(r){ return r.text(); })
+      .then(function(html){
+        document.body.insertAdjacentHTML('afterbegin', html);
+        /* insertAdjacentHTML does NOT execute <script> tags, so we
+           re-run any scripts that were inside the fetched fragment. */
+        var tmp = document.createElement('div');
+        tmp.innerHTML = html;
+        tmp.querySelectorAll('script').forEach(function(oldScript) {
+          var newScript = document.createElement('script');
+          if (oldScript.src) {
+            newScript.src = oldScript.src;
+          } else {
+            newScript.textContent = oldScript.textContent;
+          }
+          document.head.appendChild(newScript);
+          document.head.removeChild(newScript);
+        });
+      });
+</script>
 
 
 
