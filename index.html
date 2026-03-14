@@ -7,7 +7,15 @@
   <meta name="title" content="Wu's Tai Chi Chuan Academy Ferndale">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="preload" href="header.html" as="fetch" crossorigin>
-  <link rel="preload" as="image" href="Images/crosshands/GroupCrossHands-1170.webp" imagesrcset="Images/crosshands/GroupCrossHands-400.webp 400w, Images/crosshands/GroupCrossHands-800.webp 800w, Images/crosshands/GroupCrossHands-1170.webp 1170w, Images/crosshands/GroupCrossHands-1920.webp 1920w" imagesizes="(max-width: 600px) 100vw, 585px" fetchpriority="high">
+  <link rel="preload" 
+      as="image"
+      href="Images/crosshands/GroupCrossHands-800.webp"
+      imagesrcset="Images/crosshands/GroupCrossHands-400.webp 400w,
+                   Images/crosshands/GroupCrossHands-800.webp 800w,
+                   Images/crosshands/GroupCrossHands-1170.webp 1170w,
+                   Images/crosshands/GroupCrossHands-1920.webp 1920w"
+      imagesizes="100vw"
+      fetchpriority="high">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="preload" href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;700&family=Lato:wght@300;400;700&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
@@ -136,7 +144,6 @@
 </head>
 
 <body>
-<main>
 
 <!-- ═══════════════════════════════════════════════════════════════ -->
 <!--  SHARED HEADER INJECT                                          -->
@@ -166,6 +173,7 @@
     });
 </script>
 
+<main>
 <section class="splash">
   <picture>
     <source 
@@ -184,9 +192,12 @@
               Images/crosshands/GroupCrossHands-1920.webp 1920w"
       sizes="(max-width: 600px) 100vw, 585px">
 
-    <img src="Images/crosshands/GroupCrossHands-1170.jpg" 
+    <img src="Images/crosshands/GroupCrossHands-800.webp"
         alt="Tai Chi group practicing"
         fetchpriority="high"
+        width="1170"
+        height="780"
+        sizes="100vw"
         style="width: 100%; max-height: 900px; object-fit: cover;">
   </picture>
 </section>
@@ -305,9 +316,9 @@
 
 <div class="showcase-strip">
   <div class="showcase-grid">
-    <div class="showcase-item"><img src="Images/highpat.webp" alt="Form"><div class="showcase-label">Form 表格</div></div>
-    <div class="showcase-item"><img src="Images/spear.jpg" alt="Spear"><div class="showcase-label">Spear 槍</div></div>
-    <div class="showcase-item"><img src="Images/weapons.webp" alt="Sabre and Sword"><div class="showcase-label">Sabre &amp; Sword 刀劍</div></div>
+    <div class="showcase-item"><img loading="lazy" src="Images/highpat.webp" alt="Form"><div class="showcase-label">Form 表格</div></div>
+    <div class="showcase-item"><img loading="lazy" src="Images/spear.jpg" alt="Spear"><div class="showcase-label">Spear 槍</div></div>
+    <div class="showcase-item"><img loading="lazy" src="Images/weapons.webp" alt="Sabre and Sword"><div class="showcase-label">Sabre &amp; Sword 刀劍</div></div>
   </div>
 </div>
 
@@ -340,7 +351,8 @@
       <div>
         <img loading="lazy" src="Images/OLC.jpg" alt="Our school">
         <img loading="lazy" src="Images/oldoldschool.jpg" alt="Original school" style="margin-top:16px;">
-        <h3 style="object-fit: cover; display: block; text-align: center;">Master Wu Tai Chi conducting a workshop at Old Detroit School location</h4>
+        <!-- REPLACE WITH -->
+        <p style="font-size: 0.82rem; color: var(--parchment-soft); text-align: center; margin-top: 10px; font-style: italic; line-height: 1.5;">Master Wu Tai Chi conducting a workshop at Old Detroit School location</p>
       </div>
       <div class="history-text">
         <p>Our school has been serving the Metro Detroit area for over 30 years — working with seniors and hospital patients across Southeast Michigan, teenagers through Cranbrook's Horizons Upward Bound program, and a wide range of everyday people at 24 satellite locations and our main Academy.</p>
@@ -365,7 +377,7 @@
     <h2 class="section-title">Locations <span class="zh">地點</span></h2>
     <div class="locations-grid">
       <div class="location-card"><img loading="lazy" src="Images/Wu Detroit.jpg" alt="Detroit Academy"><div class="location-card-body"><h3>Main Academy — Ferndale</h3><p>📍 3140 Hilton Road, Ferndale, MI 48220</p><p>📞 248-854-3953</p></div></div>
-      <div class="location-card"><img loading="lazy" src="Images/Wu AnnArbor.jpg" alt="Ann Arbor"><div class="location-card-body"><h3>Satellite Schools — Michigan</h4><p>📍 Ann Arbor: 111 S Wallace Blvd, Ypsilanti</p><p>📍 Rochester, Michigan</p><p style="color:var(--red);font-size:0.82rem;margin-top:6px;">+ 24 satellite locations statewide</p></div></div>
+      <div class="location-card"><img loading="lazy" src="Images/Wu AnnArbor.jpg" alt="Ann Arbor"><div class="location-card-body"><h3>Satellite Schools — Michigan</h3><p>📍 Ann Arbor: 111 S Wallace Blvd, Ypsilanti</p><p>📍 Rochester, Michigan</p><p style="color:var(--red);font-size:0.82rem;margin-top:6px;">+ 24 satellite locations statewide</p></div></div>
       <div class="location-card"><img loading="lazy" src="Images/Wu Toronto.jpg" alt="Other locations"><div class="location-card-body"><h3>Other Locations</h3><p>📍 Washington D.C.: 921 Pennsylvania Ave SE</p><p>📞 (301) 388-8095</p><p>📍 Toronto, Canada</p></div></div>
     </div>
   </div>
@@ -382,9 +394,8 @@
 <section class="regform" style="text-align: center;">
   <a href="registration.html">
     <picture>
-      <source srcset="Images/regform/regform1.avif" type="image/avif">
-      <source srcset="Images/regform/regform1.webp" type="image/webp">
-      <img loading="lazy" src="Images/regform/regform1.png" alt="Yearly Registration Form">
+      <source srcset="Images/regform/regform.webp" type="image/webp">
+      <img loading="lazy" src="Images/regform/regform.png" alt="Yearly Registration Form">
     </picture>
   </a>
 </section>
@@ -392,7 +403,7 @@
 <section id="contact" class="contact-section">
   <h2>Contact Us</h2>
   <div class="contact-details">
-    <div class="contact-item"><span>Email</span><a href="/cdn-cgi/l/email-protection#9ef7f0f8f1dee9ebedeae7f2fbfafbeaecf1f7eab0fdf1f3"><span class="__cf_email__" data-cfemail="177e79717857606264636e7b7273726365787e633974787a">[email&#160;protected]</span></a></div>
+    <div class="contact-item"><span>Email</span><a href="mailto:info@wustyledetroit.com">info@wustyledetroit.com</a></div>
     <div class="contact-item"><span>Phone</span>248-854-3953</div>
     <div class="contact-item"><span>Address</span>3140 Hilton Road, Ferndale, MI 48220</div>
   </div>

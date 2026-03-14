@@ -80,13 +80,31 @@
   }
   #announcement-banner .ann-close:hover { opacity: 1; }
 
-  @media (max-width: 768px) {
-    header { padding: 12px 20px; flex-wrap: wrap; }
-    header nav { display: none; flex-direction: column; width: 100%; gap: 0; }
-    header nav.open { display: flex; }
-    header nav a { padding: 10px 0; border-bottom: 1px solid rgba(0,0,0,0.1); }
-    .nav-toggle { display: block; }
+@media (max-width: 768px) {
+  header { padding: 12px 20px; flex-wrap: wrap; position: sticky; top: 0; z-index: 100; }
+  .header-brand-text h1 { font-size: 0.78rem; }
+  .header-brand-text p { display: none; }
+  .header-brand img { width: 38px; height: 38px; }
+  header nav {
+    display: none;
+    flex-direction: column;
+    width: 100%;
+    gap: 0;
+    /* Float over the page */
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: #DECAA5;
+    border-bottom: 2px solid #C0A070;
+    z-index: 99;
+    padding: 0 20px;
+    box-shadow: 0 6px 16px rgba(0,0,0,0.12);
   }
+  header nav.open { display: flex; }
+  header nav a { padding: 10px 0; border-bottom: 1px solid rgba(0,0,0,0.1); }
+  .nav-toggle { display: block; margin-left: auto; }
+}
 </style>
 
 <!-- ═══════════════════════════════════════════════════════════════ -->
