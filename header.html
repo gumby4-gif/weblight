@@ -197,23 +197,36 @@
     });
   }
 
-  /* Announcement banner — fetch announcement.json if present.
+  /* Announcement banner — only shown on index.html, only once per message.
      Expected shape: { "message": "…", "link": "…", "linkText": "…" }
      "link" and "linkText" are optional.                               */
-  fetch('announcement.json')
-    .then(function (r) { return r.ok ? r.json() : null; })
-    .then(function (d) {
-      if (!d || !d.message) return;
-      var span = document.getElementById('announcement-text');
-      span.innerHTML = d.message;
-      if (d.link) {
-        var a = document.createElement('a');
-        a.href = d.link;
-        a.textContent = ' ' + (d.linkText || 'Learn more');
-        span.appendChild(a);
-      }
-      document.getElementById('announcement-banner').style.display = 'block';
-    })
-    .catch(function () { /* no announcement.json — silently skip */ });
+  var isIndex = ['', '/', 'index.html', 'index'].some(function (p) {
+    return window.location.pathname.endsWith(p);
+  });
+  if (isIndex) {
+    fetch('announcement.json')
+      .then(function (r) { return r.ok ? r.json() : null; })
+      .then(function (d) {
+        if (!d || !d.message) return;
+        /* Use the message text as a key so a new message always shows once */
+        var storageKey = 'ann_seen_' + btoa(unescape(encodeURIComponent(d.message))).slice(0, 32);
+        if (localStorage.getItem(storageKey)) return;
+        var span = document.getElementById('announcement-text');
+        span.innerHTML = d.message;
+        if (d.link) {
+          var a = document.createElement('a');
+          a.href = d.link;
+          a.textContent = ' ' + (d.linkText || 'Learn more');
+          span.appendChild(a);
+        }
+        var banner = document.getElementById('announcement-banner');
+        banner.style.display = 'block';
+        /* Mark seen when dismissed */
+        banner.querySelector('.ann-close').addEventListener('click', function () {
+          localStorage.setItem(storageKey, '1');
+        });
+      })
+      .catch(function () { /* no announcement.json — silently skip */ });
+  }
 })();
 </script>
