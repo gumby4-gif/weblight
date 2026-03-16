@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Classes &amp; Curriculum — Wu's Tai Chi Chuan Academy Detroit</title>
+  <meta name="description" content="Full curriculum details — hand forms, pushing hands, weapon forms, disciples, and Ba Fa Wu Bu.">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preload" href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;700&family=Lato:wght@300;400;700&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript><link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet"></noscript>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="styles-zen.css">
+</head>
+
+<body data-page="classes">
+
+<!-- ═══════════════════════════════════════════════════════════════ -->
+<!--  HEADER — fetch from header.html                               -->
+<!-- ═══════════════════════════════════════════════════════════════ -->
+<div id="site-header"></div>
+<script>
+  fetch('header.html')
+    .then(function(r){ return r.text(); })
+    .then(function(html){
+      document.getElementById('site-header').innerHTML = html;
+    });
+</script>
+
+<main>
+
+  <!-- PAGE HERO -->
+  <div class="page-hero classes-page-hero">
+    <p class="zen-eyebrow" style="text-align:center;margin-bottom:10px;">課程</p>
+    <h2>Classes &amp; Curriculum</h2>
+    <p>Authentic Wu Style taught at every level — from first steps to full discipleship.</p>
+  </div>
+
+  <!-- SUB-NAV -->
+  <div class="sub-nav">
+    <a href="index.html" class="back-home">← Home</a>
+    <span class="divider-dot">·</span>
+    <span style="font-size:0.82rem;color:var(--charcoal-mid);">Full Curriculum</span>
+  </div>
+
+  <div class="page-main">
+
+    <!-- CURRICULUM OVERVIEW NOTE -->
+    <p class="classes-intro">All classes are taught by Advanced Level certified instructors in the direct Wu family lineage. Beginners are welcome year-round — contact us to find the next available session.</p>
+
+    <!-- FORM -->
+    <section class="class-block">
+      <div class="class-block__img-wrap">
+        <img loading="lazy" src="Images/smswhip.jpg" alt="Form class">
+      </div>
+      <div class="class-block__text">
+        <span class="class-level-badge">All Levels</span>
+        <h3>Hand Form <span class="zh">表格</span></h3>
+        <p>The foundation of the entire system. Students begin with the 12-posture introductory form before progressing to the full 108-step small-circle form and, eventually, the large-circle form. Instruction is one-on-one or in small groups so each student moves at their own pace.</p>
+        <p>The 108-step form contains the complete principles of Wu Style: rooting, yielding, silk-reeling, and internal power generation.</p>
+        <a href="Schedule.html" class="btn-crimson" style="margin-top:6px;">View Schedule →</a>
+      </div>
+    </section>
+
+    <!-- PUSHING HANDS -->
+    <section class="class-block class-block--reverse">
+      <div class="class-block__img-wrap">
+        <img loading="lazy" src="Images/pushhands.jpg" alt="Pushing Hands">
+      </div>
+      <div class="class-block__text">
+        <span class="class-level-badge class-level-badge--mid">Intermediate</span>
+        <h3>Pushing Hands <span class="zh">推手</span></h3>
+        <p>Two-person sensitivity exercises that develop listening energy (ting jin) and neutralising skill. Courses progress from basic fixed-step push hands through the complex 9-palace free-step form.</p>
+        <p>Intermediate students also receive Chi Kung (qigong) instruction and detailed form refinement in these sessions.</p>
+      </div>
+    </section>
+
+    <!-- WEAPON FORMS -->
+    <section class="class-block">
+      <div class="class-block__img-wrap">
+        <img loading="lazy" src="Images/spear.webp" alt="Weapon Forms">
+      </div>
+      <div class="class-block__text">
+        <span class="class-level-badge class-level-badge--adv">Advanced</span>
+        <h3>Weapon Forms <span class="zh">武器型態</span></h3>
+        <p>Offered to advanced intermediate students in this sequence: Spear (槍), Sabre (刀), and Sword (劍). Each weapon form develops a distinct quality of power and extends the principles learned in the hand form.</p>
+        <p>Students must demonstrate sufficient proficiency in the 108 form before beginning weapon study.</p>
+      </div>
+    </section>
+
+    <!-- DISCIPLES -->
+    <section class="class-block-wide">
+      <h3>Disciples <span class="zh">門徒</span></h3>
+      <p>Full members of the Academy, formally accepted by the Shifu (师父) into the school's lineage. Disciples have access to open training sessions, advanced form refinement, Chi Kung applications, combat applications, and the right to teach Tai Chi under the Academy's banner. Discipleship is by invitation after demonstrated commitment and character.</p>
+    </section>
+
+    <!-- BA FA WU BU -->
+    <section class="class-block-wide">
+      <h3>5 Steps / Ba Fa Wu Bu <span class="zh">太极八法五步</span></h3>
+      <p>A short, accessible qigong sequence suitable for all ages, including those with limited mobility. Regular practice clears the body's meridians, balances qi and blood, and eases chronic pain. Many students begin with Ba Fa Wu Bu as a gentle gateway to personal peace and tranquility before transitioning to the full form curriculum.</p>
+      <p>This sequence is especially recommended for seniors and hospital/rehabilitation settings — an area in which our Academy has extensive experience.</p>
+    </section>
+
+    <!-- CTA ROW -->
+    <div class="zen-cta-row" style="padding-top:24px;border-top:1px solid var(--heritage-border);">
+      <a href="/index.html#getting-started" class="btn-crimson" style="margin-right:14px;">Download Registration Form</a>
+      <a href="Schedule.html" class="btn-ghost" style="color:var(--charcoal);border-color:var(--heritage-border);">View Full Schedule</a>
+    </div>
+
+  </div><!-- /.page-main -->
+</main>
+
+<div id="site-footer"></div>
+<script>
+  fetch('footer.html')
+    .then(function(r){ return r.text(); })
+    .then(function(html){
+      document.getElementById('site-footer').innerHTML = html;
+    });
+</script>
+
+<!-- Classes-page specific styles -->
+<style>
+  .classes-page-hero {
+    background: linear-gradient(160deg, #1E1A12 0%, #2E2416 100%);
+    color: rgba(255,255,255,0.88);
+  }
+  .classes-page-hero h2 { color: #fff; }
+  .classes-page-hero p  { color: rgba(255,255,255,0.62); }
+
+  .classes-intro {
+    font-size: 1rem;
+    color: var(--charcoal-mid);
+    border-left: 3px solid var(--heritage-gold);
+    padding: 14px 20px;
+    background: var(--stone);
+    border-radius: 0 4px 4px 0;
+    margin-bottom: 52px;
+    line-height: 1.75;
+  }
+
+  /* Two-column class block */
+  .class-block {
+    display: grid;
+    grid-template-columns: 1fr 1.5fr;
+    gap: 44px;
+    align-items: start;
+    margin-bottom: 60px;
+    padding-bottom: 60px;
+    border-bottom: 1px solid var(--heritage-border);
+  }
+  .class-block--reverse { direction: rtl; }
+  .class-block--reverse > * { direction: ltr; }
+
+  .class-block__img-wrap img {
+    width: 100%;
+    height: 280px;
+    object-fit: cover;
+    border-radius: 4px;
+    display: block;
+  }
+  .class-block__text h3 {
+    font-family: 'Noto Serif SC', serif;
+    font-size: 1.35rem;
+    color: var(--ink-black);
+    margin-bottom: 14px;
+    margin-top: 8px;
+  }
+  .class-block__text p {
+    font-size: 0.95rem;
+    color: var(--charcoal);
+    line-height: 1.82;
+    margin-bottom: 0.9em;
+  }
+
+  /* Level badges */
+  .class-level-badge {
+    display: inline-block;
+    font-size: 0.68rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding: 3px 10px;
+    border-radius: 2px;
+    margin-bottom: 8px;
+    background: var(--crimson-pale);
+    color: var(--crimson);
+    border: 1px solid rgba(155,27,27,0.18);
+  }
+  .class-level-badge--mid {
+    background: #EDF4EE;
+    color: #2E6B35;
+    border-color: #B4D4B8;
+  }
+  .class-level-badge--adv {
+    background: #EEF0F8;
+    color: #2D3A74;
+    border-color: #B8C0DF;
+  }
+
+  /* Wide blocks (disciples, ba fa) */
+  .class-block-wide {
+    background: var(--stone);
+    border: 1px solid var(--heritage-border);
+    border-left: 3px solid var(--crimson);
+    border-radius: 0 6px 6px 0;
+    padding: 26px 28px;
+    margin-bottom: 24px;
+  }
+  .class-block-wide h3 {
+    font-family: 'Noto Serif SC', serif;
+    font-size: 1.05rem;
+    color: var(--ink-black);
+    margin-bottom: 10px;
+  }
+  .class-block-wide p {
+    font-size: 0.92rem;
+    color: var(--charcoal);
+    line-height: 1.78;
+    margin-bottom: 0.7em;
+  }
+
+  @media (max-width: 768px) {
+    .class-block { grid-template-columns: 1fr; gap: 20px; }
+    .class-block--reverse { direction: ltr; }
+    .class-block__img-wrap img { height: 220px; }
+  }
+</style>
+
+</body>
+</html>

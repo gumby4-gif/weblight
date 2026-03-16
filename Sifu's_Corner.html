@@ -2,40 +2,104 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Wu Tai Chi Chuan Academy Detroit — Sifu's Corner</title>
+  <title>Sifu's Corner — Wu's Tai Chi Chuan Academy Detroit</title>
+  <meta name="description" content="A personal message from Sifu Michael Ashmore, head instructor at Wu's Tai Chi Chuan Academy Detroit.">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preload" href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;700&family=Lato:wght@300;400;700&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript><link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet"></noscript>
   <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="styles-zen.css">
+  <style>
+    .sifu-page-hero {
+      background: linear-gradient(160deg, #1A1A18 0%, #2A1F0A 100%);
+      color: rgba(255,255,255,0.88);
+    }
+    .sifu-page-hero h2 { color: #fff; }
+    .sifu-page-hero p  { color: rgba(255,255,255,0.62); }
+
+    .sifu-profile {
+      display: flex;
+      align-items: center;
+      gap: 28px;
+      background: #fff;
+      border: 1px solid var(--heritage-border);
+      border-radius: 6px;
+      border-bottom: 2px solid var(--heritage-gold);
+      padding: 24px 28px;
+      margin-bottom: 40px;
+    }
+    .sifu-profile img {
+      width: 90px;
+      height: 90px;
+      object-fit: cover;
+      border-radius: 4px;
+      display: block;
+      flex-shrink: 0;
+    }
+    .sifu-profile-text h3 {
+      font-family: 'Noto Serif SC', serif;
+      font-size: 1.15rem;
+      color: var(--ink-black);
+      margin: 0;
+    }
+
+    p.greeting {
+      font-family: 'Noto Serif SC', serif;
+      font-size: 1.1rem;
+      color: var(--ink-black);
+      margin-bottom: 18px;
+    }
+    p.closing {
+      font-family: 'Noto Serif SC', serif;
+      font-size: 1.1rem;
+      color: var(--ink-black);
+      margin-top: 28px;
+      margin-bottom: 28px;
+    }
+
+    #sifu-message p {
+      font-size: 0.97rem;
+      color: var(--charcoal);
+      line-height: 1.85;
+      margin-bottom: 1.1em;
+    }
+
+    @media (max-width: 600px) {
+      .sifu-profile { flex-direction: column; text-align: center; }
+    }
+  </style>
 </head>
 
-<body>
+<body data-page="sifu">
 
-  <!-- ── Shared header injected from header.html ── -->
-  <script>
-    fetch('header.html')
-      .then(function(r){ return r.text(); })
-      .then(function(html){
-        document.body.insertAdjacentHTML('afterbegin', html);
-        var tmp = document.createElement('div');
-        tmp.innerHTML = html;
-        tmp.querySelectorAll('script').forEach(function(oldScript){
-          var newScript = document.createElement('script');
-          if(oldScript.src){ newScript.src = oldScript.src; }
-          else { newScript.textContent = oldScript.textContent; }
-          document.head.appendChild(newScript);
-          document.head.removeChild(newScript);
-        });
-      });
-  </script>
+<div id="site-header"></div>
+<script>
+  fetch('header.html')
+    .then(function(r){ return r.text(); })
+    .then(function(html){
+      document.getElementById('site-header').innerHTML = html;
+    });
+</script>
 
-  <!-- ── Page hero ── -->
-  <div class="page-hero">
+<main>
+
+  <!-- PAGE HERO -->
+  <div class="page-hero sifu-page-hero">
+    <p class="zen-eyebrow" style="text-align:center;margin-bottom:10px;">底特律師傅</p>
     <h2>Sifu's Corner</h2>
-    <div class="hero-chinese">底特律師傅</div>
+    <p>A personal message from the head instructor of Wu's Tai Chi Chuan Academy Detroit.</p>
   </div>
 
-  <!-- ── Main content ── -->
-  <main class="page-main">
+  <!-- SUB-NAV -->
+  <div class="sub-nav">
+    <a href="index.html" class="back-home">← Home</a>
+    <span class="divider-dot">·</span>
+    <span style="font-size:0.82rem;color:var(--charcoal-mid);">Sifu's Corner</span>
+  </div>
+
+  <div class="page-main">
 
     <!-- Sifu profile card -->
     <div class="sifu-profile">
@@ -49,47 +113,49 @@
 
     <!-- Message loaded from Sifu's_Corner.txt -->
     <div id="sifu-message">
-      <p style="color:var(--mid);text-align:center;">Loading message…</p>
+      <p style="color:var(--charcoal-mid);text-align:center;">Loading message…</p>
     </div>
 
     <p class="closing">Cheers!</p>
 
-    <div class="info-box">📍 3140 Hilton Road, Ferndale, MI 48220 &nbsp;·&nbsp; 📞 248-854-3953</div>
+  </div><!-- /.page-main -->
+</main>
 
-  </main>
+<div id="site-footer"></div>
+<script>
+  fetch('footer.html')
+    .then(function(r){ return r.text(); })
+    .then(function(html){
+      document.getElementById('site-footer').innerHTML = html;
+    });
+</script>
 
-  <footer>© <span id="year"></span> Wu's Tai Chi Chuan Academy Detroit</footer>
+<script>
+  fetch("Sifu's_Corner.txt")
+    .then(function(r){
+      if(!r.ok) throw new Error("Could not load Sifu's_Corner.txt (HTTP " + r.status + ")");
+      return r.text();
+    })
+    .then(function(text){
+      var paragraphs = text
+        .split(/\n\s*\n/)
+        .map(function(p){ return p.trim(); })
+        .filter(function(p){ return p.length > 0; });
 
-  <!-- ── Scripts at end of body ── -->
-  <script>
-    document.getElementById("year").textContent = new Date().getFullYear();
-  </script>
+      var html = paragraphs
+        .map(function(p){ return '<p>' + p + '</p>'; })
+        .join('\n');
 
-  <script>
-    fetch("Sifu's_Corner.txt")
-      .then(function(r){
-        if(!r.ok) throw new Error("Could not load Sifu's_Corner.txt (HTTP " + r.status + ")");
-        return r.text();
-      })
-      .then(function(text){
-        var paragraphs = text
-          .split(/\n\s*\n/)
-          .map(function(p){ return p.trim(); })
-          .filter(function(p){ return p.length > 0; });
+      document.getElementById('sifu-message').innerHTML = html;
+    })
+    .catch(function(err){
+      document.getElementById('sifu-message').innerHTML =
+        '<p style="color:#8B2020;background:#fff5f5;border:1px solid #e8b4b4;border-radius:6px;padding:16px;font-size:0.9rem;">' +
+        '<strong>Message could not be loaded.</strong> Please check that Sifu\'s_Corner.txt is in the same folder.<br>' +
+        '<small style="opacity:0.7">' + err.message + '</small></p>';
+    });
+</script>
 
-        var html = paragraphs
-          .map(function(p){ return '<p>' + p + '</p>'; })
-          .join('\n');
-
-        document.getElementById('sifu-message').innerHTML = html;
-      })
-      .catch(function(err){
-        document.getElementById('sifu-message').innerHTML =
-          '<p style="color:#8B2020;background:#fff5f5;border:1px solid #e8b4b4;border-radius:6px;padding:16px;font-size:0.9rem;">' +
-          '<strong>Message could not be loaded.</strong> Please check that <code>Sifu\'s_Corner.txt</code> is in the same folder.<br>' +
-          '<small style="opacity:0.7">' + err.message + '</small></p>';
-      });
-  </script>
 
 </body>
 </html>

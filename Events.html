@@ -2,36 +2,98 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Wu Tai Chi Chuan Academy Detroit — Events</title>
+  <title>Events — Wu's Tai Chi Chuan Academy Detroit</title>
+  <meta name="description" content="Community gatherings, celebrations and special occasions at Wu's Tai Chi Chuan Academy Detroit.">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preload" href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;700&family=Lato:wght@300;400;700&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript><link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet"></noscript>
   <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="styles-zen.css">
+  <style>
+    .events-page-hero {
+      background: linear-gradient(160deg, #1E1A12 0%, #2E2416 100%);
+      color: rgba(255,255,255,0.88);
+    }
+    .events-page-hero h2 { color: #fff; }
+    .events-page-hero p  { color: rgba(255,255,255,0.62); }
+
+    .event-card {
+      background: #fff;
+      border: 1px solid var(--heritage-border);
+      border-radius: 6px;
+      overflow: hidden;
+      margin-bottom: 32px;
+      transition: box-shadow 0.25s;
+    }
+    .event-card:hover { box-shadow: 0 8px 32px rgba(0,0,0,0.09); }
+    .event-header {
+      padding: 24px 28px 20px;
+      border-bottom: 1px solid var(--heritage-border);
+    }
+    .event-tag {
+      display: inline-block;
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      padding: 3px 10px;
+      border-radius: 2px;
+      margin-bottom: 10px;
+      background: var(--crimson-pale);
+      color: var(--crimson);
+      border: 1px solid rgba(155,27,27,0.18);
+    }
+    .event-header h3 {
+      font-family: 'Noto Serif SC', serif;
+      font-size: 1.15rem;
+      color: var(--ink-black);
+      margin-bottom: 10px;
+    }
+    .event-header p {
+      font-size: 0.95rem;
+      color: var(--charcoal);
+      line-height: 1.75;
+    }
+    .featured-img {
+      width: 100%;
+      max-height: 420px;
+      object-fit: cover;
+      display: block;
+    }
+    .photo-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 3px;
+      padding: 3px;
+    }
+    .photo-grid img {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+      display: block;
+      border-radius: 2px;
+    }
+  </style>
 </head>
 
-<body>
-  <script>
-    fetch('header.html')
-      .then(function(r){ return r.text(); })
-      .then(function(html){
-        document.body.insertAdjacentHTML('afterbegin', html);
-        /* insertAdjacentHTML does NOT execute <script> tags, so we
-           re-run any scripts that were inside the fetched fragment. */
-        var tmp = document.createElement('div');
-        tmp.innerHTML = html;
-        tmp.querySelectorAll('script').forEach(function(oldScript) {
-          var newScript = document.createElement('script');
-          if (oldScript.src) {
-            newScript.src = oldScript.src;
-          } else {
-            newScript.textContent = oldScript.textContent;
-          }
-          document.head.appendChild(newScript);
-          document.head.removeChild(newScript);
-        });
-      });
+<body data-page="schedule">
+
+<div id="site-header"></div>
+<script>
+  fetch('header.html')
+    .then(function(r){ return r.text(); })
+    .then(function(html){
+      document.getElementById('site-header').innerHTML = html;
+    });
 </script>
 
-
+<div class="page-hero events-page-hero">
+  <p class="zen-eyebrow" style="text-align:center;margin-bottom:10px;">活動</p>
+  <h2 id="hero-title">Events</h2>
+  <p id="hero-subtitle">Community gatherings, celebrations &amp; special occasions</p>
+</div>
 
 <div class="sub-nav">
   <a href="index.html#top" class="back-home"><img src="Images/Tai_Chi_Home.png" width="50" height="50" alt="Home"></a>
@@ -43,20 +105,20 @@
   </nav>
 </div>
 
-<div class="page-hero">
-  <h2 id="hero-title">Events</h2>
-  <p id="hero-subtitle">Community gatherings, celebrations &amp; special occasions</p>
-</div>
-
 <main id="events-main" class="page-main">
   <div class="loading">Loading events…</div>
 </main>
 
-<footer>© <span id="year"></span> Wu's Tai Chi Chuan Academy Detroit</footer>
+<div id="site-footer"></div>
+<script>
+  fetch('footer.html')
+    .then(function(r){ return r.text(); })
+    .then(function(html){
+      document.getElementById('site-footer').innerHTML = html;
+    });
+</script>
 
 <script>
-  document.getElementById('year').textContent = new Date().getFullYear();
-
   fetch('events-data.json')
     .then(function(res) {
       if (!res.ok) throw new Error('HTTP ' + res.status);
@@ -73,7 +135,6 @@
     document.getElementById('hero-subtitle').textContent = data.heroSubtitle || '';
 
     var html = '';
-
     (data.events || []).forEach(function(ev) {
       html += '<div class="event-card">';
       html += '<div class="event-header">';
@@ -81,11 +142,9 @@
       if (ev.title)       html += '<h3>'                     + ev.title + '</h3>';
       if (ev.description) html += '<p>'                      + ev.description + '</p>';
       html += '</div>';
-
       if (ev.featuredImage) {
         html += '<img src="' + ev.featuredImage.src + '" alt="' + (ev.featuredImage.alt || '') + '" class="featured-img">';
       }
-
       if (ev.photos && ev.photos.length) {
         html += '<div class="photo-grid">';
         ev.photos.forEach(function(photo) {
@@ -93,14 +152,13 @@
         });
         html += '</div>';
       }
-
       html += '</div>';
     });
 
-    if (!html) html = '<p style="color:var(--mid);text-align:center;padding:40px 0;">No events yet — check back soon.</p>';
-
+    if (!html) html = '<p style="color:var(--charcoal-mid);text-align:center;padding:40px 0;">No events yet — check back soon.</p>';
     document.getElementById('events-main').innerHTML = html;
   }
 </script>
+
 </body>
 </html>

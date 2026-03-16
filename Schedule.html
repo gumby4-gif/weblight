@@ -2,40 +2,103 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Wu Tai Chi Chuan Academy Detroit — Schedule</title>
+  <title>Class Schedule — Wu's Tai Chi Chuan Academy Detroit</title>
+  <meta name="description" content="Current class schedule for Wu's Tai Chi Chuan Academy Detroit — Ferndale, MI.">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preload" href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;700&family=Lato:wght@300;400;700&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript><link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet"></noscript>
   <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="styles-zen.css">
+  <style>
+    .schedule-page-hero {
+      background: linear-gradient(160deg, #1E1A12 0%, #2E2416 100%);
+      color: rgba(255,255,255,0.88);
+    }
+    .schedule-page-hero h2 { color: #fff; }
+    .schedule-page-hero p  { color: rgba(255,255,255,0.62); }
+
+    .day-block {
+      background: #fff;
+      border: 1px solid var(--heritage-border);
+      border-radius: 6px;
+      overflow: hidden;
+      margin-bottom: 20px;
+    }
+    .day-header {
+      background: var(--ink-black);
+      padding: 14px 22px;
+    }
+    .day-header h3 {
+      font-family: 'Noto Serif SC', serif;
+      font-size: 1rem;
+      color: #fff;
+      letter-spacing: 0.06em;
+      margin: 0;
+    }
+    .class-row {
+      display: flex;
+      align-items: baseline;
+      gap: 20px;
+      padding: 13px 22px;
+      border-bottom: 1px solid var(--heritage-border);
+      flex-wrap: wrap;
+    }
+    .class-row:last-child { border-bottom: none; }
+    .class-time {
+      font-size: 0.82rem;
+      font-weight: 700;
+      color: var(--crimson);
+      min-width: 130px;
+      letter-spacing: 0.03em;
+      flex-shrink: 0;
+    }
+    .class-name {
+      font-size: 0.95rem;
+      color: var(--charcoal);
+      flex: 1;
+    }
+    .class-note {
+      font-size: 0.78rem;
+      color: var(--charcoal-mid);
+      font-style: italic;
+    }
+    .load-error {
+      background: #FFF0F0;
+      border-left: 3px solid var(--crimson);
+      border-radius: 0 6px 6px 0;
+      padding: 14px 18px;
+      font-size: 0.9rem;
+      color: #7B1E1E;
+      margin-bottom: 36px;
+    }
+    @media (max-width: 600px) {
+      .class-row { gap: 8px; }
+      .class-time { min-width: auto; width: 100%; }
+    }
+  </style>
 </head>
 
-<body>
+<body data-page="schedule">
+
+<div id="site-header"></div>
 <script>
   fetch('header.html')
     .then(function(r){ return r.text(); })
     .then(function(html){
-      document.body.insertAdjacentHTML('afterbegin', html);
-      /* insertAdjacentHTML does NOT execute <script> tags, so we
-         re-run any scripts that were inside the fetched fragment. */
-      var tmp = document.createElement('div');
-      tmp.innerHTML = html;
-      tmp.querySelectorAll('script').forEach(function(oldScript) {
-        var newScript = document.createElement('script');
-        if (oldScript.src) {
-          newScript.src = oldScript.src;
-        } else {
-          newScript.textContent = oldScript.textContent;
-        }
-        document.head.appendChild(newScript);
-        document.head.removeChild(newScript);
-      });
+      document.getElementById('site-header').innerHTML = html;
     });
 </script>
 
+<div class="page-hero schedule-page-hero">
+  <p class="zen-eyebrow" style="text-align:center;margin-bottom:10px;">課程表</p>
+  <h2>Class Schedule</h2>
+  <p>Current schedule for the 2026–2027 year</p>
+</div>
 
 <div class="sub-nav">
-  <a href="index.html#top" class="back-home">
-    <img src="Images/Tai_Chi_Home.png" width="50" height="50" alt="Home">
-  </a>
+  <a href="index.html#top" class="back-home"><img src="Images/Tai_Chi_Home.png" width="50" height="50" alt="Home"></a>
   <span class="divider-dot">·</span>
   <nav class="page-tabs">
     <a href="Schedule.html" class="active">📅 Schedule</a>
@@ -44,25 +107,20 @@
   </nav>
 </div>
 
-<div class="page-hero">
-  <h2>Class Schedule</h2>
-  <p>Current schedule for the 2026–2027 year</p>
-</div>
-
 <main id="schedule-main" class="page-main">
-  <!-- Schedule is built here by JavaScript reading schedule.json -->
-  <p style="color:var(--mid);text-align:center;">Loading schedule…</p>
+  <p style="color:var(--charcoal-mid);text-align:center;">Loading schedule…</p>
 </main>
 
-<footer>© <span id="year"></span> Wu's Tai Chi Chuan Academy Detroit</footer>
+<div id="site-footer"></div>
+<script>
+  fetch('footer.html')
+    .then(function(r){ return r.text(); })
+    .then(function(html){
+      document.getElementById('site-footer').innerHTML = html;
+    });
+</script>
 
 <script>
-document.getElementById("year").textContent = new Date().getFullYear();
-
-// ── Fetch and render schedule.json ──────────────────────────────────────────
-// The data lives in schedule.json (same folder as this file).
-// A non-designer can edit that file without touching any HTML or CSS here.
-
 fetch("schedule.json")
   .then(function(response) {
     if (!response.ok) throw new Error("Could not load schedule.json (HTTP " + response.status + ")");
@@ -85,12 +143,10 @@ function buildSchedule(data) {
   var main = document.getElementById("schedule-main");
   var html = "";
 
-  // Loop over each day in the JSON
   data.days.forEach(function(dayObj) {
     html += '<div class="day-block">';
     html += '<div class="day-header"><h3>' + escHtml(dayObj.day) + '</h3></div>';
 
-    // Loop over each class for that day
     dayObj.classes.forEach(function(cls) {
       var noteHtml = cls.note
         ? '<span class="class-note">' + escHtml(cls.note) + '</span>'
@@ -103,16 +159,12 @@ function buildSchedule(data) {
         '</div>';
     });
 
-    html += '</div>'; // end day-block
+    html += '</div>';
   });
-
-  // Contact info box always at the bottom
-  html += '<div class="info-box">📍 3140 Hilton Road, Ferndale, MI 48220 &nbsp;·&nbsp; 📞 248-854-3953</div>';
 
   main.innerHTML = html;
 }
 
-// Simple HTML-escape so stray characters in the JSON can't break the page
 function escHtml(str) {
   return String(str)
     .replace(/&/g, "&amp;")

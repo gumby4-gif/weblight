@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Our History — Wu's Tai Chi Chuan Academy Detroit</title>
+  <meta name="description" content="The lineage and 30-year history of Wu's Tai Chi Chuan Academy in Metro Detroit.">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preload" href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;700&family=Lato:wght@300;400;700&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript><link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet"></noscript>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="styles-zen.css">
+</head>
+
+<body data-page="history">
+
+<!-- ═══════════════════════════════════════════════════════════════ -->
+<!--  HEADER — fetch from header.html                               -->
+<!-- ═══════════════════════════════════════════════════════════════ -->
+<div id="site-header"></div>
+<script>
+  fetch('header.html')
+    .then(function(r){ return r.text(); })
+    .then(function(html){
+      document.getElementById('site-header').innerHTML = html;
+    });
+</script>
+
+<main>
+
+  <!-- PAGE HERO -->
+  <div class="page-hero history-page-hero">
+    <p class="zen-eyebrow" style="text-align:center;margin-bottom:10px;">校史</p>
+    <h2>Our School History</h2>
+    <p>The living lineage of Wu Style Tai Chi Chuan — from Shanghai to Ferndale, Michigan.</p>
+  </div>
+
+  <!-- SUB-NAV -->
+  <div class="sub-nav">
+    <a href="index.html" class="back-home">← Home</a>
+    <span class="divider-dot">·</span>
+    <span style="font-size:0.82rem;color:var(--charcoal-mid);">History &amp; Lineage</span>
+  </div>
+
+  <div class="page-main">
+
+    <!-- DETROIT SCHOOL -->
+    <section class="history-section-block" style="margin-bottom:56px;">
+      <h3 class="history-subhead">30 Years in Metro Detroit</h3>
+      <div class="history-img-float">
+        <img loading="lazy" src="Images/OLC.jpg" alt="Our school building">
+        <p class="history-img-caption">Master Wu Tai Chi conducting a workshop at Old Detroit School location</p>
+      </div>
+      <p>Our school has been serving the Metro Detroit area for over 30 years — working with seniors and hospital patients across Southeast Michigan, teenagers through Cranbrook's Horizons Upward Bound program, and a wide range of everyday people at 24 satellite locations and our main Academy.</p>
+      <p>We are among a small number of certified instructors in North America authorised to teach directly in the Wu family lineage. Our instructors hold Advanced Level certification from the International Wu Style Tai Chi Chuan Federation.</p>
+      <img loading="lazy" src="Images/oldoldschool.jpg" alt="Original school location" style="width:100%;max-width:560px;display:block;margin:28px 0;border-radius:4px;">
+    </section>
+
+    <!-- WORLD LINEAGE -->
+    <section class="history-section-block" style="margin-bottom:56px;">
+      <h3 class="history-subhead">The Wu Style Lineage</h3>
+      <p>In 1935, the first Wu's Tai Chi Chuan Academy was founded in Shanghai by Grandmaster Wu Chien-ch'uan. The style traces its origins to Yang Luchan and his student Wu Quanyou, a Manchu military officer, whose son Wu Jianquan refined and formalised the art into what we practise today.</p>
+
+      <blockquote class="history-blockquote">
+        "The 108 posture empty hand form routine is the essence. Regular practice strengthens bones and muscles… Preventing disease and prolonging life, Tai Chi Chuan nourishes one's vitality. Two person pushing hands is the application. Softness overcomes hardness, and hardness reinforces softness."
+        <cite>— Grandmaster Wu Kung-tsao</cite>
+      </blockquote>
+    </section>
+
+    <!-- NOTABLE DISCIPLES -->
+    <section class="history-section-block">
+      <h3 class="history-subhead">Notable Masters &amp; Disciples <span class="zh">著名門徒</span></h3>
+      <div class="lineage-grid">
+        <div class="lineage-card">
+          <h4>Wu Quanyou</h4>
+          <p>Founder of Wu Style. Military officer and disciple of Yang Luchan — laid the foundations of the style's internal martial art.</p>
+        </div>
+        <div class="lineage-card">
+          <h4>Wu Jianquan</h4>
+          <p>Co-founder of Wu Style. Taught large numbers and refined the art to clearly distinguish it from Yang style.</p>
+        </div>
+        <div class="lineage-card">
+          <h4>Wu Gongyi</h4>
+          <p>Moved family headquarters to Hong Kong in 1948. Senior instructor from 1942 to 1970.</p>
+        </div>
+        <div class="lineage-card">
+          <h4>Wu Ta-k'uei</h4>
+          <p>Late grand master credited with promoting Tai Chi in Canada and internationally.</p>
+        </div>
+        <div class="lineage-card">
+          <h4>Eddie Wu Guangyu</h4>
+          <p>Current grandmaster. Great-grandson of Wu Jianquan and grandson of Wu Gongyi.</p>
+        </div>
+      </div>
+    </section>
+
+  </div><!-- /.page-main -->
+</main>
+
+<div id="site-footer"></div>
+<script>
+  fetch('footer.html')
+    .then(function(r){ return r.text(); })
+    .then(function(html){
+      document.getElementById('site-footer').innerHTML = html;
+    });
+</script>
+
+<!-- History-page specific styles -->
+<style>
+  .history-page-hero {
+    background: linear-gradient(160deg, var(--ink-black, #1A1A18) 0%, #2A1F0A 100%);
+    color: rgba(255,255,255,0.88);
+  }
+  .history-page-hero h2 { color: #fff; }
+  .history-page-hero p  { color: rgba(255,255,255,0.62); }
+
+  .history-section-block h3.history-subhead {
+    font-family: 'Noto Serif SC', serif;
+    font-size: 1.25rem;
+    color: var(--ink-black, #1A1A18);
+    margin-bottom: 18px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--heritage-border, #D9CEB2);
+  }
+  .history-section-block p {
+    font-size: 0.97rem;
+    color: var(--charcoal, #2D2D2D);
+    line-height: 1.85;
+    margin-bottom: 1.1em;
+  }
+  .history-img-float {
+    float: right;
+    width: 42%;
+    margin: 0 0 20px 32px;
+  }
+  .history-img-float img {
+    width: 100%;
+    border-radius: 4px;
+    display: block;
+  }
+  .history-img-caption {
+    font-size: 0.75rem !important;
+    color: var(--charcoal-mid, #4A4A46) !important;
+    font-style: italic;
+    text-align: center;
+    margin-top: 7px !important;
+    line-height: 1.5 !important;
+  }
+  .history-blockquote {
+    border-left: 3px solid var(--crimson, #9B1B1B);
+    padding: 18px 22px;
+    margin: 28px 0;
+    background: var(--parchment, #F9F7F2);
+    border-radius: 0 4px 4px 0;
+    font-style: italic;
+    font-size: 0.97rem;
+    color: var(--charcoal, #2D2D2D);
+    line-height: 1.8;
+  }
+  .history-blockquote cite {
+    display: block;
+    font-style: normal;
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0.07em;
+    text-transform: uppercase;
+    color: var(--crimson, #9B1B1B);
+    margin-top: 12px;
+  }
+  .lineage-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 18px;
+    margin-top: 28px;
+  }
+  .lineage-card {
+    background: #fff;
+    border: 1px solid var(--heritage-border, #D9CEB2);
+    border-top: 3px solid var(--crimson, #9B1B1B);
+    border-radius: 2px 2px 6px 6px;
+    padding: 20px 18px;
+  }
+  .lineage-card h4 {
+    font-family: 'Noto Serif SC', serif;
+    font-size: 0.97rem;
+    color: var(--ink-black, #1A1A18);
+    margin-bottom: 8px;
+  }
+  .lineage-card p {
+    font-size: 0.86rem !important;
+    line-height: 1.65 !important;
+  }
+  @media (max-width: 768px) {
+    .history-img-float { float: none; width: 100%; margin: 0 0 20px 0; }
+  }
+</style>
+
+</body>
+</html>

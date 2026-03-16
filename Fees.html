@@ -2,34 +2,86 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Wu Tai Chi Chuan Academy Detroit — Fees</title>
+  <title>Class Fees — Wu's Tai Chi Chuan Academy Detroit</title>
+  <meta name="description" content="Monthly rates and class pricing for Wu's Tai Chi Chuan Academy Detroit.">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preload" href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;700&family=Lato:wght@300;400;700&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript><link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet"></noscript>
   <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="styles-zen.css">
+  <style>
+    .fees-page-hero {
+      background: linear-gradient(160deg, #1E1A12 0%, #2E2416 100%);
+      color: rgba(255,255,255,0.88);
+    }
+    .fees-page-hero h2 { color: #fff; }
+    .fees-page-hero p  { color: rgba(255,255,255,0.62); }
+
+    .notice {
+      background: var(--crimson-pale);
+      border-left: 3px solid var(--crimson);
+      border-radius: 0 4px 4px 0;
+      padding: 14px 20px;
+      font-size: 0.92rem;
+      color: var(--charcoal);
+      line-height: 1.7;
+      margin-bottom: 32px;
+    }
+    .fee-group {
+      background: #fff;
+      border: 1px solid var(--heritage-border);
+      border-radius: 6px;
+      overflow: hidden;
+      margin-bottom: 24px;
+    }
+    .fee-group-label {
+      background: var(--ink-black);
+      color: #fff;
+      font-family: 'Noto Serif SC', serif;
+      font-size: 0.95rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      padding: 14px 22px;
+    }
+    .fee-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 13px 22px;
+      border-bottom: 1px solid var(--heritage-border);
+    }
+    .fee-row:last-child { border-bottom: none; }
+    .fee-label {
+      font-size: 0.95rem;
+      color: var(--charcoal);
+    }
+    .fee-amount {
+      font-family: 'Noto Serif SC', serif;
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--crimson);
+    }
+  </style>
 </head>
 
-<body>
+<body data-page="schedule">
+
+<div id="site-header"></div>
 <script>
   fetch('header.html')
     .then(function(r){ return r.text(); })
     .then(function(html){
-      document.body.insertAdjacentHTML('afterbegin', html);
-      /* insertAdjacentHTML does NOT execute <script> tags, so we
-         re-run any scripts that were inside the fetched fragment. */
-      var tmp = document.createElement('div');
-      tmp.innerHTML = html;
-      tmp.querySelectorAll('script').forEach(function(oldScript) {
-        var newScript = document.createElement('script');
-        if (oldScript.src) {
-          newScript.src = oldScript.src;
-        } else {
-          newScript.textContent = oldScript.textContent;
-        }
-        document.head.appendChild(newScript);
-        document.head.removeChild(newScript);
-      });
+      document.getElementById('site-header').innerHTML = html;
     });
 </script>
+
+<div class="page-hero fees-page-hero">
+  <p class="zen-eyebrow" style="text-align:center;margin-bottom:10px;">學費</p>
+  <h2 id="hero-title">Class Fees</h2>
+  <p id="hero-subtitle">Monthly rates and class pricing</p>
+</div>
 
 <div class="sub-nav">
   <a href="index.html#top" class="back-home"><img src="Images/Tai_Chi_Home.png" width="50" height="50" alt="Home"></a>
@@ -40,24 +92,28 @@
     <a href="Events.html">🎉 Events</a>
   </nav>
 </div>
-<div class="page-hero">
-  <h2 id="hero-title">Class Fees</h2>
-  <p id="hero-subtitle">Monthly rates and class pricing</p>
-</div>
+
 <main id="fees-main" class="page-main">
   <div class="loading">Loading fees…</div>
 </main>
-<footer>© <span id="year"></span> Wu's Tai Chi Chuan Academy Detroit</footer>
-<script>
-  document.getElementById('year').textContent = new Date().getFullYear();
 
+<div id="site-footer"></div>
+<script>
+  fetch('footer.html')
+    .then(function(r){ return r.text(); })
+    .then(function(html){
+      document.getElementById('site-footer').innerHTML = html;
+    });
+</script>
+
+<script>
   fetch('fees-data.json')
-    .then(res => {
+    .then(function(res) {
       if (!res.ok) throw new Error('HTTP ' + res.status);
       return res.json();
     })
-    .then(data => render(data))
-    .catch(err => {
+    .then(function(data) { render(data); })
+    .catch(function(err) {
       document.getElementById('fees-main').innerHTML =
         '<div class="error"><strong>Could not load fees data.</strong> Make sure <code>fees-data.json</code> is in the same folder as this page. (' + err.message + ')</div>';
     });
@@ -77,5 +133,6 @@
     document.getElementById('fees-main').innerHTML = html;
   }
 </script>
+
 </body>
 </html>

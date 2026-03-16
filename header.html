@@ -30,13 +30,14 @@
   </button>
 
   <nav aria-label="Main navigation">
-    <a href="index.html#classes"      data-nav="classes">Classes</a>
-    <a href="Schedule.html"           data-nav="schedule">Schedule-Fees-Events</a>
-    <a href="index.html#history"      data-nav="history">History</a>
-    <a href="Sifu's_Corner.html"      data-nav="sifu">Sifu's Corner</a>
-    <a href="index.html#locations"    data-nav="locations">Locations</a>
-    <a href="index.html#testimonials" data-nav="testimonials">Testimonials</a>
-    <a href="index.html#contact"      data-nav="contact">Contact</a>
+    <a href="classes.html"               data-nav="classes">Classes</a>
+    <a href="Schedule.html"              data-nav="schedule">Schedule &amp; Fees</a>
+    <a href="history.html"               data-nav="history">History</a>
+    <a href="Sifu's_Corner.html"         data-nav="sifu">Sifu's Corner</a>
+    <a href="index.html#locations"       data-nav="locations">Locations</a>
+    <a href="index.html#testimonials"    data-nav="testimonials">Testimonials</a>
+    <a href="index.html#getting-started" data-nav="getting-started">Get Started</a>
+    <a href="index.html#contact"         data-nav="contact">Contact</a>
   </nav>
 
 </header>
@@ -44,7 +45,7 @@
 <script>
 (function () {
   /* Per-page overrides: set window.SITE_HEADER = { logoSrc, siteName, tagline }
-     before the fetch call to customise logo/name/tagline per page.            */
+     before this file is fetched to customise logo/name/tagline per page.       */
   var cfg = window.SITE_HEADER || {};
   if (cfg.logoSrc)  document.getElementById('header-logo').src              = cfg.logoSrc;
   if (cfg.siteName) document.getElementById('header-site-name').textContent = cfg.siteName;
@@ -59,7 +60,7 @@
   }
 
   /* Mobile menu toggle + ARIA */
-  var toggle = document.querySelector('.nav-toggle');
+  var toggle  = document.querySelector('.nav-toggle');
   var navMenu = document.querySelector('header nav');
   if (toggle) {
     toggle.addEventListener('click', function () {
@@ -70,25 +71,27 @@
   }
 
   /* Nav link clicks — close mobile menu, and if the link points to
-     index.html#section, scroll smoothly instead of doing a full reload. */
+     index.html#section and we are already on index.html, scroll
+     smoothly instead of doing a full reload.                        */
   if (navMenu) {
-    var _path = window.location.pathname;
+    var _path  = window.location.pathname;
     var onIndex = _path === '/' ||
-                  _path === '' ||
+                  _path === ''  ||
                   _path.endsWith('/index.html') ||
                   _path.endsWith('/index');
-    navMenu.querySelectorAll('a').forEach(function(link) {
-      link.addEventListener('click', function(e) {
+
+    navMenu.querySelectorAll('a').forEach(function (link) {
+      link.addEventListener('click', function (e) {
         /* Always close the mobile menu */
         navMenu.classList.remove('open');
         if (toggle) toggle.setAttribute('aria-expanded', 'false');
-        /* If already on index.html and the href contains a #hash,
-           prevent a full reload and scroll directly to the section. */
+
+        /* Smooth-scroll only when already on the index page */
         if (onIndex) {
-          var href = link.getAttribute('href') || '';
+          var href      = link.getAttribute('href') || '';
           var hashIndex = href.indexOf('#');
           if (hashIndex !== -1) {
-            var hash = href.slice(hashIndex);
+            var hash   = href.slice(hashIndex);
             var target = document.querySelector(hash);
             if (target) {
               e.preventDefault();
@@ -101,9 +104,9 @@
     });
   }
 
-  /* Announcement banner — only shown on index.html, only once per message.
-     Expected shape: { "message": "…", "link": "…", "linkText": "…" }
-     "link" and "linkText" are optional.                               */
+  /* Announcement banner — shown on index.html only, once per unique message.
+     Expected JSON shape: { "message": "…", "link": "…", "linkText": "…" }
+     "link" and "linkText" are optional.                                      */
   var isIndex = ['', '/', 'index.html', 'index'].some(function (p) {
     return window.location.pathname.endsWith(p);
   });
@@ -112,20 +115,19 @@
       .then(function (r) { return r.ok ? r.json() : null; })
       .then(function (d) {
         if (!d || !d.message) return;
-        /* Use the message text as a key so a new message always shows once */
+        /* Use the message text as a unique key so a new message always shows */
         var storageKey = 'ann_seen_' + btoa(unescape(encodeURIComponent(d.message))).slice(0, 32);
         if (sessionStorage.getItem(storageKey)) return;
         var span = document.getElementById('announcement-text');
         span.innerHTML = d.message;
         if (d.link) {
           var a = document.createElement('a');
-          a.href = d.link;
+          a.href      = d.link;
           a.textContent = ' ' + (d.linkText || 'Learn more');
           span.appendChild(a);
         }
         var banner = document.getElementById('announcement-banner');
         banner.style.display = 'block';
-        /* Mark seen when dismissed */
         banner.querySelector('.ann-close').addEventListener('click', function () {
           sessionStorage.setItem(storageKey, '1');
         });

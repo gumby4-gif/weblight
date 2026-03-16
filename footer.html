@@ -1,0 +1,8 @@
+<footer>
+  <p>© <span class="footer-year"></span> Wu's Tai Chi Chuan Academy Detroit &nbsp;·&nbsp; 3140 Hilton Road, Ferndale, MI 48220 &nbsp;·&nbsp; 248-854-3953</p>
+</footer>
+<script>
+  document.querySelectorAll('.footer-year').forEach(function(el){
+    el.textContent = new Date().getFullYear();
+  });
+</script>

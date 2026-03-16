@@ -3,11 +3,11 @@
 <head>
   <meta charset="UTF-8">
   <title>Wu's Tai Chi Chuan Academy Detroit</title>
-  <meta name="description" content="Traditional Tai Chi Chuan for all ages and skill levels.">
-  <meta name="title" content="Wu's Tai Chi Chuan Academy Ferndale">
+  <meta name="description" content="Traditional Wu Style Tai Chi Chuan for all ages and skill levels — serving Metro Detroit for over 30 years.">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="preload" href="header.html" as="fetch" crossorigin>
-  <link rel="preload" 
+
+  <!-- Hero image preload -->
+  <link rel="preload"
       as="image"
       href="Images/crosshands/GroupCrossHands-800.webp"
       imagesrcset="Images/crosshands/GroupCrossHands-400.webp 400w,
@@ -16,25 +16,30 @@
                    Images/crosshands/GroupCrossHands-1920.webp 1920w"
       imagesizes="100vw"
       fetchpriority="high">
+
+  <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="preload" href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;700&family=Lato:wght@300;400;700&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
   <noscript><link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet"></noscript>
+
   <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="styles-zen.css">
 </head>
 
-<body>
+<body data-page="home" id="top">
 
 <!-- ═══════════════════════════════════════════════════════════════ -->
-<!--  SHARED HEADER — inlined so hash-scroll timing is never an     -->
-<!--  issue. Sub-pages still fetch header.html asynchronously.      -->
+<!--  ANNOUNCEMENT BANNER                                           -->
 <!-- ═══════════════════════════════════════════════════════════════ -->
-
 <div id="announcement-banner" role="alert">
   <span id="announcement-text"></span>
   <button class="ann-close" onclick="document.getElementById('announcement-banner').style.display='none'" aria-label="Dismiss">✕</button>
 </div>
 
+<!-- ═══════════════════════════════════════════════════════════════ -->
+<!--  HEADER                                                        -->
+<!-- ═══════════════════════════════════════════════════════════════ -->
 <header>
   <div class="header-brand">
     <a href="index.html#top" aria-label="Return to home">
@@ -45,23 +50,25 @@
       <p id="header-tagline">Traditional Wu Style · Ferndale, Michigan</p>
     </div>
   </div>
+
   <button class="nav-toggle" aria-label="Menu" aria-expanded="false">
     <span></span><span></span><span></span>
   </button>
+
   <nav aria-label="Main navigation">
-    <a href="index.html#classes"      data-nav="classes">Classes</a>
-    <a href="Schedule.html"           data-nav="schedule">Schedule-Fees-Events</a>
-    <a href="index.html#history"      data-nav="history">History</a>
+    <a href="classes.html"            data-nav="classes">Classes</a>
+    <a href="Schedule.html"           data-nav="schedule">Schedule &amp; Fees</a>
+    <a href="history.html"            data-nav="history">History</a>
     <a href="Sifu's_Corner.html"      data-nav="sifu">Sifu's Corner</a>
     <a href="index.html#locations"    data-nav="locations">Locations</a>
     <a href="index.html#testimonials" data-nav="testimonials">Testimonials</a>
+    <a href="index.html#getting-started" data-nav="getting-started">Get Started</a>
     <a href="index.html#contact"      data-nav="contact">Contact</a>
   </nav>
 </header>
 
 <script>
 (function () {
-  /* Mobile menu toggle */
   var toggle  = document.querySelector('.nav-toggle');
   var navMenu = document.querySelector('header nav');
   if (toggle) {
@@ -71,8 +78,6 @@
       navMenu.classList.toggle('open');
     });
   }
-
-  /* Nav clicks — close mobile menu; smooth-scroll same-page hash links */
   if (navMenu) {
     navMenu.querySelectorAll('a').forEach(function (link) {
       link.addEventListener('click', function (e) {
@@ -81,7 +86,6 @@
         var href = link.getAttribute('href') || '';
         var hi   = href.indexOf('#');
         if (hi !== -1) {
-          /* strip any leading "index.html" so we look at just the hash */
           var hash   = href.slice(hi);
           var target = document.querySelector(hash);
           if (target) {
@@ -93,8 +97,6 @@
       });
     });
   }
-
-  /* Announcement banner */
   fetch('announcement.json')
     .then(function (r) { return r.ok ? r.json() : null; })
     .then(function (d) {
@@ -120,39 +122,54 @@
 </script>
 
 <main>
-<section class="splash">
-  <picture>
-    <source 
+
+<!-- ═══════════════════════════════════════════════════════════════ -->
+<!--  HERO — merged splash + headline + CTA                         -->
+<!-- ═══════════════════════════════════════════════════════════════ -->
+<section class="zen-hero" id="hero" aria-label="Hero">
+  <picture class="zen-hero__picture">
+    <source
       type="image/avif"
       srcset="Images/crosshands/GroupCrossHands-400.avif 400w,
               Images/crosshands/GroupCrossHands-800.avif 800w,
               Images/crosshands/GroupCrossHands-1170.avif 1170w,
               Images/crosshands/GroupCrossHands-1920.avif 1920w"
-      sizes="(max-width: 600px) 100vw, 585px">
-
-    <source 
+      sizes="100vw">
+    <source
       type="image/webp"
       srcset="Images/crosshands/GroupCrossHands-400.webp 400w,
               Images/crosshands/GroupCrossHands-800.webp 800w,
               Images/crosshands/GroupCrossHands-1170.webp 1170w,
               Images/crosshands/GroupCrossHands-1920.webp 1920w"
-      sizes="(max-width: 600px) 100vw, 585px">
-
+      sizes="100vw">
     <img src="Images/crosshands/GroupCrossHands-800.webp"
-        alt="Tai Chi group practicing"
-        fetchpriority="high"
-        width="1170"
-        height="780"
-        sizes="100vw"
-        style="width: 100%; max-height: 900px; object-fit: cover;">
+         alt="Wu Tai Chi students practicing Cross Hands form"
+         class="zen-hero__img"
+         fetchpriority="high">
   </picture>
+
+  <div class="zen-hero__overlay" aria-hidden="true"></div>
+
+  <div class="zen-hero__content">
+    <p class="zen-hero__eyebrow">傳統吳式太極拳</p>
+    <h2 class="zen-hero__headline">Tradition,<br>Health &amp;<br>Inner Strength</h2>
+    <p class="zen-hero__sub">Authentic Wu Style Tai Chi Chuan — taught in Metro Detroit for over 30 years.</p>
+    <div class="zen-hero__actions">
+      <a href="#getting-started" class="btn-crimson">Start Here →</a>
+      <a href="classes.html" class="btn-ghost">Explore Classes</a>
+    </div>
+  </div>
 </section>
 
-<section class="hero">
-  <h2>Tai Chi Chuan — Tradition, Health &amp; Inner Strength</h2>
-  <p class="subtitle">Serving the Metro Detroit area for over 30 years. Traditional Wu Style instruction in a calm, welcoming environment.</p>
-  
-  <div class="benefits-grid">
+<!-- ═══════════════════════════════════════════════════════════════ -->
+<!--  BENEFITS                                                      -->
+<!-- ═══════════════════════════════════════════════════════════════ -->
+<section class="zen-section zen-section--stone" id="benefits" aria-label="Benefits of Tai Chi">
+  <div class="zen-container">
+    <h2 class="zen-section-title">Why Practice Tai Chi? <span class="zh">為什麼練太極拳</span></h2>
+    <p class="zen-section-lead">Wu Style Tai Chi is a complete system of health, meditation, and self-defense for every stage of life.</p>
+
+    <div class="benefits-grid">
     <div class="benefit-card">
       <div class="icon">
         <svg
@@ -258,103 +275,238 @@
   </div>
 </section>
 
-<div class="rule"></div>
+<!-- ═══════════════════════════════════════════════════════════════ -->
+<!--  3-STEP GET STARTED — conversion funnel after benefits         -->
+<!-- ═══════════════════════════════════════════════════════════════ -->
+<section id="getting-started" class="zen-section zen-section--parchment">
+  <div class="zen-container">
+    <h2 class="zen-section-title">Get Started <span class="zh">開始</span></h2>
+    <p class="zen-section-lead">Ready to begin your Tai Chi journey? Three simple steps.</p>
 
-<div class="showcase-strip">
-  <div class="showcase-grid">
-    <div class="showcase-item"><img loading="lazy" src="Images/highpat.webp" alt="Form"><div class="showcase-label">Form 表格</div></div>
-    <div class="showcase-item"><img loading="lazy" src="Images/spear.jpg" alt="Spear"><div class="showcase-label">Spear 槍</div></div>
-    <div class="showcase-item"><img loading="lazy" src="Images/weapons.webp" alt="Sabre and Sword"><div class="showcase-label">Sabre &amp; Sword 刀劍</div></div>
-  </div>
-</div>
-
-<section id="classes" class="section">
-  <h2 class="section-title">Classes <span class="zh">課程</span></h2>
-  <p class="section-lead">From beginners to disciples — traditional Wu Style Tai Chi Chuan taught at every level.</p>
-  <div class="grid">
-    <div class="card"><img loading="lazy" src="Images/smswhip.jpg" alt="Form class"><div class="card-body"><h3>Form <span class="zh">表格</span></h3><p>Begin with the 12-step form, then progress through the 108-step small and large circle forms. Taught one-on-one or in small groups so you move at your own pace.</p></div></div>
-    <div class="card"><img loading="lazy" src="Images/pushhands.jpg" alt="Pushing Hands"><div class="card-body"><h3>Pushing Hands <span class="zh">推手</span></h3><p>Two-person exercises from basic to complex 9-palace form. Also includes Chi Kung and form refinements for intermediate students.</p></div></div>
-    <div class="card"><img loading="lazy" src="Images/oxtailsabre.jpg" alt="Weapons"><div class="card-body"><h3>Weapon Forms <span class="zh">武器型態</span></h3><p>Spear, Sabre, and Sword — offered to advanced intermediate students in that order, building on the foundation of the hand form.</p></div></div>
-  </div>
-  <div class="card-wide"><h3 style="font-family:'Noto Serif SC',serif;font-size:1.05rem;margin-bottom:8px;">Disciples <span class="zh">表格門徒</span></h3><p style="font-size:0.9rem;color:var(--ink-soft);">Full members of the Academy with access to open training, advanced form refinement, Chi Kung, applications, and teaching Tai Chi. Formally accepted by the Shifu (师父) into the school's lineage.</p></div>
-  <div class="card-wide"><h3 style="font-family:'Noto Serif SC',serif;font-size:1.05rem;margin-bottom:8px;">5 Steps / Ba Fa Wu Bu <span class="zh">太极八法五步</span></h3><p style="font-size:0.9rem;color:var(--ink-soft);">Clears the body's meridians, balances qi and blood, and eases chronic pain. Suitable for all ages — a gateway to personal peace and tranquility.</p></div>
-</section>
-
-<section id="current" class="page-nav-section">
-  <h2>Schedule, Fees &amp; Events</h2>
-  <p>Select a page below — updated as things change.</p>
-  <nav class="page-nav-tabs">
-    <a href="Schedule.html">📅 Schedule</a>
-    <a href="Fees.html">💰 Fees</a>
-    <a href="Events.html">🎉 Events</a>
-  </nav>
-</section>
-
-<section id="history" class="history-section">
-  <div class="history-inner">
-    <h2 class="section-title">Our School History <span class="zh">我們的校史</span></h2>
-    <div class="history-grid">
-      <div>
-        <img loading="lazy" src="Images/OLC.jpg" alt="Our school">
-        <img loading="lazy" src="Images/oldoldschool.jpg" alt="Original school" style="margin-top:16px;">
-        <!-- REPLACE WITH -->
-        <p style="font-size: 0.82rem; color: var(--parchment-soft); text-align: center; margin-top: 10px; font-style: italic; line-height: 1.5;">Master Wu Tai Chi conducting a workshop at Old Detroit School location</p>
+    <div class="steps-grid">
+      <div class="step-card">
+        <div class="step-number">1</div>
+        <h3>Contact Us</h3>
+        <p>Call or email us to introduce yourself and find out when the next beginner class is running.</p>
+        <a href="#contact" class="step-link">Get in touch →</a>
       </div>
-      <div class="history-text">
-        <p>Our school has been serving the Metro Detroit area for over 30 years — working with seniors and hospital patients across Southeast Michigan, teenagers through Cranbrook's Horizons Upward Bound program, and a wide range of everyday people at 24 satellite locations and our main Academy.</p>
-        <p>In 1935, the first Wu's Tai Chi Chuan Academy was founded in Shanghai by Grandmaster Wu Chien-ch'uan. Our instructors are certified at Advanced Level by the International Wu Style Tai Chi Chuan Federation.</p>
-        <blockquote>"The 108 posture empty hand form routine is the essence. Regular practice strengthens bones and muscles… Preventing disease and prolonging life, Tai Chi Chuan nourishes one's vitality. <p></p>Two person pushing hands is the application. The methodology follows the Tai Chi principle of movement and stillness. Applications are expressed through the subtle transformations that occur between fullness and emptiness. Applications use the principles of psychology and physics. Softness overcomes hardness, and hardness reinforces softness." — Grandmaster Wu Kung-tsao</blockquote>
-        
+      <div class="step-card">
+        <div class="step-number">2</div>
+        <h3>Start at the Beginning</h3>
+        <p>Everyone begins with the 12-posture form — no experience needed. Wear comfortable clothing and flat-soled shoes.</p>
+        <a href="Schedule.html" class="step-link">View schedule →</a>
+      </div>
+      <div class="step-card">
+        <div class="step-number">3</div>
+        <h3>Register</h3>
+        <p>Complete the yearly registration form and bring it to your first class. See the Fees page for current pricing.</p>
+        <a href="Fees.html" class="step-link">View fees →</a>
       </div>
     </div>
-    <h3 style="object-fit: cover; display: block; text-align: center;">Notable Disciples</h3>
-    <div class="lineage-grid">
-      <div class="lineage-card"><h4>Wu Quanyou</h4><p>Founder of Wu Style. Military officer and disciple of Yang Luchan — laid the foundations of the style's internal martial art.</p></div>
-      <div class="lineage-card"><h4>Wu Jianquan</h4><p>Co-founder of Wu Style. Taught large numbers and refined the art to distinguish it from Yang style.</p></div>
-      <div class="lineage-card"><h4>Wu Gongyi</h4><p>Moved family headquarters to Hong Kong in 1948. Senior instructor from 1942 to 1970.</p></div>
-      <div class="lineage-card"><h4>Wu Ta-k'uei</h4><p>Late grand master credited with promoting Tai Chi in Canada and internationally.</p></div>
-      <div class="lineage-card"><h4>Eddie Wu Guangyu</h4><p>Current grandmaster. Great-grandson of Wu Jianquan and grandson of Wu Gongyi.</p></div>
+
+    <div class="regform-wrap">
+      <p class="regform-label">Download &amp; print your registration form:</p>
+      <a href="registration.html" class="regform-link">
+        <picture>
+          <source srcset="Images/regform/regform.webp" type="image/webp">
+          <img loading="lazy" src="Images/regform/regform.png" alt="Yearly Registration Form">
+        </picture>
+        <span>Yearly Registration Form</span>
+      </a>
     </div>
   </div>
 </section>
 
-<section id="locations" class="locations-section">
-  <div class="locations-inner">
-    <h2 class="section-title">Locations <span class="zh">地點</span></h2>
-    <div class="locations-grid">
-      <div class="location-card"><img loading="lazy" src="Images/Wu Detroit.jpg" alt="Detroit Academy"><div class="location-card-body"><h3>Main Academy — Ferndale</h3><p>📍 3140 Hilton Road, Ferndale, MI 48220</p><p>📞 248-854-3953</p></div></div>
-      <div class="location-card"><img loading="lazy" src="Images/Wu AnnArbor.jpg" alt="Ann Arbor"><div class="location-card-body"><h3>Satellite Schools — Michigan</h3><p>📍 Ann Arbor: 111 S Wallace Blvd, Ypsilanti</p><p>📍 Rochester, Michigan</p><p style="color:var(--red);font-size:0.82rem;margin-top:6px;">+ 24 satellite locations statewide</p></div></div>
-      <div class="location-card"><img loading="lazy" src="Images/Wu Toronto.jpg" alt="Other locations"><div class="location-card-body"><h3>Other Locations</h3><p>📍 Washington D.C.: 921 Pennsylvania Ave SE</p><p>📞 (301) 388-8095</p><p>📍 Toronto, Canada</p></div></div>
+<!-- ═══════════════════════════════════════════════════════════════ -->
+<!--  CLASSES — summary, links to classes.html                      -->
+<!-- ═══════════════════════════════════════════════════════════════ -->
+<section id="classes" class="zen-section zen-section--stone">
+  <div class="zen-container">
+    <h2 class="zen-section-title">Classes <span class="zh">課程</span></h2>
+    <p class="zen-section-lead">From first-timers to full disciples — authentic Wu Style taught at every level.</p>
+
+    <div class="card-grid">
+      <div class="zen-card">
+        <img loading="lazy" src="Images/smswhip.jpg" alt="Form class">
+        <div class="zen-card__body">
+          <h3>Form <span class="zh">表格</span></h3>
+          <p>Begin with the 12-step form, then progress through the 108-step small and large circle forms at your own pace.</p>
+        </div>
+      </div>
+      <div class="zen-card">
+        <img loading="lazy" src="Images\pushhands.webp" alt="Pushing Hands">
+        <div class="zen-card__body">
+          <h3>Pushing Hands <span class="zh">推手</span></h3>
+          <p>Two-person exercises from basic to the complex 9-palace form. Intermediate-level Chi Kung also included.</p>
+        </div>
+      </div>
+      <div class="zen-card">
+        <img loading="lazy" src="Images/spear.webp" alt="Weapons">
+        <div class="zen-card__body">
+          <h3>Weapon Forms <span class="zh">武器型態</span></h3>
+          <p>Spear, Sabre, and Sword — offered to advanced intermediate students, building on the hand form foundation.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="zen-cta-row">
+      <a href="classes.html" class="btn-crimson">Full Curriculum &amp; Details →</a>
     </div>
   </div>
 </section>
 
-<section id="testimonials" class="testimonials-section section">
-  <h2 class="section-title">Testimonials</h2>
-  <div class="grid" style="margin-top:26px;">
-    <div class="testimonial-card"><p>"Amazing! Highly recommended."</p><strong>— Student A</strong></div>
-    <div class="testimonial-card"><p>"Just what I was looking for."</p><strong>— Student B</strong></div>
+<!-- ═══════════════════════════════════════════════════════════════ -->
+<!--  SCHEDULE / FEES / EVENTS QUICK-NAV                            -->
+<!-- ═══════════════════════════════════════════════════════════════ -->
+<section id="current" class="zen-section zen-section--parchment">
+  <div class="zen-action-grid">
+    <a href="Schedule.html" class="action-card">
+      <div class="action-card__icon">📅</div>
+      <div class="action-card__content">
+        <h3>Class Schedule</h3>
+        <p>View weekly times for Beginner and Advanced forms.</p>
+        <span class="action-card__cta">See Times →</span>
+      </div>
+    </a>
+
+    <a href="Fees.html" class="action-card">
+      <div class="action-card__icon">💰</div>
+      <div class="action-card__content">
+        <h3>Dues & Fees</h3>
+        <p>Transparent pricing for monthly and yearly memberships.</p>
+        <span class="action-card__cta">View Pricing →</span>
+      </div>
+    </a>
+
+    <a href="Events.html" class="action-card">
+      <div class="action-card__icon">🎉</div>
+      <div class="action-card__content">
+        <h3>Special Events</h3>
+        <p>Workshops, demonstrations, and school celebrations.</p>
+        <span class="action-card__cta">What's On →</span>
+      </div>
+    </a>
   </div>
 </section>
 
-<section class="regform" style="text-align: center;">
-  <a href="registration.html">
-    <picture>
-      <source srcset="Images/regform/regform.webp" type="image/webp">
-      <img loading="lazy" src="Images/regform/regform.png" alt="Yearly Registration Form">
-    </picture>
-  </a>
-</section>
-
-<section id="contact" class="contact-section">
-  <h2>Contact Us</h2>
-  <div class="contact-details">
-    <div class="contact-item"><span>Email</span><a href="mailto:info@wustyledetroit.com" href="mailto:info@wustyledetroit.com">info@wustyledetroit.com</a></div>
-    <div class="contact-item"><span>Phone</span>248-854-3953</div>
-    <div class="contact-item"><span>Address</span>3140 Hilton Road, Ferndale, MI 48220</div>
+<!-- ═══════════════════════════════════════════════════════════════ -->
+<!--  HERITAGE TEASER — links to history.html                       -->
+<!-- ═══════════════════════════════════════════════════════════════ -->
+<section id="history" class="zen-section zen-section--heritage">
+  <div class="zen-container">
+    <div class="heritage-grid">
+      <div class="heritage-images">
+        <img loading="lazy" src="Images/oldoldschool.jpg" alt="Original school location" class="heritage-img heritage-img--btm">
+      </div>
+      <div class="heritage-text">
+        <p class="zen-eyebrow">Our Heritage 我們的傳承</p>
+        <h2 class="zen-section-title zen-section-title--left">Over 30 Years Serving Metro Detroit</h2>
+        <p>Founded in Shanghai in 1935 by Grandmaster Wu Chien-ch'uan, the Wu Style lineage now reaches Ferndale, Michigan. For over three decades our Academy has taught seniors, hospital patients, teenagers, and everyday people across 24 satellite locations and our main school.</p>
+        <blockquote class="heritage-quote">
+          "Softness overcomes hardness, and hardness reinforces softness."
+          <cite>— Grandmaster Wu Kung-tsao</cite>
+        </blockquote>
+        <a href="history.html" class="btn-crimson" style="margin-top:28px;display:inline-block;">Read Our Full History →</a>
+      </div>
+    </div>
   </div>
 </section>
 
-<footer>© <span id="year"></span> Wu's Tai Chi Chuan Academy Detroit</footer>
+<!-- ═══════════════════════════════════════════════════════════════ -->
+<!--  LOCATIONS                                                     -->
+<!-- ═══════════════════════════════════════════════════════════════ -->
+<section id="locations" class="zen-section zen-section--parchment">
+  <div class="zen-container">
+    <h2 class="zen-section-title">Locations <span class="zh">地點</span></h2>
+    <p class="zen-section-lead">Find us in Metro Detroit, Michigan and beyond.</p>
+
+    <div class="location-grid">
+      <div class="loc-card">
+        <img loading="lazy" src="Images/Wu Detroit.jpg" alt="Ferndale Main Academy" class="loc-card__img">
+        <div class="loc-card__body">
+          <span class="loc-badge">Main Academy</span>
+          <h3>Ferndale, Michigan</h3>
+          <p><span class="loc-icon">📍</span> 3140 Hilton Road, Ferndale, MI 48220</p>
+          <p><span class="loc-icon">📞</span> 248-854-3953</p>
+          <a href="https://maps.google.com/?q=3140+Hilton+Road+Ferndale+MI+48220" target="_blank" rel="noopener" class="btn-directions">Get Directions →</a>
+        </div>
+      </div>
+
+      <div class="loc-card">
+        <img loading="lazy" src="Images/Wu AnnArbor.jpg" alt="Ann Arbor and Michigan satellite locations" class="loc-card__img">
+        <div class="loc-card__body">
+          <span class="loc-badge loc-badge--secondary">Satellite Schools</span>
+          <h3>Southeast Michigan</h3>
+          <p><span class="loc-icon">📍</span> Ann Arbor: 111 S Wallace Blvd, Ypsilanti</p>
+          <p><span class="loc-icon">📍</span> Rochester, Michigan</p>
+          <p class="loc-note">+ 24 satellite locations statewide</p>
+          <a href="https://maps.google.com/?q=111+S+Wallace+Blvd+Ypsilanti+MI" target="_blank" rel="noopener" class="btn-directions">Get Directions →</a>
+        </div>
+      </div>
+
+      <div class="loc-card">
+        <img loading="lazy" src="Images/Wu Toronto.jpg" alt="Washington DC and Toronto locations" class="loc-card__img">
+        <div class="loc-card__body">
+          <span class="loc-badge loc-badge--tertiary">Out of State</span>
+          <h3>Washington D.C. &amp; Toronto</h3>
+          <p><span class="loc-icon">📍</span> 921 Pennsylvania Ave SE, Washington D.C.</p>
+          <p><span class="loc-icon">📞</span> (301) 388-8095</p>
+          <p><span class="loc-icon">📍</span> Toronto, Canada</p>
+          <a href="https://maps.google.com/?q=921+Pennsylvania+Ave+SE+Washington+DC" target="_blank" rel="noopener" class="btn-directions">Get Directions →</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════════════ -->
+<!--  TESTIMONIALS                                                  -->
+<!-- ═══════════════════════════════════════════════════════════════ -->
+<section id="testimonials" class="zen-section zen-section--stone">
+  <div class="zen-container zen-container--narrow">
+    <h2 class="zen-section-title">What Students Say</h2>
+    <div class="testimonial-grid">
+      <div class="zen-testimonial">
+        <p>"Amazing! Highly recommended."</p>
+        <strong>— Student A</strong>
+      </div>
+      <div class="zen-testimonial">
+        <p>"Just what I was looking for."</p>
+        <strong>— Student B</strong>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════════════ -->
+<!--  CONTACT                                                       -->
+<!-- ═══════════════════════════════════════════════════════════════ -->
+<section id="contact" class="zen-section zen-section--parchment">
+  <div class="zen-container">
+    <h2 class="zen-section-title">Contact Us <span class="zh">聯繫我們</span></h2>
+    <div class="contact-details">
+      <div class="contact-item">
+        <span>Email</span>
+        <a href="mailto:info@wustyledetroit.com" href="mailto:info@wustyledetroit.com">info@wustyledetroit.com</a>
+      <div class="contact-item">
+        <span>Phone</span>
+        248-854-3953
+      </div>
+      <div class="contact-item">
+        <span>Address</span>
+        3140 Hilton Road, Ferndale, MI 48220
+      </div>
+    </div>
+  </div>
+</section>
+
+<div id="site-footer"></div>
+<script>
+  fetch('footer.html')
+    .then(function(r){ return r.text(); })
+    .then(function(html){
+      document.getElementById('site-footer').innerHTML = html;
+    });
+</script>
 </main>
 </body></html>
