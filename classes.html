@@ -10,7 +10,6 @@
   <link rel="preload" href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;700&family=Lato:wght@300;400;700&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
   <noscript><link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet"></noscript>
   <link rel="stylesheet" href="styles.css">
-  <link rel="stylesheet" href="styles-zen.css">
 </head>
 
 <body data-page="classes">
@@ -23,7 +22,13 @@
   fetch('header.html')
     .then(function(r){ return r.text(); })
     .then(function(html){
-      document.getElementById('site-header').innerHTML = html;
+      var el = document.getElementById('site-header');
+      el.innerHTML = html;
+      el.querySelectorAll('script').forEach(function(orig) {
+        var s = document.createElement('script');
+        s.textContent = orig.textContent;
+        document.head.appendChild(s);
+      });
     });
 </script>
 
@@ -120,112 +125,6 @@
 </script>
 
 <!-- Classes-page specific styles -->
-<style>
-  .classes-page-hero {
-    background: linear-gradient(160deg, #1E1A12 0%, #2E2416 100%);
-    color: rgba(255,255,255,0.88);
-  }
-  .classes-page-hero h2 { color: #fff; }
-  .classes-page-hero p  { color: rgba(255,255,255,0.62); }
-
-  .classes-intro {
-    font-size: 1rem;
-    color: var(--charcoal-mid);
-    border-left: 3px solid var(--heritage-gold);
-    padding: 14px 20px;
-    background: var(--stone);
-    border-radius: 0 4px 4px 0;
-    margin-bottom: 52px;
-    line-height: 1.75;
-  }
-
-  /* Two-column class block */
-  .class-block {
-    display: grid;
-    grid-template-columns: 1fr 1.5fr;
-    gap: 44px;
-    align-items: start;
-    margin-bottom: 60px;
-    padding-bottom: 60px;
-    border-bottom: 1px solid var(--heritage-border);
-  }
-  .class-block--reverse { direction: rtl; }
-  .class-block--reverse > * { direction: ltr; }
-
-  .class-block__img-wrap img {
-    width: 100%;
-    height: 280px;
-    object-fit: cover;
-    border-radius: 4px;
-    display: block;
-  }
-  .class-block__text h3 {
-    font-family: 'Noto Serif SC', serif;
-    font-size: 1.35rem;
-    color: var(--ink-black);
-    margin-bottom: 14px;
-    margin-top: 8px;
-  }
-  .class-block__text p {
-    font-size: 0.95rem;
-    color: var(--charcoal);
-    line-height: 1.82;
-    margin-bottom: 0.9em;
-  }
-
-  /* Level badges */
-  .class-level-badge {
-    display: inline-block;
-    font-size: 0.68rem;
-    font-weight: 700;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    padding: 3px 10px;
-    border-radius: 2px;
-    margin-bottom: 8px;
-    background: var(--crimson-pale);
-    color: var(--crimson);
-    border: 1px solid rgba(155,27,27,0.18);
-  }
-  .class-level-badge--mid {
-    background: #EDF4EE;
-    color: #2E6B35;
-    border-color: #B4D4B8;
-  }
-  .class-level-badge--adv {
-    background: #EEF0F8;
-    color: #2D3A74;
-    border-color: #B8C0DF;
-  }
-
-  /* Wide blocks (disciples, ba fa) */
-  .class-block-wide {
-    background: var(--stone);
-    border: 1px solid var(--heritage-border);
-    border-left: 3px solid var(--crimson);
-    border-radius: 0 6px 6px 0;
-    padding: 26px 28px;
-    margin-bottom: 24px;
-  }
-  .class-block-wide h3 {
-    font-family: 'Noto Serif SC', serif;
-    font-size: 1.05rem;
-    color: var(--ink-black);
-    margin-bottom: 10px;
-  }
-  .class-block-wide p {
-    font-size: 0.92rem;
-    color: var(--charcoal);
-    line-height: 1.78;
-    margin-bottom: 0.7em;
-  }
-
-  @media (max-width: 768px) {
-    .class-block { grid-template-columns: 1fr; gap: 20px; }
-    .class-block--reverse { direction: ltr; }
-    .class-block__img-wrap img { height: 220px; }
-  }
-</style>
 
 </body>
 </html>

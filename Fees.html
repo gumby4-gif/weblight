@@ -10,60 +10,6 @@
   <link rel="preload" href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;700&family=Lato:wght@300;400;700&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
   <noscript><link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet"></noscript>
   <link rel="stylesheet" href="styles.css">
-  <link rel="stylesheet" href="styles-zen.css">
-  <style>
-    .fees-page-hero {
-      background: linear-gradient(160deg, #1E1A12 0%, #2E2416 100%);
-      color: rgba(255,255,255,0.88);
-    }
-    .fees-page-hero h2 { color: #fff; }
-    .fees-page-hero p  { color: rgba(255,255,255,0.62); }
-
-    .notice {
-      background: var(--crimson-pale);
-      border-left: 3px solid var(--crimson);
-      border-radius: 0 4px 4px 0;
-      padding: 14px 20px;
-      font-size: 0.92rem;
-      color: var(--charcoal);
-      line-height: 1.7;
-      margin-bottom: 32px;
-    }
-    .fee-group {
-      background: #fff;
-      border: 1px solid var(--heritage-border);
-      border-radius: 6px;
-      overflow: hidden;
-      margin-bottom: 24px;
-    }
-    .fee-group-label {
-      background: var(--ink-black);
-      color: #fff;
-      font-family: 'Noto Serif SC', serif;
-      font-size: 0.95rem;
-      font-weight: 700;
-      letter-spacing: 0.06em;
-      padding: 14px 22px;
-    }
-    .fee-row {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 13px 22px;
-      border-bottom: 1px solid var(--heritage-border);
-    }
-    .fee-row:last-child { border-bottom: none; }
-    .fee-label {
-      font-size: 0.95rem;
-      color: var(--charcoal);
-    }
-    .fee-amount {
-      font-family: 'Noto Serif SC', serif;
-      font-size: 1rem;
-      font-weight: 700;
-      color: var(--crimson);
-    }
-  </style>
 </head>
 
 <body data-page="schedule">
@@ -73,7 +19,13 @@
   fetch('header.html')
     .then(function(r){ return r.text(); })
     .then(function(html){
-      document.getElementById('site-header').innerHTML = html;
+      var el = document.getElementById('site-header');
+      el.innerHTML = html;
+      el.querySelectorAll('script').forEach(function(orig) {
+        var s = document.createElement('script');
+        s.textContent = orig.textContent;
+        document.head.appendChild(s);
+      });
     });
 </script>
 

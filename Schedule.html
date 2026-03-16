@@ -10,74 +10,6 @@
   <link rel="preload" href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;700&family=Lato:wght@300;400;700&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
   <noscript><link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet"></noscript>
   <link rel="stylesheet" href="styles.css">
-  <link rel="stylesheet" href="styles-zen.css">
-  <style>
-    .schedule-page-hero {
-      background: linear-gradient(160deg, #1E1A12 0%, #2E2416 100%);
-      color: rgba(255,255,255,0.88);
-    }
-    .schedule-page-hero h2 { color: #fff; }
-    .schedule-page-hero p  { color: rgba(255,255,255,0.62); }
-
-    .day-block {
-      background: #fff;
-      border: 1px solid var(--heritage-border);
-      border-radius: 6px;
-      overflow: hidden;
-      margin-bottom: 20px;
-    }
-    .day-header {
-      background: var(--ink-black);
-      padding: 14px 22px;
-    }
-    .day-header h3 {
-      font-family: 'Noto Serif SC', serif;
-      font-size: 1rem;
-      color: #fff;
-      letter-spacing: 0.06em;
-      margin: 0;
-    }
-    .class-row {
-      display: flex;
-      align-items: baseline;
-      gap: 20px;
-      padding: 13px 22px;
-      border-bottom: 1px solid var(--heritage-border);
-      flex-wrap: wrap;
-    }
-    .class-row:last-child { border-bottom: none; }
-    .class-time {
-      font-size: 0.82rem;
-      font-weight: 700;
-      color: var(--crimson);
-      min-width: 130px;
-      letter-spacing: 0.03em;
-      flex-shrink: 0;
-    }
-    .class-name {
-      font-size: 0.95rem;
-      color: var(--charcoal);
-      flex: 1;
-    }
-    .class-note {
-      font-size: 0.78rem;
-      color: var(--charcoal-mid);
-      font-style: italic;
-    }
-    .load-error {
-      background: #FFF0F0;
-      border-left: 3px solid var(--crimson);
-      border-radius: 0 6px 6px 0;
-      padding: 14px 18px;
-      font-size: 0.9rem;
-      color: #7B1E1E;
-      margin-bottom: 36px;
-    }
-    @media (max-width: 600px) {
-      .class-row { gap: 8px; }
-      .class-time { min-width: auto; width: 100%; }
-    }
-  </style>
 </head>
 
 <body data-page="schedule">
@@ -87,7 +19,13 @@
   fetch('header.html')
     .then(function(r){ return r.text(); })
     .then(function(html){
-      document.getElementById('site-header').innerHTML = html;
+      var el = document.getElementById('site-header');
+      el.innerHTML = html;
+      el.querySelectorAll('script').forEach(function(orig) {
+        var s = document.createElement('script');
+        s.textContent = orig.textContent;
+        document.head.appendChild(s);
+      });
     });
 </script>
 

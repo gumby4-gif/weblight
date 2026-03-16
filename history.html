@@ -10,7 +10,6 @@
   <link rel="preload" href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;700&family=Lato:wght@300;400;700&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
   <noscript><link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet"></noscript>
   <link rel="stylesheet" href="styles.css">
-  <link rel="stylesheet" href="styles-zen.css">
 </head>
 
 <body data-page="history">
@@ -23,7 +22,13 @@
   fetch('header.html')
     .then(function(r){ return r.text(); })
     .then(function(html){
-      document.getElementById('site-header').innerHTML = html;
+      var el = document.getElementById('site-header');
+      el.innerHTML = html;
+      el.querySelectorAll('script').forEach(function(orig) {
+        var s = document.createElement('script');
+        s.textContent = orig.textContent;
+        document.head.appendChild(s);
+      });
     });
 </script>
 
@@ -108,94 +113,6 @@
 </script>
 
 <!-- History-page specific styles -->
-<style>
-  .history-page-hero {
-    background: linear-gradient(160deg, var(--ink-black, #1A1A18) 0%, #2A1F0A 100%);
-    color: rgba(255,255,255,0.88);
-  }
-  .history-page-hero h2 { color: #fff; }
-  .history-page-hero p  { color: rgba(255,255,255,0.62); }
-
-  .history-section-block h3.history-subhead {
-    font-family: 'Noto Serif SC', serif;
-    font-size: 1.25rem;
-    color: var(--ink-black, #1A1A18);
-    margin-bottom: 18px;
-    padding-bottom: 10px;
-    border-bottom: 1px solid var(--heritage-border, #D9CEB2);
-  }
-  .history-section-block p {
-    font-size: 0.97rem;
-    color: var(--charcoal, #2D2D2D);
-    line-height: 1.85;
-    margin-bottom: 1.1em;
-  }
-  .history-img-float {
-    float: right;
-    width: 42%;
-    margin: 0 0 20px 32px;
-  }
-  .history-img-float img {
-    width: 100%;
-    border-radius: 4px;
-    display: block;
-  }
-  .history-img-caption {
-    font-size: 0.75rem !important;
-    color: var(--charcoal-mid, #4A4A46) !important;
-    font-style: italic;
-    text-align: center;
-    margin-top: 7px !important;
-    line-height: 1.5 !important;
-  }
-  .history-blockquote {
-    border-left: 3px solid var(--crimson, #9B1B1B);
-    padding: 18px 22px;
-    margin: 28px 0;
-    background: var(--parchment, #F9F7F2);
-    border-radius: 0 4px 4px 0;
-    font-style: italic;
-    font-size: 0.97rem;
-    color: var(--charcoal, #2D2D2D);
-    line-height: 1.8;
-  }
-  .history-blockquote cite {
-    display: block;
-    font-style: normal;
-    font-size: 0.78rem;
-    font-weight: 700;
-    letter-spacing: 0.07em;
-    text-transform: uppercase;
-    color: var(--crimson, #9B1B1B);
-    margin-top: 12px;
-  }
-  .lineage-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 18px;
-    margin-top: 28px;
-  }
-  .lineage-card {
-    background: #fff;
-    border: 1px solid var(--heritage-border, #D9CEB2);
-    border-top: 3px solid var(--crimson, #9B1B1B);
-    border-radius: 2px 2px 6px 6px;
-    padding: 20px 18px;
-  }
-  .lineage-card h4 {
-    font-family: 'Noto Serif SC', serif;
-    font-size: 0.97rem;
-    color: var(--ink-black, #1A1A18);
-    margin-bottom: 8px;
-  }
-  .lineage-card p {
-    font-size: 0.86rem !important;
-    line-height: 1.65 !important;
-  }
-  @media (max-width: 768px) {
-    .history-img-float { float: none; width: 100%; margin: 0 0 20px 0; }
-  }
-</style>
 
 </body>
 </html>

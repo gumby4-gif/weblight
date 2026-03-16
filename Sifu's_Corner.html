@@ -10,66 +10,6 @@
   <link rel="preload" href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;700&family=Lato:wght@300;400;700&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
   <noscript><link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet"></noscript>
   <link rel="stylesheet" href="styles.css">
-  <link rel="stylesheet" href="styles-zen.css">
-  <style>
-    .sifu-page-hero {
-      background: linear-gradient(160deg, #1A1A18 0%, #2A1F0A 100%);
-      color: rgba(255,255,255,0.88);
-    }
-    .sifu-page-hero h2 { color: #fff; }
-    .sifu-page-hero p  { color: rgba(255,255,255,0.62); }
-
-    .sifu-profile {
-      display: flex;
-      align-items: center;
-      gap: 28px;
-      background: #fff;
-      border: 1px solid var(--heritage-border);
-      border-radius: 6px;
-      border-bottom: 2px solid var(--heritage-gold);
-      padding: 24px 28px;
-      margin-bottom: 40px;
-    }
-    .sifu-profile img {
-      width: 90px;
-      height: 90px;
-      object-fit: cover;
-      border-radius: 4px;
-      display: block;
-      flex-shrink: 0;
-    }
-    .sifu-profile-text h3 {
-      font-family: 'Noto Serif SC', serif;
-      font-size: 1.15rem;
-      color: var(--ink-black);
-      margin: 0;
-    }
-
-    p.greeting {
-      font-family: 'Noto Serif SC', serif;
-      font-size: 1.1rem;
-      color: var(--ink-black);
-      margin-bottom: 18px;
-    }
-    p.closing {
-      font-family: 'Noto Serif SC', serif;
-      font-size: 1.1rem;
-      color: var(--ink-black);
-      margin-top: 28px;
-      margin-bottom: 28px;
-    }
-
-    #sifu-message p {
-      font-size: 0.97rem;
-      color: var(--charcoal);
-      line-height: 1.85;
-      margin-bottom: 1.1em;
-    }
-
-    @media (max-width: 600px) {
-      .sifu-profile { flex-direction: column; text-align: center; }
-    }
-  </style>
 </head>
 
 <body data-page="sifu">
@@ -79,7 +19,13 @@
   fetch('header.html')
     .then(function(r){ return r.text(); })
     .then(function(html){
-      document.getElementById('site-header').innerHTML = html;
+      var el = document.getElementById('site-header');
+      el.innerHTML = html;
+      el.querySelectorAll('script').forEach(function(orig) {
+        var s = document.createElement('script');
+        s.textContent = orig.textContent;
+        document.head.appendChild(s);
+      });
     });
 </script>
 
@@ -155,7 +101,5 @@
         '<small style="opacity:0.7">' + err.message + '</small></p>';
     });
 </script>
-
-
 </body>
 </html>
