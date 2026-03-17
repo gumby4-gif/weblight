@@ -5,6 +5,7 @@
   <title>Class Fees — Wu's Tai Chi Chuan Academy Detroit</title>
   <meta name="description" content="Monthly rates and class pricing for Wu's Tai Chi Chuan Academy Detroit.">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script src="site.js"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="preload" href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;700&family=Lato:wght@300;400;700&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
@@ -18,83 +19,13 @@
     }
     .fees-page-hero h2 { color: #fff; }
     .fees-page-hero p  { color: rgba(255,255,255,0.62); }
-
-    .notice {
-      background: var(--crimson-pale);
-      border-left: 3px solid var(--crimson);
-      border-radius: 0 4px 4px 0;
-      padding: 14px 20px;
-      font-size: 0.92rem;
-      color: var(--charcoal);
-      line-height: 1.7;
-      margin-bottom: 32px;
-    }
-    .fee-group {
-      background: #fff;
-      border: 1px solid var(--heritage-border);
-      border-radius: 6px;
-      overflow: hidden;
-      margin-bottom: 24px;
-    }
-    .fee-group-label {
-      background: var(--ink-black);
-      color: #fff;
-      font-family: 'Noto Serif SC', serif;
-      font-size: 0.95rem;
-      font-weight: 700;
-      letter-spacing: 0.06em;
-      padding: 14px 22px;
-    }
-    .fee-row {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 13px 22px;
-      border-bottom: 1px solid var(--heritage-border);
-    }
-    .fee-row:last-child { border-bottom: none; }
-    .fee-label {
-      font-size: 0.95rem;
-      color: var(--charcoal);
-    }
-    .fee-amount {
-      font-family: 'Noto Serif SC', serif;
-      font-size: 1rem;
-      font-weight: 700;
-      color: var(--crimson);
-    }
   </style>
 </head>
 
 <body data-page="fees">
 
 <div id="site-header"></div>
-<script>
-  (function() {
-    function safeInject(id, html) {
-    var target = document.getElementById(id);
-    if (!target) return;
-    var doc = new DOMParser().parseFromString(html, 'text/html');
-    /* Collect scripts first, remove from fragment */
-    var scripts = Array.from(doc.body.querySelectorAll('script'));
-    scripts.forEach(function(s) { s.parentNode.removeChild(s); });
-    /* Append all non-script nodes so header is in DOM */
-    while (target.firstChild) target.removeChild(target.firstChild);
-    Array.from(doc.body.childNodes).forEach(function(node) {
-      target.appendChild(document.importNode(node, true));
-    });
-    /* Run scripts now — header nav exists in DOM at this point */
-    scripts.forEach(function(orig) {
-      var s = document.createElement('script');
-      s.textContent = orig.textContent;
-      document.head.appendChild(s);
-    });
-  }
-    fetch('header.html')
-      .then(function(r){ return r.text(); })
-      .then(function(html){ safeInject('site-header', html); });
-  })();
-</script>
+<script>loadFragment("header.html", "site-header");</script>
 
 <div class="page-hero fees-page-hero">
   <p class="zen-eyebrow" style="text-align:center;margin-bottom:10px;">學費</p>
@@ -112,37 +43,12 @@
   </nav>
 </div>
 
-<main id="fees-main" class="page-main">
+<main id="fees-main" class="page-main fade-in">
   <div class="loading">Loading fees…</div>
 </main>
 
 <div id="site-footer"></div>
-<script>
-  (function() {
-    function safeInject(id, html) {
-    var target = document.getElementById(id);
-    if (!target) return;
-    var doc = new DOMParser().parseFromString(html, 'text/html');
-    /* Collect scripts first, remove from fragment */
-    var scripts = Array.from(doc.body.querySelectorAll('script'));
-    scripts.forEach(function(s) { s.parentNode.removeChild(s); });
-    /* Append all non-script nodes so header is in DOM */
-    while (target.firstChild) target.removeChild(target.firstChild);
-    Array.from(doc.body.childNodes).forEach(function(node) {
-      target.appendChild(document.importNode(node, true));
-    });
-    /* Run scripts now — header nav exists in DOM at this point */
-    scripts.forEach(function(orig) {
-      var s = document.createElement('script');
-      s.textContent = orig.textContent;
-      document.head.appendChild(s);
-    });
-  }
-    fetch('footer.html')
-      .then(function(r){ return r.text(); })
-      .then(function(html){ safeInject('site-footer', html); });
-  })();
-</script>
+<script>loadFragment("footer.html", "site-footer");</script>
 
 <script>
   fetch('fees-data.json')

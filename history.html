@@ -5,6 +5,7 @@
   <title>Our History — Wu's Tai Chi Chuan Academy Detroit</title>
   <meta name="description" content="The lineage and 30-year history of Wu's Tai Chi Chuan Academy in Metro Detroit.">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script src="site.js"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="preload" href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;700&family=Lato:wght@300;400;700&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
@@ -18,32 +19,7 @@
 <!--  HEADER — fetch from header.html                               -->
 <!-- ═══════════════════════════════════════════════════════════════ -->
 <div id="site-header"></div>
-<script>
-  (function() {
-    function safeInject(id, html) {
-    var target = document.getElementById(id);
-    if (!target) return;
-    var doc = new DOMParser().parseFromString(html, 'text/html');
-    /* Collect scripts first, remove from fragment */
-    var scripts = Array.from(doc.body.querySelectorAll('script'));
-    scripts.forEach(function(s) { s.parentNode.removeChild(s); });
-    /* Append all non-script nodes so header is in DOM */
-    while (target.firstChild) target.removeChild(target.firstChild);
-    Array.from(doc.body.childNodes).forEach(function(node) {
-      target.appendChild(document.importNode(node, true));
-    });
-    /* Run scripts now — header nav exists in DOM at this point */
-    scripts.forEach(function(orig) {
-      var s = document.createElement('script');
-      s.textContent = orig.textContent;
-      document.head.appendChild(s);
-    });
-  }
-    fetch('header.html')
-      .then(function(r){ return r.text(); })
-      .then(function(html){ safeInject('site-header', html); });
-  })();
-</script>
+<script>loadFragment("header.html", "site-header");</script>
 
 <main>
 
@@ -64,7 +40,7 @@
   <div class="page-main">
 
     <!-- DETROIT SCHOOL -->
-    <section class="history-section-block" style="margin-bottom:56px;">
+    <section class="history-section-block fade-in" style="margin-bottom:56px;">
       <h3 class="history-subhead">30 Years in Metro Detroit</h3>
       <div class="history-img-float">
         <img loading="lazy" src="Images/OLC.jpg" alt="Our school building">
@@ -76,7 +52,7 @@
     </section>
 
     <!-- WORLD LINEAGE -->
-    <section class="history-section-block" style="margin-bottom:56px;">
+    <section class="history-section-block fade-in" style="margin-bottom:56px;">
       <h3 class="history-subhead">The Wu Style Lineage</h3>
       <p>In 1935, the first Wu's Tai Chi Chuan Academy was founded in Shanghai by Grandmaster Wu Chien-ch'uan. The style traces its origins to Yang Luchan and his student Wu Quanyou, a Manchu military officer, whose son Wu Jianquan refined and formalised the art into what we practise today.</p>
 
@@ -87,26 +63,26 @@
     </section>
 
     <!-- NOTABLE DISCIPLES -->
-    <section class="history-section-block">
+    <section class="history-section-block fade-in">
       <h3 class="history-subhead">Notable Masters &amp; Disciples <span class="zh">著名門徒</span></h3>
       <div class="lineage-grid">
-        <div class="lineage-card">
+        <div class="lineage-card fade-in">
           <h4>Wu Quanyou</h4>
           <p>Founder of Wu Style. Military officer and disciple of Yang Luchan — laid the foundations of the style's internal martial art.</p>
         </div>
-        <div class="lineage-card">
+        <div class="lineage-card fade-in delay-1">
           <h4>Wu Jianquan</h4>
           <p>Co-founder of Wu Style. Taught large numbers and refined the art to clearly distinguish it from Yang style.</p>
         </div>
-        <div class="lineage-card">
+        <div class="lineage-card fade-in delay-2">
           <h4>Wu Gongyi</h4>
           <p>Moved family headquarters to Hong Kong in 1948. Senior instructor from 1942 to 1970.</p>
         </div>
-        <div class="lineage-card">
+        <div class="lineage-card fade-in delay-1">
           <h4>Wu Ta-k'uei</h4>
           <p>Late grand master credited with promoting Tai Chi in Canada and internationally.</p>
         </div>
-        <div class="lineage-card">
+        <div class="lineage-card fade-in delay-2">
           <h4>Eddie Wu Guangyu</h4>
           <p>Current grandmaster. Great-grandson of Wu Jianquan and grandson of Wu Gongyi.</p>
         </div>
@@ -117,32 +93,7 @@
 </main>
 
 <div id="site-footer"></div>
-<script>
-  (function() {
-    function safeInject(id, html) {
-    var target = document.getElementById(id);
-    if (!target) return;
-    var doc = new DOMParser().parseFromString(html, 'text/html');
-    /* Collect scripts first, remove from fragment */
-    var scripts = Array.from(doc.body.querySelectorAll('script'));
-    scripts.forEach(function(s) { s.parentNode.removeChild(s); });
-    /* Append all non-script nodes so header is in DOM */
-    while (target.firstChild) target.removeChild(target.firstChild);
-    Array.from(doc.body.childNodes).forEach(function(node) {
-      target.appendChild(document.importNode(node, true));
-    });
-    /* Run scripts now — header nav exists in DOM at this point */
-    scripts.forEach(function(orig) {
-      var s = document.createElement('script');
-      s.textContent = orig.textContent;
-      document.head.appendChild(s);
-    });
-  }
-    fetch('footer.html')
-      .then(function(r){ return r.text(); })
-      .then(function(html){ safeInject('site-footer', html); });
-  })();
-</script>
+<script>loadFragment("footer.html", "site-footer");</script>
 
 <!-- History-page specific styles -->
 
