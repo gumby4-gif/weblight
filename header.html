@@ -51,16 +51,38 @@
   if (cfg.siteName) document.getElementById('header-site-name').textContent = cfg.siteName;
   if (cfg.tagline)  document.getElementById('header-tagline').textContent   = cfg.tagline;
 
-  /* Active nav link — reads <body data-page="…">
-     e.g. <body data-page="history"> highlights the History link */
-  /* Active nav — find matching link by iterating, no string concatenation into selector */
+  /* ── Active nav ─────────────────────────────────────────────────
+     On page load:
+       - Non-index pages: match data-nav / data-nav-group to <body data-page>
+       - Index page: match data-nav to the current URL hash (e.g. #locations)
+     On click: immediately move the underline to the clicked link.
+  ──────────────────────────────────────────────────────────────── */
   var page = document.body.getAttribute('data-page');
-  if (page) {
-    document.querySelectorAll('header nav a[data-nav]').forEach(function(link) {
-      if (link.getAttribute('data-nav') === page) {
+
+  function setActiveLink(el) {
+    document.querySelectorAll('header nav a').forEach(function(a) {
+      a.classList.remove('active');
+    });
+    if (el) el.classList.add('active');
+  }
+
+  function activateByValue(value) {
+    document.querySelectorAll('header nav a').forEach(function(link) {
+      var nav      = link.getAttribute('data-nav');
+      var navGroup = link.getAttribute('data-nav-group');
+      if (nav === value || (navGroup && navGroup.split(/\s+/).indexOf(value) !== -1)) {
         link.classList.add('active');
       }
     });
+  }
+
+  if (page && page !== 'home') {
+    /* Non-index: highlight by data-page */
+    activateByValue(page);
+  } else if (page === 'home') {
+    /* Index: highlight by hash if present (e.g. arrived via index.html#locations) */
+    var hash = window.location.hash.replace('#', '');
+    if (hash) activateByValue(hash);
   }
 
   /* Mobile menu toggle + ARIA */
@@ -89,6 +111,8 @@
         /* Always close the mobile menu */
         navMenu.classList.remove('open');
         if (toggle) toggle.setAttribute('aria-expanded', 'false');
+        /* Move active underline to clicked link */
+        setActiveLink(link);
 
         /* Smooth-scroll only when already on the index page */
         if (onIndex) {
