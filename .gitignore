@@ -4,3 +4,5 @@ optimize.js
 package.json
 package-lock.json
 .vscode
+.dcignore
+.vscode\settings.json
