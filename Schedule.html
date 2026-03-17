@@ -20,7 +20,7 @@
     .then(function(r){ return r.text(); })
     .then(function(html){
       var el = document.getElementById('site-header');
-      el.innerHTML = html;
+      el.textContent = html;
       el.querySelectorAll('script').forEach(function(orig) {
         var s = document.createElement('script');
         s.textContent = orig.textContent;
@@ -54,7 +54,7 @@
   fetch('footer.html')
     .then(function(r){ return r.text(); })
     .then(function(html){
-      document.getElementById('site-footer').innerHTML = html;
+      document.getElementById('site-footer').innerText = html;
     });
 </script>
 
@@ -68,7 +68,7 @@ fetch("schedule.json")
     buildSchedule(data);
   })
   .catch(function(err) {
-    document.getElementById("schedule-main").innerHTML =
+    document.getElementById("schedule-main").innerText =
       '<div class="load-error">' +
         '<strong>Schedule could not be loaded.</strong><br>' +
         'Please check that <code>schedule.json</code> is in the same folder as this page and contains valid JSON.<br>' +

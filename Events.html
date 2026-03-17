@@ -20,7 +20,7 @@
     .then(function(r){ return r.text(); })
     .then(function(html){
       var el = document.getElementById('site-header');
-      el.innerHTML = html;
+      el.innerText = html;
       el.querySelectorAll('script').forEach(function(orig) {
         var s = document.createElement('script');
         s.textContent = orig.textContent;
@@ -54,7 +54,7 @@
   fetch('footer.html')
     .then(function(r){ return r.text(); })
     .then(function(html){
-      document.getElementById('site-footer').innerHTML = html;
+      document.getElementById('site-footer').innerText = html;
     });
 </script>
 
@@ -66,7 +66,7 @@
     })
     .then(function(data) { render(data); })
     .catch(function(err) {
-      document.getElementById('events-main').innerHTML =
+      document.getElementById('events-main').innerText =
         '<div class="error"><strong>Could not load events data.</strong> Make sure <code>events-data.json</code> is in the same folder as this page. (' + err.message + ')</div>';
     });
 
@@ -96,7 +96,7 @@
     });
 
     if (!html) html = '<p style="color:var(--charcoal-mid);text-align:center;padding:40px 0;">No events yet — check back soon.</p>';
-    document.getElementById('events-main').innerHTML = html;
+    document.getElementById('events-main').innerText = html;
   }
 </script>
 

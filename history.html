@@ -23,7 +23,7 @@
     .then(function(r){ return r.text(); })
     .then(function(html){
       var el = document.getElementById('site-header');
-      el.innerHTML = html;
+      el.innerText = html;
       el.querySelectorAll('script').forEach(function(orig) {
         var s = document.createElement('script');
         s.textContent = orig.textContent;
@@ -107,7 +107,7 @@
   fetch('footer.html')
     .then(function(r){ return r.text(); })
     .then(function(html){
-      document.getElementById('site-footer').innerHTML = html;
+      document.getElementById('site-footer').innerText = html;
     });
 </script>
 

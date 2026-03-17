@@ -103,7 +103,7 @@
       var storageKey = 'ann_seen_' + btoa(unescape(encodeURIComponent(d.message))).slice(0, 32);
       if (sessionStorage.getItem(storageKey)) return;
       var span = document.getElementById('announcement-text');
-      span.innerHTML = d.message;
+      span.innerText.message;
       if (d.link) {
         var a = document.createElement('a');
         a.href = d.link;
@@ -504,7 +504,7 @@
   fetch('footer.html')
     .then(function(r){ return r.text(); })
     .then(function(html){
-      document.getElementById('site-footer').innerHTML = html;
+      document.getElementById('site-footer').innerText=html;
     });
 </script>
 
