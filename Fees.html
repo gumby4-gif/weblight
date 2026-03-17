@@ -10,23 +10,90 @@
   <link rel="preload" href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;700&family=Lato:wght@300;400;700&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
   <noscript><link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet"></noscript>
   <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="styles-zen.css">
+  <style>
+    .fees-page-hero {
+      background: linear-gradient(160deg, #1E1A12 0%, #2E2416 100%);
+      color: rgba(255,255,255,0.88);
+    }
+    .fees-page-hero h2 { color: #fff; }
+    .fees-page-hero p  { color: rgba(255,255,255,0.62); }
+
+    .notice {
+      background: var(--crimson-pale);
+      border-left: 3px solid var(--crimson);
+      border-radius: 0 4px 4px 0;
+      padding: 14px 20px;
+      font-size: 0.92rem;
+      color: var(--charcoal);
+      line-height: 1.7;
+      margin-bottom: 32px;
+    }
+    .fee-group {
+      background: #fff;
+      border: 1px solid var(--heritage-border);
+      border-radius: 6px;
+      overflow: hidden;
+      margin-bottom: 24px;
+    }
+    .fee-group-label {
+      background: var(--ink-black);
+      color: #fff;
+      font-family: 'Noto Serif SC', serif;
+      font-size: 0.95rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      padding: 14px 22px;
+    }
+    .fee-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 13px 22px;
+      border-bottom: 1px solid var(--heritage-border);
+    }
+    .fee-row:last-child { border-bottom: none; }
+    .fee-label {
+      font-size: 0.95rem;
+      color: var(--charcoal);
+    }
+    .fee-amount {
+      font-family: 'Noto Serif SC', serif;
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--crimson);
+    }
+  </style>
 </head>
 
-<body data-page="schedule">
+<body data-page="fees">
 
 <div id="site-header"></div>
 <script>
-  fetch('header.html')
-    .then(function(r){ return r.text(); })
-    .then(function(html){
-      var el = document.getElementById('site-header');
-      el.textContent = html;
-      el.querySelectorAll('script').forEach(function(orig) {
-        var s = document.createElement('script');
-        s.textContent = orig.textContent;
-        document.head.appendChild(s);
-      });
+  (function() {
+    function safeInject(id, html) {
+    var target = document.getElementById(id);
+    if (!target) return;
+    var doc = new DOMParser().parseFromString(html, 'text/html');
+    /* Collect scripts first, remove from fragment */
+    var scripts = Array.from(doc.body.querySelectorAll('script'));
+    scripts.forEach(function(s) { s.parentNode.removeChild(s); });
+    /* Append all non-script nodes so header is in DOM */
+    while (target.firstChild) target.removeChild(target.firstChild);
+    Array.from(doc.body.childNodes).forEach(function(node) {
+      target.appendChild(document.importNode(node, true));
     });
+    /* Run scripts now — header nav exists in DOM at this point */
+    scripts.forEach(function(orig) {
+      var s = document.createElement('script');
+      s.textContent = orig.textContent;
+      document.head.appendChild(s);
+    });
+  }
+    fetch('header.html')
+      .then(function(r){ return r.text(); })
+      .then(function(html){ safeInject('site-header', html); });
+  })();
 </script>
 
 <div class="page-hero fees-page-hero">
@@ -51,11 +118,30 @@
 
 <div id="site-footer"></div>
 <script>
-  fetch('footer.html')
-    .then(function(r){ return r.text(); })
-    .then(function(html){
-      document.getElementById('site-footer').innerText = html;
+  (function() {
+    function safeInject(id, html) {
+    var target = document.getElementById(id);
+    if (!target) return;
+    var doc = new DOMParser().parseFromString(html, 'text/html');
+    /* Collect scripts first, remove from fragment */
+    var scripts = Array.from(doc.body.querySelectorAll('script'));
+    scripts.forEach(function(s) { s.parentNode.removeChild(s); });
+    /* Append all non-script nodes so header is in DOM */
+    while (target.firstChild) target.removeChild(target.firstChild);
+    Array.from(doc.body.childNodes).forEach(function(node) {
+      target.appendChild(document.importNode(node, true));
     });
+    /* Run scripts now — header nav exists in DOM at this point */
+    scripts.forEach(function(orig) {
+      var s = document.createElement('script');
+      s.textContent = orig.textContent;
+      document.head.appendChild(s);
+    });
+  }
+    fetch('footer.html')
+      .then(function(r){ return r.text(); })
+      .then(function(html){ safeInject('site-footer', html); });
+  })();
 </script>
 
 <script>
@@ -66,23 +152,75 @@
     })
     .then(function(data) { render(data); })
     .catch(function(err) {
-      document.getElementById('fees-main').innerText =
-        '<div class="error"><strong>Could not load fees data.</strong> Make sure <code>fees-data.json</code> is in the same folder as this page. (' + err.message + ')</div>';
+      var main = document.getElementById('fees-main');
+      var div  = document.createElement('div');
+      div.className = 'error';
+      var strong = document.createElement('strong');
+      strong.textContent = 'Could not load fees data.';
+      div.appendChild(strong);
+      div.appendChild(document.createTextNode(' Check that fees-data.json is in the same folder. (' + err.message + ')'));
+      main.innerHTML = '';
+      main.appendChild(div);
     });
+
+  /* Safely render a notice string that may contain <strong> tags only */
+  function renderNotice(text) {
+    var div = document.createElement('div');
+    div.className = 'notice';
+    /* Split on <strong>...</strong> and build nodes safely */
+    var parts = text.split(/(<strong>[^<]*<\/strong>)/);
+    parts.forEach(function(part) {
+      var m = part.match(/^<strong>([^<]*)<\/strong>$/);
+      if (m) {
+        var s = document.createElement('strong');
+        s.textContent = m[1];
+        div.appendChild(s);
+      } else {
+        div.appendChild(document.createTextNode(part));
+      }
+    });
+    return div;
+  }
 
   function render(data) {
     document.getElementById('hero-title').textContent    = data.heroTitle    || 'Class Fees';
     document.getElementById('hero-subtitle').textContent = data.heroSubtitle || '';
-    var html = '';
-    if (data.notice) html += '<div class="notice">' + data.notice + '</div>';
+
+    var main = document.getElementById('fees-main');
+    main.innerHTML = '';
+
+    if (data.notice) {
+      main.appendChild(renderNotice(data.notice));
+    }
+
     (data.groups || []).forEach(function(group) {
-      html += '<div class="fee-group"><div class="fee-group-label">' + group.label + '</div>';
+      var groupDiv = document.createElement('div');
+      groupDiv.className = 'fee-group';
+
+      var label = document.createElement('div');
+      label.className   = 'fee-group-label';
+      label.textContent = group.label;
+      groupDiv.appendChild(label);
+
       (group.items || []).forEach(function(item) {
-        html += '<div class="fee-row"><span class="fee-label">' + item.name + '</span><span class="fee-amount">' + item.price + '</span></div>';
+        var row = document.createElement('div');
+        row.className = 'fee-row';
+
+        var lbl = document.createElement('span');
+        lbl.className   = 'fee-label';
+        lbl.textContent = item.name;
+
+        var amt = document.createElement('span');
+        amt.className   = 'fee-amount';
+        amt.textContent = item.price;
+
+        row.appendChild(lbl);
+        row.appendChild(amt);
+        groupDiv.appendChild(row);
       });
-      html += '</div>';
+
+      main.appendChild(groupDiv);
     });
-    document.getElementById('fees-main').innerText = html;
   }
 </script>
 

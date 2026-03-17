@@ -1,3 +1,5 @@
 {
-  "message": "🎉 New rates in effect March 1st, 2026. <a href='Fees.html'>See updated fees →</a>"
+  "message": "🎉 New rates in effect March 1st, 2026.",
+  "link": "Fees.html",
+  "linkText": "See updated fees →"
 }

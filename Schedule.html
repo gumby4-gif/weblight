@@ -16,17 +16,30 @@
 
 <div id="site-header"></div>
 <script>
-  fetch('header.html')
-    .then(function(r){ return r.text(); })
-    .then(function(html){
-      var el = document.getElementById('site-header');
-      el.textContent = html;
-      el.querySelectorAll('script').forEach(function(orig) {
-        var s = document.createElement('script');
-        s.textContent = orig.textContent;
-        document.head.appendChild(s);
-      });
+  (function() {
+    function safeInject(id, html) {
+    var target = document.getElementById(id);
+    if (!target) return;
+    var doc = new DOMParser().parseFromString(html, 'text/html');
+    /* Collect scripts first, remove from fragment */
+    var scripts = Array.from(doc.body.querySelectorAll('script'));
+    scripts.forEach(function(s) { s.parentNode.removeChild(s); });
+    /* Append all non-script nodes so header is in DOM */
+    while (target.firstChild) target.removeChild(target.firstChild);
+    Array.from(doc.body.childNodes).forEach(function(node) {
+      target.appendChild(document.importNode(node, true));
     });
+    /* Run scripts now — header nav exists in DOM at this point */
+    scripts.forEach(function(orig) {
+      var s = document.createElement('script');
+      s.textContent = orig.textContent;
+      document.head.appendChild(s);
+    });
+  }
+    fetch('header.html')
+      .then(function(r){ return r.text(); })
+      .then(function(html){ safeInject('site-header', html); });
+  })();
 </script>
 
 <div class="page-hero schedule-page-hero">
@@ -51,11 +64,30 @@
 
 <div id="site-footer"></div>
 <script>
-  fetch('footer.html')
-    .then(function(r){ return r.text(); })
-    .then(function(html){
-      document.getElementById('site-footer').innerText = html;
+  (function() {
+    function safeInject(id, html) {
+    var target = document.getElementById(id);
+    if (!target) return;
+    var doc = new DOMParser().parseFromString(html, 'text/html');
+    /* Collect scripts first, remove from fragment */
+    var scripts = Array.from(doc.body.querySelectorAll('script'));
+    scripts.forEach(function(s) { s.parentNode.removeChild(s); });
+    /* Append all non-script nodes so header is in DOM */
+    while (target.firstChild) target.removeChild(target.firstChild);
+    Array.from(doc.body.childNodes).forEach(function(node) {
+      target.appendChild(document.importNode(node, true));
     });
+    /* Run scripts now — header nav exists in DOM at this point */
+    scripts.forEach(function(orig) {
+      var s = document.createElement('script');
+      s.textContent = orig.textContent;
+      document.head.appendChild(s);
+    });
+  }
+    fetch('footer.html')
+      .then(function(r){ return r.text(); })
+      .then(function(html){ safeInject('site-footer', html); });
+  })();
 </script>
 
 <script>
@@ -68,48 +100,74 @@ fetch("schedule.json")
     buildSchedule(data);
   })
   .catch(function(err) {
-    document.getElementById("schedule-main").innerText =
-      '<div class="load-error">' +
-        '<strong>Schedule could not be loaded.</strong><br>' +
-        'Please check that <code>schedule.json</code> is in the same folder as this page and contains valid JSON.<br>' +
-        '<small style="opacity:0.7">' + err.message + '</small>' +
-      '</div>' +
-      '<div class="info-box" style="margin-top:20px">📍 3140 Hilton Road, Ferndale, MI 48220 &nbsp;·&nbsp; 📞 248-854-3953</div>';
+    var main = document.getElementById('schedule-main');
+    main.innerHTML = '';
+
+    var errDiv = document.createElement('div');
+    errDiv.className = 'load-error';
+    var strong = document.createElement('strong');
+    strong.textContent = 'Schedule could not be loaded.';
+    errDiv.appendChild(strong);
+    errDiv.appendChild(document.createElement('br'));
+    errDiv.appendChild(document.createTextNode('Please check that schedule.json is in the same folder and contains valid JSON.'));
+    errDiv.appendChild(document.createElement('br'));
+    var small = document.createElement('small');
+    small.style.opacity = '0.7';
+    small.textContent = err.message;
+    errDiv.appendChild(small);
+    main.appendChild(errDiv);
+
+    var infoBox = document.createElement('div');
+    infoBox.className = 'info-box';
+    infoBox.style.marginTop = '20px';
+    infoBox.textContent = '📍 3140 Hilton Road, Ferndale, MI 48220 · 📞 248-854-3953';
+    main.appendChild(infoBox);
   });
 
 function buildSchedule(data) {
-  var main = document.getElementById("schedule-main");
-  var html = "";
+  var main = document.getElementById('schedule-main');
+  main.innerHTML = '';
 
   data.days.forEach(function(dayObj) {
-    html += '<div class="day-block">';
-    html += '<div class="day-header"><h3>' + escHtml(dayObj.day) + '</h3></div>';
+    var block = document.createElement('div');
+    block.className = 'day-block';
+
+    var dayHeader = document.createElement('div');
+    dayHeader.className = 'day-header';
+    var h3 = document.createElement('h3');
+    h3.textContent = dayObj.day;
+    dayHeader.appendChild(h3);
+    block.appendChild(dayHeader);
 
     dayObj.classes.forEach(function(cls) {
-      var noteHtml = cls.note
-        ? '<span class="class-note">' + escHtml(cls.note) + '</span>'
-        : "";
-      html +=
-        '<div class="class-row">' +
-          '<span class="class-time">'  + escHtml(cls.time) + '</span>' +
-          '<span class="class-name">'  + escHtml(cls.name) + '</span>' +
-          noteHtml +
-        '</div>';
+      var row = document.createElement('div');
+      row.className = 'class-row';
+
+      var time = document.createElement('span');
+      time.className   = 'class-time';
+      time.textContent = cls.time;
+
+      var name = document.createElement('span');
+      name.className   = 'class-name';
+      name.textContent = cls.name;
+
+      row.appendChild(time);
+      row.appendChild(name);
+
+      if (cls.note) {
+        var note = document.createElement('span');
+        note.className   = 'class-note';
+        note.textContent = cls.note;
+        row.appendChild(note);
+      }
+
+      block.appendChild(row);
     });
 
-    html += '</div>';
+    main.appendChild(block);
   });
-
-  main.innerHTML = html;
 }
 
-function escHtml(str) {
-  return String(str)
-    .replace(/&/g, "&amp;")
-    .replace(/</g, "&lt;")
-    .replace(/>/g, "&gt;")
-    .replace(/"/g, "&quot;");
-}
 </script>
 
 </body>

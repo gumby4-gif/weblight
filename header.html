@@ -31,8 +31,7 @@
 
   <nav aria-label="Main navigation">
     <a href="classes.html"               data-nav="classes">Classes</a>
-    <a href="Schedule.html"              data-nav="schedule">Schedule &amp; Fees</a>
-    <a href="Events.html"                data-nav="events">Events</a>
+    <a href="Schedule.html"              data-nav-group="schedule fees events">Schedule · Fees · Events</a>
     <a href="history.html"               data-nav="history">History</a>
     <a href="Sifu's_Corner.html"         data-nav="sifu">Sifu's Corner</a>
     <a href="index.html#locations"       data-nav="locations">Locations</a>
@@ -54,10 +53,14 @@
 
   /* Active nav link — reads <body data-page="…">
      e.g. <body data-page="history"> highlights the History link */
+  /* Active nav — find matching link by iterating, no string concatenation into selector */
   var page = document.body.getAttribute('data-page');
   if (page) {
-    var link = document.querySelector('header nav a[data-nav="' + page + '"]');
-    if (link) link.classList.add('active');
+    document.querySelectorAll('header nav a[data-nav]').forEach(function(link) {
+      if (link.getAttribute('data-nav') === page) {
+        link.classList.add('active');
+      }
+    });
   }
 
   /* Mobile menu toggle + ARIA */
@@ -120,10 +123,10 @@
         var storageKey = 'ann_seen_' + btoa(unescape(encodeURIComponent(d.message))).slice(0, 32);
         if (sessionStorage.getItem(storageKey)) return;
         var span = document.getElementById('announcement-text');
-        span.innerText.message;
+        span.textContent = d.message;
         if (d.link) {
           var a = document.createElement('a');
-          a.href      = d.link;
+          a.href        = d.link;
           a.textContent = ' ' + (d.linkText || 'Learn more');
           span.appendChild(a);
         }

@@ -19,17 +19,30 @@
 <!-- ═══════════════════════════════════════════════════════════════ -->
 <div id="site-header"></div>
 <script>
-  fetch('header.html')
-    .then(function(r){ return r.text(); })
-    .then(function(html){
-      var el = document.getElementById('site-header');
-      el.innerText = html;
-      el.querySelectorAll('script').forEach(function(orig) {
-        var s = document.createElement('script');
-        s.textContent = orig.textContent;
-        document.head.appendChild(s);
-      });
+  (function() {
+    function safeInject(id, html) {
+    var target = document.getElementById(id);
+    if (!target) return;
+    var doc = new DOMParser().parseFromString(html, 'text/html');
+    /* Collect scripts first, remove from fragment */
+    var scripts = Array.from(doc.body.querySelectorAll('script'));
+    scripts.forEach(function(s) { s.parentNode.removeChild(s); });
+    /* Append all non-script nodes so header is in DOM */
+    while (target.firstChild) target.removeChild(target.firstChild);
+    Array.from(doc.body.childNodes).forEach(function(node) {
+      target.appendChild(document.importNode(node, true));
     });
+    /* Run scripts now — header nav exists in DOM at this point */
+    scripts.forEach(function(orig) {
+      var s = document.createElement('script');
+      s.textContent = orig.textContent;
+      document.head.appendChild(s);
+    });
+  }
+    fetch('header.html')
+      .then(function(r){ return r.text(); })
+      .then(function(html){ safeInject('site-header', html); });
+  })();
 </script>
 
 <main>
@@ -38,13 +51,14 @@
   <div class="page-hero history-page-hero">
     <p class="zen-eyebrow" style="text-align:center;margin-bottom:10px;">校史</p>
     <h2>Our School History</h2>
+    <p>The living lineage of Wu Style Tai Chi Chuan — from Shanghai to Ferndale, Michigan.</p>
   </div>
 
   <!-- SUB-NAV -->
   <div class="sub-nav">
     <a href="index.html" class="back-home">← Home</a>
     <span class="divider-dot">·</span>
-    <span style="font-size:0.82rem;color:var(--crimson)">History &amp; Lineage</span>
+    <span style="font-size:0.82rem;color:var(--charcoal-mid);">History &amp; Lineage</span>
   </div>
 
   <div class="page-main">
@@ -104,11 +118,30 @@
 
 <div id="site-footer"></div>
 <script>
-  fetch('footer.html')
-    .then(function(r){ return r.text(); })
-    .then(function(html){
-      document.getElementById('site-footer').innerText = html;
+  (function() {
+    function safeInject(id, html) {
+    var target = document.getElementById(id);
+    if (!target) return;
+    var doc = new DOMParser().parseFromString(html, 'text/html');
+    /* Collect scripts first, remove from fragment */
+    var scripts = Array.from(doc.body.querySelectorAll('script'));
+    scripts.forEach(function(s) { s.parentNode.removeChild(s); });
+    /* Append all non-script nodes so header is in DOM */
+    while (target.firstChild) target.removeChild(target.firstChild);
+    Array.from(doc.body.childNodes).forEach(function(node) {
+      target.appendChild(document.importNode(node, true));
     });
+    /* Run scripts now — header nav exists in DOM at this point */
+    scripts.forEach(function(orig) {
+      var s = document.createElement('script');
+      s.textContent = orig.textContent;
+      document.head.appendChild(s);
+    });
+  }
+    fetch('footer.html')
+      .then(function(r){ return r.text(); })
+      .then(function(html){ safeInject('site-footer', html); });
+  })();
 </script>
 
 <!-- History-page specific styles -->

@@ -10,23 +10,96 @@
   <link rel="preload" href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;700&family=Lato:wght@300;400;700&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
   <noscript><link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet"></noscript>
   <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="styles-zen.css">
+  <style>
+    .sifu-page-hero {
+      background: linear-gradient(160deg, #1A1A18 0%, #2A1F0A 100%);
+      color: rgba(255,255,255,0.88);
+    }
+    .sifu-page-hero h2 { color: #fff; }
+    .sifu-page-hero p  { color: rgba(255,255,255,0.62); }
+
+    .sifu-profile {
+      display: flex;
+      align-items: center;
+      gap: 28px;
+      background: #fff;
+      border: 1px solid var(--heritage-border);
+      border-radius: 6px;
+      border-bottom: 2px solid var(--heritage-gold);
+      padding: 24px 28px;
+      margin-bottom: 40px;
+    }
+    .sifu-profile img {
+      width: 90px;
+      height: 90px;
+      object-fit: cover;
+      border-radius: 4px;
+      display: block;
+      flex-shrink: 0;
+    }
+    .sifu-profile-text h3 {
+      font-family: 'Noto Serif SC', serif;
+      font-size: 1.15rem;
+      color: var(--ink-black);
+      margin: 0;
+    }
+
+    p.greeting {
+      font-family: 'Noto Serif SC', serif;
+      font-size: 1.1rem;
+      color: var(--ink-black);
+      margin-bottom: 18px;
+    }
+    p.closing {
+      font-family: 'Noto Serif SC', serif;
+      font-size: 1.1rem;
+      color: var(--ink-black);
+      margin-top: 28px;
+      margin-bottom: 28px;
+    }
+
+    #sifu-message p {
+      font-size: 0.97rem;
+      color: var(--charcoal);
+      line-height: 1.85;
+      margin-bottom: 1.1em;
+    }
+
+    @media (max-width: 600px) {
+      .sifu-profile { flex-direction: column; text-align: center; }
+    }
+  </style>
 </head>
 
 <body data-page="sifu">
 
 <div id="site-header"></div>
 <script>
-  fetch('header.html')
-    .then(function(r){ return r.text(); })
-    .then(function(html){
-      var el = document.getElementById('site-header');
-      el.innerText = html;
-      el.querySelectorAll('script').forEach(function(orig) {
-        var s = document.createElement('script');
-        s.textContent = orig.textContent;
-        document.head.appendChild(s);
-      });
+  (function() {
+    function safeInject(id, html) {
+    var target = document.getElementById(id);
+    if (!target) return;
+    var doc = new DOMParser().parseFromString(html, 'text/html');
+    /* Collect scripts first, remove from fragment */
+    var scripts = Array.from(doc.body.querySelectorAll('script'));
+    scripts.forEach(function(s) { s.parentNode.removeChild(s); });
+    /* Append all non-script nodes so header is in DOM */
+    while (target.firstChild) target.removeChild(target.firstChild);
+    Array.from(doc.body.childNodes).forEach(function(node) {
+      target.appendChild(document.importNode(node, true));
     });
+    /* Run scripts now — header nav exists in DOM at this point */
+    scripts.forEach(function(orig) {
+      var s = document.createElement('script');
+      s.textContent = orig.textContent;
+      document.head.appendChild(s);
+    });
+  }
+    fetch('header.html')
+      .then(function(r){ return r.text(); })
+      .then(function(html){ safeInject('site-header', html); });
+  })();
 </script>
 
 <main>
@@ -35,13 +108,14 @@
   <div class="page-hero sifu-page-hero">
     <p class="zen-eyebrow" style="text-align:center;margin-bottom:10px;">底特律師傅</p>
     <h2>Sifu's Corner</h2>
+    <p>A personal message from the head instructor of Wu's Tai Chi Chuan Academy Detroit.</p>
   </div>
 
   <!-- SUB-NAV -->
   <div class="sub-nav">
     <a href="index.html" class="back-home">← Home</a>
     <span class="divider-dot">·</span>
-    <span style="font-size:0.82rem;color:var(--crimson);">Sifu's Corner</span>
+    <span style="font-size:0.82rem;color:var(--charcoal-mid);">Sifu's Corner</span>
   </div>
 
   <div class="page-main">
@@ -68,11 +142,30 @@
 
 <div id="site-footer"></div>
 <script>
-  fetch('footer.html')
-    .then(function(r){ return r.text(); })
-    .then(function(html){
-      document.getElementById('site-footer').innerText = html;
+  (function() {
+    function safeInject(id, html) {
+    var target = document.getElementById(id);
+    if (!target) return;
+    var doc = new DOMParser().parseFromString(html, 'text/html');
+    /* Collect scripts first, remove from fragment */
+    var scripts = Array.from(doc.body.querySelectorAll('script'));
+    scripts.forEach(function(s) { s.parentNode.removeChild(s); });
+    /* Append all non-script nodes so header is in DOM */
+    while (target.firstChild) target.removeChild(target.firstChild);
+    Array.from(doc.body.childNodes).forEach(function(node) {
+      target.appendChild(document.importNode(node, true));
     });
+    /* Run scripts now — header nav exists in DOM at this point */
+    scripts.forEach(function(orig) {
+      var s = document.createElement('script');
+      s.textContent = orig.textContent;
+      document.head.appendChild(s);
+    });
+  }
+    fetch('footer.html')
+      .then(function(r){ return r.text(); })
+      .then(function(html){ safeInject('site-footer', html); });
+  })();
 </script>
 
 <script>
@@ -82,23 +175,40 @@
       return r.text();
     })
     .then(function(text){
-      var paragraphs = text
-        .split(/\n\s*\n/)
+      var container = document.getElementById('sifu-message');
+      container.innerHTML = '';
+
+      text.split(/\n\s*\n/)
         .map(function(p){ return p.trim(); })
-        .filter(function(p){ return p.length > 0; });
-
-      var html = paragraphs
-        .map(function(p){ return '<p>' + p + '</p>'; })
-        .join('\n');
-
-      document.getElementById('sifu-message').innerText = html;
+        .filter(function(p){ return p.length > 0; })
+        .forEach(function(p){
+          var el = document.createElement('p');
+          el.textContent = p;
+          container.appendChild(el);
+        });
     })
     .catch(function(err){
-      document.getElementById('sifu-message').innerText =
-        '<p style="color:#8B2020;background:#fff5f5;border:1px solid #e8b4b4;border-radius:6px;padding:16px;font-size:0.9rem;">' +
-        '<strong>Message could not be loaded.</strong> Please check that Sifu\'s_Corner.txt is in the same folder.<br>' +
-        '<small style="opacity:0.7">' + err.message + '</small></p>';
+      var container = document.getElementById('sifu-message');
+      container.innerHTML = '';
+
+      var p = document.createElement('p');
+      p.style.cssText = 'color:#8B2020;background:#fff5f5;border:1px solid #e8b4b4;border-radius:6px;padding:16px;font-size:0.9rem;';
+
+      var strong = document.createElement('strong');
+      strong.textContent = 'Message could not be loaded.';
+      p.appendChild(strong);
+      p.appendChild(document.createTextNode(" Please check that Sifu's_Corner.txt is in the same folder."));
+
+      var small = document.createElement('small');
+      small.style.opacity = '0.7';
+      small.textContent = err.message;
+      p.appendChild(document.createElement('br'));
+      p.appendChild(small);
+
+      container.appendChild(p);
     });
 </script>
+
+
 </body>
 </html>

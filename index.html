@@ -29,95 +29,31 @@
 <body data-page="home" id="top">
 
 <!-- ═══════════════════════════════════════════════════════════════ -->
-<!--  ANNOUNCEMENT BANNER                                           -->
+<!--  HEADER — loaded from header.html                              -->
 <!-- ═══════════════════════════════════════════════════════════════ -->
-<div id="announcement-banner" role="alert">
-  <span id="announcement-text"></span>
-  <button class="ann-close" onclick="document.getElementById('announcement-banner').style.display='none'" aria-label="Dismiss">✕</button>
-</div>
-
-<!-- ═══════════════════════════════════════════════════════════════ -->
-<!--  HEADER                                                        -->
-<!-- ═══════════════════════════════════════════════════════════════ -->
-<header>
-  <div class="header-brand">
-    <a href="index.html#top" aria-label="Return to home">
-      <img id="header-logo" src="Images/wuTaiChilogoWhitenodot.png" alt="Wu Tai Chi Logo">
-    </a>
-    <div class="header-brand-text">
-      <h1 id="header-site-name">Wu's Tai Chi Chuan Academy Detroit</h1>
-      <p id="header-tagline">Traditional Wu Style · Ferndale, Michigan</p>
-    </div>
-  </div>
-
-  <button class="nav-toggle" aria-label="Menu" aria-expanded="false">
-    <span></span><span></span><span></span>
-  </button>
-
-  <nav aria-label="Main navigation">
-    <a href="classes.html"            data-nav="classes">Classes</a>
-    <a href="Schedule.html"           data-nav="schedule">Schedule &amp; Fees</a>
-    <a href="history.html"            data-nav="history">History</a>
-    <a href="Sifu's_Corner.html"      data-nav="sifu">Sifu's Corner</a>
-    <a href="index.html#locations"    data-nav="locations">Locations</a>
-    <a href="index.html#testimonials" data-nav="testimonials">Testimonials</a>
-    <a href="index.html#getting-started" data-nav="getting-started">Get Started</a>
-    <a href="index.html#contact"      data-nav="contact">Contact</a>
-  </nav>
-</header>
-
+<div id="site-header"></div>
 <script>
-(function () {
-  var toggle  = document.querySelector('.nav-toggle');
-  var navMenu = document.querySelector('header nav');
-  if (toggle) {
-    toggle.addEventListener('click', function () {
-      var expanded = this.getAttribute('aria-expanded') === 'true';
-      this.setAttribute('aria-expanded', String(!expanded));
-      navMenu.classList.toggle('open');
-    });
-  }
-  if (navMenu) {
-    navMenu.querySelectorAll('a').forEach(function (link) {
-      link.addEventListener('click', function (e) {
-        navMenu.classList.remove('open');
-        if (toggle) toggle.setAttribute('aria-expanded', 'false');
-        var href = link.getAttribute('href') || '';
-        var hi   = href.indexOf('#');
-        if (hi !== -1) {
-          var hash   = href.slice(hi);
-          var target = document.querySelector(hash);
-          if (target) {
-            e.preventDefault();
-            history.pushState(null, '', hash);
-            target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-          }
-        }
+  (function() {
+    function safeInject(id, html) {
+      var target = document.getElementById(id);
+      if (!target) return;
+      var doc = new DOMParser().parseFromString(html, 'text/html');
+      var scripts = Array.from(doc.body.querySelectorAll('script'));
+      scripts.forEach(function(s) { s.parentNode.removeChild(s); });
+      while (target.firstChild) target.removeChild(target.firstChild);
+      Array.from(doc.body.childNodes).forEach(function(node) {
+        target.appendChild(document.importNode(node, true));
       });
-    });
-  }
-  fetch('announcement.json')
-    .then(function (r) { return r.ok ? r.json() : null; })
-    .then(function (d) {
-      if (!d || !d.message) return;
-      var storageKey = 'ann_seen_' + btoa(unescape(encodeURIComponent(d.message))).slice(0, 32);
-      if (sessionStorage.getItem(storageKey)) return;
-      var span = document.getElementById('announcement-text');
-      span.innerText.message;
-      if (d.link) {
-        var a = document.createElement('a');
-        a.href = d.link;
-        a.textContent = ' ' + (d.linkText || 'Learn more');
-        span.appendChild(a);
-      }
-      var banner = document.getElementById('announcement-banner');
-      banner.style.display = 'block';
-      banner.querySelector('.ann-close').addEventListener('click', function () {
-        sessionStorage.setItem(storageKey, '1');
+      scripts.forEach(function(orig) {
+        var s = document.createElement('script');
+        s.textContent = orig.textContent;
+        document.head.appendChild(s);
       });
-    })
-    .catch(function () {});
-})();
+    }
+    fetch('header.html')
+      .then(function(r){ return r.text(); })
+      .then(function(html){ safeInject('site-header', html); });
+  })();
 </script>
 
 <main>
@@ -501,11 +437,30 @@
 
 <div id="site-footer"></div>
 <script>
-  fetch('footer.html')
-    .then(function(r){ return r.text(); })
-    .then(function(html){
-      document.getElementById('site-footer').innerText=html;
+  (function() {
+    function safeInject(id, html) {
+    var target = document.getElementById(id);
+    if (!target) return;
+    var doc = new DOMParser().parseFromString(html, 'text/html');
+    /* Collect scripts first, remove from fragment */
+    var scripts = Array.from(doc.body.querySelectorAll('script'));
+    scripts.forEach(function(s) { s.parentNode.removeChild(s); });
+    /* Append all non-script nodes so header is in DOM */
+    while (target.firstChild) target.removeChild(target.firstChild);
+    Array.from(doc.body.childNodes).forEach(function(node) {
+      target.appendChild(document.importNode(node, true));
     });
+    /* Run scripts now — header nav exists in DOM at this point */
+    scripts.forEach(function(orig) {
+      var s = document.createElement('script');
+      s.textContent = orig.textContent;
+      document.head.appendChild(s);
+    });
+  }
+    fetch('footer.html')
+      .then(function(r){ return r.text(); })
+      .then(function(html){ safeInject('site-footer', html); });
+  })();
 </script>
 
 </main>
