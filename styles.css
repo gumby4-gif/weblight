@@ -29,6 +29,7 @@
 
   /* Accent — gold */
   --heritage-gold:   #B8954A;
+  --heritage-gold-dark:   #91670c;
   --heritage-border: #D9CEB2;
 
   /* Header / footer */
@@ -669,7 +670,7 @@ footer {
   overflow: hidden;
   margin-bottom: 20px;
 }
-.day-header { background: var(--heritage-gold); padding: 14px 22px; }
+.day-header { background: var(--heritage-gold-dark); padding: 14px 22px; }
 .day-header h3 { font-family: var(--font-serif); font-size: 1rem; color: var(--surface); letter-spacing: 0.06em; margin: 0; }
 .class-row {
   display: flex; align-items: baseline; gap: 20px;
@@ -694,7 +695,7 @@ footer {
   margin-bottom: 32px;
 }
 .fee-group { background: var(--surface); border: 1px solid var(--heritage-border); border-radius: 6px; overflow: hidden; margin-bottom: 24px; }
-.fee-group-label { background: var(--heritage-gold); color: var(--surface); font-family: var(--font-serif); font-size: 0.95rem; font-weight: 700; letter-spacing: 0.06em; padding: 14px 22px; }
+.fee-group-label { background: var(--heritage-gold-dark); color: var(--surface); font-family: var(--font-serif); font-size: 0.95rem; font-weight: 700; letter-spacing: 0.06em; padding: 14px 22px; }
 .fee-row { display: flex; justify-content: space-between; align-items: center; padding: 13px 22px; border-bottom: 1px solid var(--heritage-border); }
 .fee-row:last-child { border-bottom: none; }
 .fee-label  { font-size: 0.95rem; color: var(--charcoal); }
