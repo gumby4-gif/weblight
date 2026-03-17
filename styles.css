@@ -638,6 +638,8 @@ footer {
 #contact .contact-item p { color: var(--charcoal); font-size: 0.95rem; }
 #contact .contact-item a { color: var(--crimson); text-decoration: none; font-weight: 700; }
 #contact .contact-item a:hover { text-decoration: underline; color: var(--crimson-dark); }
+#contact .contact-social { display: inline-flex; align-items: center; transition: color 0.2s, transform 0.2s; }
+#contact .contact-social:hover { text-decoration: none; color: #1877F2; transform: translateY(-2px); }
 
 /* ── Get Started steps ───────────────────────────────────── */
 .steps-grid {
