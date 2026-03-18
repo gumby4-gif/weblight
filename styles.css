@@ -110,7 +110,7 @@ main { flex: 1; }
   z-index: 100;
 }
 header {
-  background: var(--header-bg);
+  background: radial-gradient(ellipse at 70% 30%, rgba(255,245,220,0.9) 0%, transparent 60%), linear-gradient(135deg, #C8A870 0%, #DECAA5 40%, #EDE0BC 70%, #D4B896 100%);
   border-bottom: 2px solid var(--header-border);
   display: flex;
   align-items: center;
@@ -264,7 +264,7 @@ header nav a.active  { color: #1A1208; border-bottom-color: var(--crimson); }
 
 /* ── Footer ──────────────────────────────────────────────── */
 footer {
-  background: var(--header-bg);
+  background: radial-gradient(ellipse at 70% 30%, rgba(255,245,220,0.9) 0%, transparent 60%), linear-gradient(135deg, #C8A870 0%, #DECAA5 40%, #EDE0BC 70%, #D4B896 100%);
   color: var(--parchment-dark);
   text-align: center;
   padding: 20px;
@@ -538,7 +538,9 @@ footer {
   border-radius: 4px;
 }
 .action-card:hover { background: white; transform: translateY(-5px); box-shadow: 0 10px 20px rgba(0,0,0,0.05); border-color: var(--crimson); }
-.action-card__icon { font-size: 2.5rem; margin-bottom: 1rem; }
+.action-card__icon { margin-bottom: 1rem; color: var(--crimson); }
+.action-card__icon svg { display: block; }
+.action-card:hover .action-card__icon { color: var(--heritage-gold-dark); }
 .action-card h3 { margin-bottom: 0.5rem; font-family: var(--font-serif); color: var(--crimson); }
 .action-card p { font-size: 0.95rem; margin-bottom: 1.5rem; line-height: 1.4; }
 .action-card__cta { font-weight: 700; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 1px; color: var(--crimson); }
@@ -951,7 +953,7 @@ footer {
   header nav {
     display: none; flex-direction: column; width: 100%; gap: 0;
     position: absolute; top: 100%; left: 0; right: 0;
-    background: var(--header-bg); border-bottom: 2px solid var(--header-border);
+    background: radial-gradient(ellipse at 70% 30%, rgba(255,245,220,0.9) 0%, transparent 60%), linear-gradient(135deg, #C8A870 0%, #DECAA5 40%, #EDE0BC 70%, #D4B896 100%); border-bottom: 2px solid var(--header-border);
     z-index: 99; padding: 0 20px;
     box-shadow: 0 6px 16px rgba(0,0,0,0.12);
   }
@@ -1043,4 +1045,33 @@ footer {
 .fade-in.delay-3 { transition-delay: 0.35s; }
 @media (prefers-reduced-motion: reduce) {
   .fade-in, .fade-in.visible { opacity: 1; transform: none; transition: none; }
+}
+
+
+
+
+/* =========================
+   SVG ICON SYSTEM
+   ========================= */
+
+.icon-svg {
+  display: block;
+  width: 44px;
+  height: 44px;
+  transition: transform 0.2s ease, filter 0.2s ease;
+}
+
+.icon-svg--sm { width: 24px; height: 24px; }
+.icon-svg--lg { width: 56px; height: 56px; }
+
+.action-card:hover .icon-svg {
+  transform: scale(1.08);
+  filter: brightness(1.15);
+}
+
+.page-tabs svg {
+  width: 18px;
+  height: 18px;
+  vertical-align: middle;
+  margin-right: 6px;
 }

@@ -1,0 +1,57 @@
+<svg xmlns="http://www.w3.org/2000/svg" style="display:none">
+
+  <defs>
+    <linearGradient id="icon-grad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%"   stop-color="#9B1B1B"/>
+      <stop offset="100%" stop-color="#6B4F18"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Lucide CalendarDays — Class Schedule -->
+  <symbol id="icon-schedule" viewBox="0 -1 24 26">
+    <g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M8 2v4"/>
+      <path d="M16 2v4"/>
+      <rect width="18" height="18" x="3" y="4" rx="2"/>
+      <path d="M3 10h18"/>
+    </g>
+    <g fill="currentColor">
+      <circle cx="8"  cy="14" r="1"/>
+      <circle cx="12" cy="14" r="1"/>
+      <circle cx="16" cy="14" r="1"/>
+      <circle cx="8"  cy="18" r="1"/>
+      <circle cx="12" cy="18" r="1"/>
+      <circle cx="16" cy="18" r="1"/>
+    </g>
+  </symbol>
+
+  <!-- Lucide BadgeDollarSign — Dues & Fees -->
+  <symbol id="icon-fees" viewBox="0 0 24 24">
+    <g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M3.85 8.62a4 4 0 0 1 4.78-4.77 4 4 0 0 1 6.74 0 4 4 0 0 1 4.78 4.78 4 4 0 0 1 0 6.74 4 4 0 0 1-4.77 4.78 4 4 0 0 1-6.75 0 4 4 0 0 1-4.78-4.77 4 4 0 0 1 0-6.76Z"/>
+      <path d="M16 8h-6a2 2 0 1 0 0 4h4a2 2 0 1 1 0 4H8"/>
+      <path d="M12 18V6"/>
+    </g>
+  </symbol>
+
+  <!-- Party Popper — Special Events -->
+  <symbol id="icon-events" viewBox="0 0 24 24">
+    <g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M5.8 11.3 2 22l10.7-3.79"/>
+      <circle cx="4"  cy="3"  r="0.5" fill="url(#icon-grad)" stroke="none"/>
+      <circle cx="22" cy="8"  r="0.5" fill="url(#icon-grad)" stroke="none"/>
+      <circle cx="15" cy="2"  r="0.5" fill="url(#icon-grad)" stroke="none"/>
+      <circle cx="22" cy="20" r="0.5" fill="url(#icon-grad)" stroke="none"/>
+      <path d="m22 2-2.24.75a2.9 2.9 0 0 0-1.96 3.12c.1.86-.57 1.63-1.45 1.63h-.38c-.86 0-1.6.6-1.76 1.44L14 10"/>
+      <path d="m22 13-.82-.33c-.86-.34-1.82.2-1.98 1.11c-.11.7-.72 1.22-1.43 1.22H17"/>
+      <path d="m11 2 .33.82c.34.86-.2 1.82-1.11 1.98C9.52 4.9 9 5.52 9 6.23V7"/>
+      <path d="M11 13c1.93 1.93 2.83 4.17 2 5-.83.83-3.07-.07-5-2-1.93-1.93-2.83-4.17-2-5 .83-.83 3.07.07 5 2Z"/>
+    </g>
+  </symbol>
+
+  <!-- Facebook -->
+  <symbol id="icon-facebook" viewBox="0 0 24 24" fill="currentColor">
+    <path d="M24 12.073C24 5.405 18.627 0 12 0S0 5.405 0 12.073C0 18.1 4.388 23.094 10.125 24v-8.437H7.078v-3.49h3.047V9.41c0-3.025 1.791-4.697 4.533-4.697 1.312 0 2.686.236 2.686.236v2.97h-1.513c-1.491 0-1.956.93-1.956 1.874v2.25h3.328l-.532 3.49h-2.796V24C19.612 23.094 24 18.1 24 12.073z"/>
+  </symbol>
+
+</svg>

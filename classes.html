@@ -5,12 +5,13 @@
   <title>Classes &amp; Curriculum — Wu's Tai Chi Chuan Academy Detroit</title>
   <meta name="description" content="Full curriculum details — hand forms, pushing hands, weapon forms, disciples, and Ba Fa Wu Bu.">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <script src="site.js"></script>
+  <script src="site.js" defer></script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="preload" href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;700&family=Lato:wght@300;400;700&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
   <noscript><link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet"></noscript>
-  <link rel="stylesheet" href="styles.css">
+  <link rel="preload" href="styles.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript><link rel="stylesheet" href="styles.css"></noscript>
 </head>
 
 <body data-page="classes">
@@ -19,7 +20,7 @@
 <!--  HEADER — fetch from header.html                               -->
 <!-- ═══════════════════════════════════════════════════════════════ -->
 <div id="site-header"></div>
-<script>loadFragment("header.html", "site-header");</script>
+
 
 <main id="main-content">
 
@@ -102,7 +103,7 @@
 </main>
 
 <div id="site-footer"></div>
-<script>loadFragment("footer.html", "site-footer");</script>
+
 
 <!-- Classes-page specific styles -->
 

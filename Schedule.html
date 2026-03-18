@@ -5,18 +5,19 @@
   <title>Class Schedule — Wu's Tai Chi Chuan Academy Detroit</title>
   <meta name="description" content="Current class schedule for Wu's Tai Chi Chuan Academy Detroit — Ferndale, MI.">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <script src="site.js"></script>
+  <script src="site.js" defer></script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="preload" href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;700&family=Lato:wght@300;400;700&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
   <noscript><link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet"></noscript>
-  <link rel="stylesheet" href="styles.css">
+  <link rel="preload" href="styles.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript><link rel="stylesheet" href="styles.css"></noscript>
 </head>
 
 <body data-page="schedule">
 
 <div id="site-header"></div>
-<script>loadFragment("header.html", "site-header");</script>
+
 
 <div class="page-hero schedule-page-hero">
   <p class="zen-eyebrow" style="text-align:center;margin-bottom:10px;">課程表</p>
@@ -28,9 +29,9 @@
   <a href="index.html" class="back-home" aria-label="Return to home page">← Home</a>
   <span class="divider-dot">·</span>
   <nav class="page-tabs">
-    <a href="Schedule.html" class="active">📅 Schedule</a>
-    <a href="Fees.html">💰 Fees</a>
-    <a href="Events.html">🎉 Events</a>
+    <a href="Schedule.html" class="active"><svg class="icon-svg--sm" aria-hidden="true"><use href="Images/icons.svg#icon-schedule"/></svg> Schedule</a>
+    <a href="Fees.html"><svg class="icon-svg--sm" aria-hidden="true"><use href="Images/icons.svg#icon-fees"/></svg> Fees</a>
+    <a href="Events.html"><svg class="icon-svg--sm" aria-hidden="true"><use href="Images/icons.svg#icon-events"/></svg> Events</a>
   </nav>
 </div>
 
@@ -40,7 +41,7 @@
 </main>
 
 <div id="site-footer"></div>
-<script>loadFragment("footer.html", "site-footer");</script>
+
 
 <script>
 fetch("schedule.json")

@@ -1,6 +1,6 @@
 /* site.js — shared utilities for Wu's Tai Chi Chuan Academy Detroit
-   Include this in every page BEFORE the header/footer fetch calls:
-   <script src="site.js"></script>
+   Include once per page with defer:
+   <script src="site.js" defer></script>
 */
 
 /* ── safeInject ──────────────────────────────────────────────────────
@@ -48,6 +48,15 @@ function loadFragment(file, targetId) {
    .fade-in.delay-2 { transition-delay: 0.2s; }
    .fade-in.delay-3 { transition-delay: 0.35s; }
 ──────────────────────────────────────────────────────────────────── */
+/* ── Header / footer loader ──────────────────────────────────────────
+   Loads header.html and footer.html into their placeholder divs.
+   Runs on DOMContentLoaded so defer on site.js is safe.
+──────────────────────────────────────────────────────────────────── */
+document.addEventListener('DOMContentLoaded', function() {
+  loadFragment('header.html', 'site-header');
+  loadFragment('footer.html', 'site-footer');
+});
+
 document.addEventListener('DOMContentLoaded', function() {
   if (!('IntersectionObserver' in window)) {
     document.querySelectorAll('.fade-in').forEach(function(el) {

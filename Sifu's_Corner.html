@@ -5,12 +5,13 @@
   <title>Sifu's Corner — Wu's Tai Chi Chuan Academy Detroit</title>
   <meta name="description" content="A personal message from Sifu Michael Ashmore, head instructor at Wu's Tai Chi Chuan Academy Detroit.">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <script src="site.js"></script>
+  <script src="site.js" defer></script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="preload" href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;700&family=Lato:wght@300;400;700&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
   <noscript><link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet"></noscript>
-  <link rel="stylesheet" href="styles.css">
+  <link rel="preload" href="styles.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript><link rel="stylesheet" href="styles.css"></noscript>
   <style>
     .sifu-page-hero {
       background: linear-gradient(160deg, #1A1A18 0%, #2A1F0A 100%);
@@ -75,7 +76,7 @@
 <body data-page="sifu">
 
 <div id="site-header"></div>
-<script>loadFragment("header.html", "site-header");</script>
+
 
 <main id="main-content">
 
@@ -116,7 +117,7 @@
 </main>
 
 <div id="site-footer"></div>
-<script>loadFragment("footer.html", "site-footer");</script>
+
 
 <script>
   fetch("Sifu's_Corner.txt")
